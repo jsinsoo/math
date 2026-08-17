@@ -1,0 +1,590 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>연속이지만 모든 점에서 미분불가능한 함수 20선 · 그래프 상세판</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#5f6b7a;--line:#dce4ef;--accent:#315efb;--accent2:#7047eb;--soft:#edf3ff;--code:#101827;--good:#087f5b;--warn:#9a5a00}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans KR",sans-serif;line-height:1.72}header{background:linear-gradient(135deg,#14213d,#315efb 58%,#7047eb);color:#fff;padding:56px 20px 44px}.wrap{max-width:1200px;margin:auto}.kicker{font-weight:800;letter-spacing:.08em;opacity:.82}h1{font-size:clamp(32px,5vw,58px);line-height:1.12;margin:8px 0 14px}.lead{font-size:18px;max-width:920px;opacity:.94}nav{position:sticky;top:0;z-index:30;background:#fffffff2;backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}nav .wrap{display:flex;gap:6px;overflow:auto;padding:10px 14px}nav a{white-space:nowrap;text-decoration:none;color:#25304a;padding:7px 11px;border-radius:999px}nav a:hover{background:var(--soft);color:var(--accent)}main{padding:28px 16px 70px}section{margin:0 0 36px}h2{font-size:29px;margin:0 0 13px}.note{background:#eef4ff;border-left:5px solid var(--accent);padding:17px 19px;border-radius:14px;margin:14px 0}.warning{background:#fff8e8;border-left-color:#e59a00}.controls{position:sticky;top:58px;z-index:20;background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px #22335513;margin:18px 0}.controls input{flex:1;min-width:120px}.nval{font-weight:900;color:var(--accent);min-width:38px}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}.toc a{background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:10px;color:#28344d;text-decoration:none}.example{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:20px 0;box-shadow:0 7px 24px #23324b0d}.ex-head{display:flex;gap:14px;align-items:flex-start}.num{width:48px;height:48px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border-radius:14px;font-weight:900}.badge{display:inline-block;background:var(--soft);color:#3c51bd;border-radius:999px;font-size:12px;font-weight:800;padding:3px 9px}h3{font-size:25px;margin:3px 0 10px}.formula{font:19px/1.55 "Cambria Math","Times New Roman",serif;background:#f8faff;border:1px solid #e5ebf5;padding:13px 15px;border-radius:12px;overflow:auto}.graphbox{margin:16px 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}canvas.graph{display:block;width:100%;height:330px;border-radius:10px;background:#fff}.graph-note{font-size:12px;color:var(--muted);padding:5px 4px 0}.explain{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}.explain>div{background:#f8fafc;border:1px solid #e8edf4;border-radius:13px;padding:13px}h4{font-size:15px;margin:0 0 5px;color:#27385f}.explain p{font-size:14px;margin:0;color:#4f5c6c}details{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}summary{cursor:pointer;font-weight:800;color:#33466d}button.copy{border:0;background:var(--soft);color:var(--accent);font-weight:800;padding:7px 10px;border-radius:9px;margin:10px 0 5px;cursor:pointer}pre{background:var(--code);color:#e6edf3;border-radius:13px;padding:15px;overflow:auto;font-size:13px;line-height:1.55}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:15px;background:#fff}table{border-collapse:collapse;width:100%;min-width:820px}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f1f5fa}.proofbox{display:grid;grid-template-columns:1fr 1fr;gap:14px}.proofbox>div{background:white;border:1px solid var(--line);border-radius:15px;padding:16px}footer{background:#111827;color:#dbe4ef;padding:30px 16px}@media(max-width:850px){.explain,.proofbox{grid-template-columns:1fr}canvas.graph{height:270px}}@media print{nav,.controls,button.copy{display:none}body{background:#fff}.example{box-shadow:none;break-inside:avoid}details{display:block}details>summary{display:none}}
+</style></head><body>
+<header><div class="wrap"><div class="kicker">REAL ANALYSIS · FRACTAL GRAPHS · PYTHON</div><h1>모든 점에서 연속이지만<br>모든 점에서 미분불가능한 함수 20선</h1><p class="lead">각 함수의 <b>부분합 그래프를 HTML에서 직접 그려 보면서</b>, 연속성의 이유와 미분불가능성의 핵심 원리를 Python 코드와 함께 학습하는 상세판입니다.</p></div></header>
+<nav><div class="wrap"><a href="#concept">핵심개념</a><a href="#toc">20개 목록</a><a href="#examples">그래프·상세설명</a><a href="#preserve">성질 보존</a><a href="#compare">비교표</a><a href="#refs">참고</a></div></nav>
+<main class="wrap"><section id="concept"><h2>1. 먼저 이해할 핵심</h2><div class="note"><b>연속인데 미분불가능하다는 것은 모순이 아닙니다.</b> 연속성은 “끊어지지 않는다”는 조건이고, 미분가능성은 그보다 훨씬 강한 조건으로 “충분히 확대하면 그래프가 직선처럼 보여야 한다”는 국소적 선형성을 요구합니다. 아래 함수들은 확대할 때마다 새로운 진동 또는 새로운 tent가 나타나기 때문에 접선의 기울기가 안정되지 않습니다.</div><div class="warning note"><b>그래프는 증명이 아닙니다.</b> 컴퓨터는 무한합을 그릴 수 없으므로 아래 그림은 N항 부분합입니다. N을 증가시키면 극한함수의 미세 구조가 더 드러나지만, nowhere differentiability의 결론은 정리와 논증에서 나옵니다.</div><div class="controls"><b>모든 그래프 부분합 항수 N</b><input id="nSlider" type="range" min="3" max="15" value="10"><span class="nval" id="nVal">10</span></div></section>
+<section id="toc"><h2>2. 예제 목록</h2><div class="toc"><a href="#ex1">01. 고전 Weierstrass 함수</a><a href="#ex2">02. 가로 압축 Weierstrass</a><a href="#ex3">03. 이동·반사 Weierstrass</a><a href="#ex4">04. 포물선 위에 얹은 Weierstrass</a><a href="#ex5">05. 사인파와 결합한 Weierstrass</a><a href="#ex6">06. Takagi(Blancmange) 함수</a><a href="#ex7">07. 3진 Takagi–van der Waerden 함수</a><a href="#ex8">08. 4진 Takagi–van der Waerden 함수</a><a href="#ex9">09. 5진 Takagi–van der Waerden 함수</a><a href="#ex10">10. Van der Waerden의 10진 함수</a><a href="#ex11">11. Knopp 함수 I</a><a href="#ex12">12. Knopp 함수 II</a><a href="#ex13">13. 이동한 Knopp 함수</a><a href="#ex14">14. 직선을 더한 Takagi 함수</a><a href="#ex15">15. 사인파와 결합한 3진 함수</a><a href="#ex16">16. 압축·이동한 4진 함수</a><a href="#ex17">17. 지수곡선을 더한 5진 함수</a><a href="#ex18">18. 반사된 Van der Waerden 함수</a><a href="#ex19">19. 세 배 압축 + 3차곡선 Weierstrass</a><a href="#ex20">20. 다중변환 Takagi 함수</a></div></section>
+<section id="examples"><h2>3. 그래프로 보는 20개 예제</h2><article class="example" id="ex1">
+<div class="ex-head"><span class="num">01</span><div><span class="badge">Weierstrass · lacunary Fourier</span><h3>고전 Weierstrass 함수</h3></div></div>
+<div class="formula">W(x)=Σₙ₌₀^∞ 0.85ⁿ cos(11ⁿπx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="w" aria-label="고전 Weierstrass 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>주파수는 11ⁿ으로 매우 빠르게 증가하고 진폭은 0.85ⁿ으로 감소합니다. 각 항은 매끄럽지만, 무한히 작은 스케일에서도 새로운 고주파 진동이 계속 등장합니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>0<a<1이고 b=11은 홀수 정수이며 ab=9.35입니다. 고전적인 Weierstrass의 충분조건을 넉넉히 만족하도록 잡은 예입니다. 따라서 함수는 균등수렴으로 연속이고 어느 점에서도 유한한 미분계수를 갖지 않습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = W(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;고전 Weierstrass 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex2">
+<div class="ex-head"><span class="num">02</span><div><span class="badge">Weierstrass · affine input</span><h3>가로 압축 Weierstrass</h3></div></div>
+<div class="formula">f(x)=W(2x)</div>
+<div class="graphbox"><canvas class="graph" data-kind="w_aff" data-out="1" data-s="2" data-t="0" data-p="zero" aria-label="가로 압축 Weierstrass 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>같은 거친 구조가 x축 방향으로 2배 더 촘촘해집니다. 확대해도 고주파 요철이 사라지지 않는다는 점을 시각적으로 비교하기 좋습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>W가 nowhere differentiable이고 x↦2x가 미분가능한 전단사 선형변환이므로 W(2x)가 한 점에서 미분가능하다면 W도 대응점에서 미분가능해야 하므로 모순입니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = 1*W(2*x + (0)) + (0*x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;가로 압축 Weierstrass&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex3">
+<div class="ex-head"><span class="num">03</span><div><span class="badge">Weierstrass · affine input</span><h3>이동·반사 Weierstrass</h3></div></div>
+<div class="formula">f(x)=W(−x+0.35)</div>
+<div class="graphbox"><canvas class="graph" data-kind="w_aff" data-out="1" data-s="-1" data-t="0.35" data-p="zero" aria-label="이동·반사 Weierstrass 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>좌우 반사와 평행이동을 해도 미세한 진동의 구조 자체는 사라지지 않습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>x↦−x+0.35의 기울기는 −1로 0이 아닙니다. 비퇴화 affine 입력변환은 nowhere differentiability를 그대로 보존합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = 1*W(-1*x + (0.35)) + (0*x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;이동·반사 Weierstrass&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex4">
+<div class="ex-head"><span class="num">04</span><div><span class="badge">Weierstrass + smooth</span><h3>포물선 위에 얹은 Weierstrass</h3></div></div>
+<div class="formula">f(x)=W(x)+0.18x²</div>
+<div class="graphbox"><canvas class="graph" data-kind="w_aff" data-out="1" data-s="1" data-t="0" data-p="quad" aria-label="포물선 위에 얹은 Weierstrass 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>큰 규모에서는 포물선의 완만한 굽음이 보이지만 작은 규모에서는 Weierstrass의 요철이 계속 남습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>g(x)=0.18x²는 모든 점에서 미분가능합니다. 만약 W+g가 어떤 점에서 미분가능하면 W=(W+g)−g도 그 점에서 미분가능해야 하므로 불가능합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = 1*W(1*x + (0)) + (0.18*x**2)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;포물선 위에 얹은 Weierstrass&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex5">
+<div class="ex-head"><span class="num">05</span><div><span class="badge">Weierstrass + smooth</span><h3>사인파와 결합한 Weierstrass</h3></div></div>
+<div class="formula">f(x)=1.4W(1.5x)+0.25sin(2πx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="w_aff" data-out="1.4" data-s="1.5" data-t="0" data-p="sin" aria-label="사인파와 결합한 Weierstrass 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>큰 물결은 사인함수가 만들고, 그 위에 모든 스케일의 거친 진동이 겹쳐집니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>0이 아닌 상수배와 비퇴화 affine 입력변환은 nowhere differentiability를 보존합니다. 여기에 C¹ 함수인 sin을 더해도 미분불가능성은 사라지지 않습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = 1.4*W(1.5*x + (0)) + (0.25*np.sin(2*np.pi*x))
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;사인파와 결합한 Weierstrass&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex6">
+<div class="ex-head"><span class="num">06</span><div><span class="badge">Takagi · tent series</span><h3>Takagi(Blancmange) 함수</h3></div></div>
+<div class="formula">T(x)=Σₙ₌₀^∞ 2⁻ⁿ φ(2ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr" data-r="2" aria-label="Takagi(Blancmange) 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>φ(t)=dist(t,ℤ)는 정수 사이에서 삼각형 모양을 이루는 tent 함수입니다. 더 작고 더 촘촘한 tent가 모든 단계에서 겹쳐집니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>각 항의 크기는 2⁻ⁿ/2 이하라서 Weierstrass M-test로 균등수렴하고 따라서 연속입니다. Takagi 함수는 어느 점에서도 유한한 미분계수를 갖지 않는 고전적 예입니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=2):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = F(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;Takagi(Blancmange) 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex7">
+<div class="ex-head"><span class="num">07</span><div><span class="badge">Takagi–van der Waerden · base 3</span><h3>3진 Takagi–van der Waerden 함수</h3></div></div>
+<div class="formula">f₃(x)=Σₙ₌₀^∞ 3⁻ⁿ φ(3ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr" data-r="3" aria-label="3진 Takagi–van der Waerden 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>2진 대신 3진 스케일을 사용합니다. 한 단계가 내려갈 때마다 tent의 폭은 1/3, 높이도 1/3 수준으로 줄어듭니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>일반형 fᵣ(x)=Σr⁻ⁿφ(rⁿx)는 모든 정수 r≥2에 대해 nowhere differentiable입니다. r=3은 모양이 2진 Takagi와 확연히 달라 비교하기 좋습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=3):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = F(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;3진 Takagi–van der Waerden 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex8">
+<div class="ex-head"><span class="num">08</span><div><span class="badge">Takagi–van der Waerden · base 4</span><h3>4진 Takagi–van der Waerden 함수</h3></div></div>
+<div class="formula">f₄(x)=Σₙ₌₀^∞ 4⁻ⁿ φ(4ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr" data-r="4" aria-label="4진 Takagi–van der Waerden 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>한 주기 안에서 4배씩 세분되는 뾰족한 구조가 반복됩니다. 짝수 밑에서 나타나는 자기유사성을 관찰할 수 있습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>r=4 역시 일반 Takagi–van der Waerden 정리에 의해 연속이고 모든 점에서 미분불가능합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=4):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = F(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;4진 Takagi–van der Waerden 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex9">
+<div class="ex-head"><span class="num">09</span><div><span class="badge">Takagi–van der Waerden · base 5</span><h3>5진 Takagi–van der Waerden 함수</h3></div></div>
+<div class="formula">f₅(x)=Σₙ₌₀^∞ 5⁻ⁿ φ(5ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr" data-r="5" aria-label="5진 Takagi–van der Waerden 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>홀수 밑 5를 사용하여 중앙 부근의 모양과 작은 tent의 배치가 짝수 밑과 어떻게 달라지는지 볼 수 있습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>각 항은 연속이고 절댓값이 1/(2·5ⁿ) 이하이므로 균등수렴합니다. r=5인 일반형 역시 유한한 도함수를 어디에서도 갖지 않습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=5):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = F(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;5진 Takagi–van der Waerden 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex10">
+<div class="ex-head"><span class="num">10</span><div><span class="badge">Van der Waerden · base 10</span><h3>Van der Waerden의 10진 함수</h3></div></div>
+<div class="formula">V(x)=Σₙ₌₀^∞ 10⁻ⁿ φ(10ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr" data-r="10" aria-label="Van der Waerden의 10진 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>매 단계에서 폭이 1/10로 급격히 작아져 아주 미세한 톱니가 빠르게 생깁니다. Van der Waerden이 사용한 역사적인 10진 구성입니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>Takagi–van der Waerden 일반형의 r=10 경우입니다. 각 항의 균등한 크기 감소로 연속이고, 모든 점에서 유한한 미분계수가 존재하지 않습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=10):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = F(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;Van der Waerden의 10진 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex11">
+<div class="ex-head"><span class="num">11</span><div><span class="badge">Knopp · strong tent series</span><h3>Knopp 함수 I</h3></div></div>
+<div class="formula">K₁(x)=Σₙ₌₀^∞ 0.60ⁿ φ(8ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="knopp" data-a="0.6" data-b="8" aria-label="Knopp 함수 I 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>진폭은 0.60ⁿ으로 줄지만 주파수는 8ⁿ으로 훨씬 더 빠르게 증가합니다. 그래서 작은 스케일의 기울기 효과가 매우 강합니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>Knopp의 충분조건 0<a<1, 정수 b, ab>4를 사용합니다. 여기서는 0.60×8=4.8>4이므로 연속이면서 유한·무한 어느 의미의 도함수도 모든 점에서 성립하지 않는 강한 예입니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def K(u, a=0.6, b=8):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * phi((b**n)*u)
+    return y
+
+y = K(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;Knopp 함수 I&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex12">
+<div class="ex-head"><span class="num">12</span><div><span class="badge">Knopp · strong tent series</span><h3>Knopp 함수 II</h3></div></div>
+<div class="formula">K₂(x)=Σₙ₌₀^∞ 0.55ⁿ φ(9ⁿx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="knopp" data-a="0.55" data-b="9" aria-label="Knopp 함수 II 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>9진 세분과 느린 진폭 감소가 결합되어 매우 조밀한 뾰족점을 만듭니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>a=0.55, b=9이면 ab=4.95>4입니다. Knopp의 고전적 조건을 만족하므로 모든 점에서 미분불가능합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def K(u, a=0.55, b=9):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * phi((b**n)*u)
+    return y
+
+y = K(x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;Knopp 함수 II&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex13">
+<div class="ex-head"><span class="num">13</span><div><span class="badge">Knopp · affine transform</span><h3>이동한 Knopp 함수</h3></div></div>
+<div class="formula">f(x)=1.2K₁(1.3x−0.2)</div>
+<div class="graphbox"><canvas class="graph" data-kind="knopp_aff" data-out="1.2" data-a="0.6" data-b="8" data-s="1.3" data-t="-0.2" data-p="zero" aria-label="이동한 Knopp 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>Knopp 그래프를 가로·세로 방향으로 동시에 변환한 예입니다. 모양은 달라져도 미세한 뾰족 구조는 그대로 유지됩니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>K₁이 nowhere differentiable이고 입력변환의 기울기 1.3이 0이 아니며 출력계수 1.2도 0이 아니므로 성질이 보존됩니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def K(u, a=0.6, b=8):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * phi((b**n)*u)
+    return y
+
+y = 1.2*K(1.3*x + (-0.2))
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;이동한 Knopp 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex14">
+<div class="ex-head"><span class="num">14</span><div><span class="badge">Takagi + smooth</span><h3>직선을 더한 Takagi 함수</h3></div></div>
+<div class="formula">f(x)=T(x)+0.35x</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="1" data-r="2" data-s="1" data-t="0" data-p="line" aria-label="직선을 더한 Takagi 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>전체 그래프는 오른쪽으로 기울지만 각 스케일의 tent 구조는 그대로 남습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>0.35x는 C∞ 함수입니다. 미분가능한 함수를 더하거나 빼는 것으로 nowhere differentiability를 제거할 수 없습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=2):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = 1*F(1*x + (0)) + (0.35*x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;직선을 더한 Takagi 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex15">
+<div class="ex-head"><span class="num">15</span><div><span class="badge">base 3 + smooth</span><h3>사인파와 결합한 3진 함수</h3></div></div>
+<div class="formula">f(x)=f₃(x)+0.12sin(4πx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="1" data-r="3" data-s="1" data-t="0" data-p="sin2" aria-label="사인파와 결합한 3진 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>3진 톱니 구조와 부드러운 사인파가 동시에 보여, “큰 규모의 부드러움”과 “작은 규모의 거침”을 비교하기 좋습니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>f₃는 nowhere differentiable이고 추가한 사인함수는 모든 점에서 미분가능하므로 합은 여전히 nowhere differentiable입니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=3):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = 1*F(1*x + (0)) + (0.12*np.sin(4*np.pi*x))
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;사인파와 결합한 3진 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex16">
+<div class="ex-head"><span class="num">16</span><div><span class="badge">base 4 · affine input</span><h3>압축·이동한 4진 함수</h3></div></div>
+<div class="formula">f(x)=0.8f₄(2x+1/7)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="0.8" data-r="4" data-s="2" data-t="0.14285714285714285" data-p="zero" aria-label="압축·이동한 4진 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>x축으로 압축되어 한 화면에 더 많은 자기유사 패턴이 나타납니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>비퇴화 affine 입력변환과 0이 아닌 출력 상수배는 미분가능성의 존재 여부를 보존하므로 이 함수도 모든 점에서 미분불가능합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=4):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = 0.8*F(2*x + (0.14285714285714285)) + (0*x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;압축·이동한 4진 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex17">
+<div class="ex-head"><span class="num">17</span><div><span class="badge">base 5 + smooth</span><h3>지수곡선을 더한 5진 함수</h3></div></div>
+<div class="formula">f(x)=f₅(x)+0.08eˣ</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="1" data-r="5" data-s="1" data-t="0" data-p="exp" aria-label="지수곡선을 더한 5진 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>지수함수 때문에 우측으로 갈수록 기준선이 조금 상승하지만, 미세한 5진 요철은 계속됩니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>eˣ는 C∞ 함수이므로 f₅+0.08eˣ가 한 점에서 미분가능하면 f₅도 그 점에서 미분가능해야 합니다. 따라서 nowhere differentiability가 유지됩니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=5):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = 1*F(1*x + (0)) + (0.08*np.exp(x))
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;지수곡선을 더한 5진 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex18">
+<div class="ex-head"><span class="num">18</span><div><span class="badge">Van der Waerden · reflection</span><h3>반사된 Van der Waerden 함수</h3></div></div>
+<div class="formula">f(x)=−V(−x+0.4)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="-1" data-r="10" data-s="-1" data-t="0.4" data-p="zero" aria-label="반사된 Van der Waerden 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>상하 반전과 좌우 반전을 동시에 적용한 역사적 함수의 변형입니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>입력과 출력에 적용한 변환은 모두 미분가능하며 기울기/배율이 0이 아닙니다. 따라서 원함수의 nowhere differentiability가 그대로 전달됩니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=10):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = -1*F(-1*x + (0.4)) + (0*x)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;반사된 Van der Waerden 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex19">
+<div class="ex-head"><span class="num">19</span><div><span class="badge">Weierstrass + smooth</span><h3>세 배 압축 + 3차곡선 Weierstrass</h3></div></div>
+<div class="formula">f(x)=2W(3x)−0.04x³</div>
+<div class="graphbox"><canvas class="graph" data-kind="w_aff" data-out="2" data-s="3" data-t="0" data-p="cubic" aria-label="세 배 압축 + 3차곡선 Weierstrass 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>Weierstrass의 요철이 매우 촘촘해지고, 그 위에 약한 3차 추세가 겹칩니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>2W(3x)는 nowhere differentiable이며 −0.04x³은 C∞입니다. 따라서 합 역시 모든 점에서 미분불가능합니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def W(u):
+    a, b = 0.85, 11
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += a**n * np.cos((b**n) * np.pi * u)
+    return y
+
+y = 2*W(3*x + (0)) + (-0.04*x**3)
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;세 배 압축 + 3차곡선 Weierstrass&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article><article class="example" id="ex20">
+<div class="ex-head"><span class="num">20</span><div><span class="badge">Takagi · composite transform</span><h3>다중변환 Takagi 함수</h3></div></div>
+<div class="formula">f(x)=−1.3T(5x+0.2)+0.15cos(2πx)</div>
+<div class="graphbox"><canvas class="graph" data-kind="fr_aff" data-out="-1.3" data-r="2" data-s="5" data-t="0.2" data-p="cos" aria-label="다중변환 Takagi 함수 그래프"></canvas><div class="graph-note">HTML에서 직접 계산한 부분합 그래프 · 상단의 N 슬라이더로 세밀함을 바꿔 보세요.</div></div>
+<div class="explain"><div><h4>그래프에서 관찰할 점</h4><p>Takagi 그래프를 5배 압축하고 상하 반전한 뒤 부드러운 코사인파를 더했습니다. 시각적으로는 원형과 꽤 달라 보입니다.</p></div><div><h4>왜 연속인가?</h4><p>각 급수항은 연속이고, 사용한 계수는 항의 최대 크기를 기하급수적으로 감소시킵니다. 따라서 관련 급수는 균등수렴하며 극한함수는 연속입니다. 변환형에서는 연속함수의 합성·합 역시 연속입니다.</p></div><div><h4>왜 모든 점에서 미분불가능한가?</h4><p>T(5x+0.2)는 nowhere differentiable이고 −1.3배 역시 성질을 유지합니다. 여기에 C∞ 코사인함수를 더해도 어느 점에서도 유한한 미분계수는 생기지 않습니다.</p></div></div>
+<details><summary>Python 예시코드 보기</summary><button class="copy" onclick="copyCode(this)">코드 복사</button><pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1.5, 1.5, 16000)
+N = 14
+phi = lambda t: np.abs(t - np.round(t))
+
+def F(u, r=2):
+    y = np.zeros_like(u)
+    for n in range(N):
+        y += r**(-n) * phi((r**n)*u)
+    return y
+
+y = -1.3*F(5*x + (0.2)) + (0.15*np.cos(2*np.pi*x))
+
+plt.figure(figsize=(10, 4))
+plt.plot(x, y, linewidth=0.8)
+plt.title(&#x27;다중변환 Takagi 함수&#x27;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;f(x)&quot;)
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.show()</code></pre></details>
+</article></section>
+<section id="preserve"><h2>4. 왜 변형해도 성질이 유지될까?</h2><div class="proofbox"><div><h3>① affine 입력변환</h3><p>F(x)=f(ax+b), a≠0이라 하겠습니다. F가 x₀에서 미분가능하다면 변수 u=ax+b를 이용한 차분몫으로부터 f가 u₀=ax₀+b에서 미분가능해집니다. 따라서 f가 nowhere differentiable이면 F도 nowhere differentiable입니다.</p></div><div><h3>② 미분가능한 함수 더하기</h3><p>f가 nowhere differentiable이고 g가 모든 점에서 미분가능하다고 합시다. f+g가 x₀에서 미분가능하면 f=(f+g)−g도 x₀에서 미분가능해야 하므로 모순입니다. 따라서 f+g 역시 nowhere differentiable입니다.</p></div><div><h3>③ 0이 아닌 상수배</h3><p>c≠0일 때 cf가 미분가능하면 f=(1/c)(cf)도 미분가능합니다. 그러므로 상하 확대·축소·반전은 성질을 바꾸지 않습니다.</p></div><div><h3>④ 균등수렴과 연속성</h3><p>φ(t)=dist(t,ℤ)는 0≤φ≤1/2입니다. 따라서 Σr⁻ⁿφ(rⁿx)의 n번째 항은 모든 x에서 1/(2rⁿ) 이하이고, 이 상계급수는 수렴합니다. M-test에 의해 균등수렴하며 연속함수들의 균등극한이므로 연속입니다.</p></div></div></section>
+<section id="compare"><h2>5. 구성 방식 비교</h2><div class="tablewrap"><table><thead><tr><th>계열</th><th>기본 모양</th><th>진폭</th><th>주파수/세분</th><th>핵심 직관</th></tr></thead><tbody><tr><td>Weierstrass</td><td>cos 파동</td><td>aⁿ</td><td>bⁿ</td><td>고주파 진동이 모든 스케일에 잔존</td></tr><tr><td>Takagi</td><td>tent φ</td><td>2⁻ⁿ</td><td>2ⁿ</td><td>V자형 기울기 변화가 무한히 누적</td></tr><tr><td>Takagi–van der Waerden</td><td>tent φ</td><td>r⁻ⁿ</td><td>rⁿ</td><td>밑 r에 따른 자기유사적 톱니 구조</td></tr><tr><td>Knopp</td><td>tent φ</td><td>aⁿ</td><td>bⁿ</td><td>ab>4에서 작은 스케일의 기울기 효과가 매우 강함</td></tr><tr><td>보존변환형</td><td>위 원형의 변환</td><td>다양</td><td>다양</td><td>affine 합성·C¹ 함수 추가로 새로운 예를 체계적으로 생성</td></tr></tbody></table></div></section>
+<section id="refs"><h2>6. 참고 및 수학적 주의</h2><div class="note"><p><b>“모든 점에서 미분불가능”</b>은 여기서 <b>유한한 보통 미분계수가 어느 점에서도 존재하지 않는다</b>는 표준 의미로 사용했습니다. Takagi 함수는 일부 점에서 ±∞ 형태의 부정형/무한 도함수를 가질 수 있으므로, Knopp의 더 강한 예와 구별할 필요가 있습니다.</p><p>대표 참고: P. C. Allaart & K. Kawamura, <i>The Takagi Function: A Survey</i>; 고전 Weierstrass 함수의 nowhere differentiability에 관한 표준 정리; Knopp의 tent-series 구성.</p></div></section></main>
+<footer><div class="wrap">연속성과 미분가능성의 차이를 “그래프 확대”와 “부분합”으로 관찰하는 학습용 자료 · HTML 단독 실행 가능</div></footer>
+<script>
+function copyCode(btn){const code=btn.nextElementSibling.innerText;navigator.clipboard.writeText(code);const old=btn.textContent;btn.textContent='복사됨';setTimeout(()=>btn.textContent=old,900)}
+const phi=t=>Math.abs(t-Math.round(t));
+function smooth(name,x){if(name==='quad')return .18*x*x;if(name==='sin')return .25*Math.sin(2*Math.PI*x);if(name==='cubic')return -.04*x*x*x;if(name==='line')return .35*x;if(name==='sin2')return .12*Math.sin(4*Math.PI*x);if(name==='exp')return .08*Math.exp(x);if(name==='cos')return .15*Math.cos(2*Math.PI*x);return 0}
+function W(x,N){let y=0,a=.85,b=11;for(let n=0;n<N;n++)y+=Math.pow(a,n)*Math.cos(Math.pow(b,n)*Math.PI*x);return y}
+function FR(x,N,r){let y=0;for(let n=0;n<N;n++)y+=Math.pow(r,-n)*phi(Math.pow(r,n)*x);return y}
+function K(x,N,a,b){let y=0;for(let n=0;n<N;n++)y+=Math.pow(a,n)*phi(Math.pow(b,n)*x);return y}
+function value(c,x,N){const d=c.dataset,k=d.kind,A=+(d.out??1),s=+(d.s??1),t=+(d.t??0),p=d.p??'zero';if(k==='w')return W(x,N);if(k==='w_aff')return A*W(s*x+t,N)+smooth(p,x);if(k==='fr')return FR(x,N,+d.r);if(k==='fr_aff')return A*FR(s*x+t,N,+d.r)+smooth(p,x);if(k==='knopp')return K(x,N,+d.a,+d.b);if(k==='knopp_aff')return A*K(s*x+t,N,+d.a,+d.b)+smooth(p,x);return 0}
+function draw(c,N){const rect=c.getBoundingClientRect(),D=window.devicePixelRatio||1,w=Math.max(400,rect.width),h=parseFloat(getComputedStyle(c).height);c.width=w*D;c.height=h*D;const ctx=c.getContext('2d');ctx.setTransform(D,0,0,D,0,0);ctx.clearRect(0,0,w,h);const xmin=-1.5,xmax=1.5,M=Math.min(2200,Math.floor(w*2.4)),ys=[];let ymin=Infinity,ymax=-Infinity;for(let i=0;i<M;i++){let x=xmin+(xmax-xmin)*i/(M-1),y=value(c,x,N);ys.push(y);if(y<ymin)ymin=y;if(y>ymax)ymax=y}let pad=(ymax-ymin)*.12||1;ymin-=pad;ymax+=pad;const X=x=>42+(w-58)*(x-xmin)/(xmax-xmin),Y=y=>12+(h-38)*(ymax-y)/(ymax-ymin);ctx.strokeStyle='#e5eaf1';ctx.lineWidth=1;for(let j=0;j<=6;j++){let xx=42+(w-58)*j/6;ctx.beginPath();ctx.moveTo(xx,12);ctx.lineTo(xx,h-26);ctx.stroke()}for(let j=0;j<=4;j++){let yy=12+(h-38)*j/4;ctx.beginPath();ctx.moveTo(42,yy);ctx.lineTo(w-16,yy);ctx.stroke()}ctx.strokeStyle='#8b96a8';if(xmin<0&&xmax>0){ctx.beginPath();ctx.moveTo(X(0),12);ctx.lineTo(X(0),h-26);ctx.stroke()}if(ymin<0&&ymax>0){ctx.beginPath();ctx.moveTo(42,Y(0));ctx.lineTo(w-16,Y(0));ctx.stroke()}ctx.fillStyle='#657286';ctx.font='11px system-ui';ctx.fillText('-1.5',42,h-8);ctx.fillText('0',X(0)-3,h-8);ctx.fillText('1.5',w-32,h-8);ctx.strokeStyle='#315efb';ctx.lineWidth=1.25;ctx.beginPath();for(let i=0;i<M;i++){let xx=42+(w-58)*i/(M-1),yy=Y(ys[i]);if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke()}
+function redraw(){let N=+document.getElementById('nSlider').value;document.getElementById('nVal').textContent=N;document.querySelectorAll('canvas.graph').forEach(c=>draw(c,N))}document.getElementById('nSlider').addEventListener('input',redraw);window.addEventListener('resize',()=>{clearTimeout(window.__rt);window.__rt=setTimeout(redraw,160)});redraw();
+</script></body></html>
