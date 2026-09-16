@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>미분 공식 100개 상세 설명</title>
+<script>
+window.MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--navy:#17324d;--blue:#2563eb;--sky:#eef6ff;--line:#d9e2ec;--ink:#17202a;--muted:#617083;--ok:#eaf8ef}
+*{box-sizing:border-box} body{margin:0;font-family:"Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);line-height:1.72;background:#f6f8fb}
+header{background:linear-gradient(135deg,#102a43,#2563eb);color:white;padding:34px 22px}
+header .wrap,main{max-width:1180px;margin:auto}.tag{display:inline-block;background:#ffffff20;border:1px solid #ffffff50;border-radius:999px;padding:4px 12px}
+h1{margin:8px 0 5px;font-size:clamp(28px,4vw,44px)} header p{margin:0;color:#e8f1ff}
+.toolbar{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid var(--line);padding:9px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.toolbar select,.toolbar input,.toolbar button{padding:9px 11px;border:1px solid #cbd5e1;border-radius:9px;background:white}
+.toolbar input{min-width:230px;flex:1}.toolbar button{cursor:pointer}
+main{padding:22px}.intro,.section{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 3px 14px #0f172a0b}
+h2{color:var(--navy);border-bottom:2px solid #e5eef8;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:13px;padding:20px;background:#fff}
+.card h3{margin:0 0 10px;color:#174ea6;font-size:19px}.formula{background:var(--sky);border-left:4px solid var(--blue);padding:13px 16px;border-radius:8px;margin:10px 0;font-size:17px}
+.ex{background:#f8fafc;padding:12px 14px;border-radius:8px;margin-top:10px}.note{color:var(--muted);font-size:14px}
+.badge{font-size:12px;background:#e7efff;color:#174ea6;border-radius:999px;padding:3px 8px;margin-right:6px}
+footer{text-align:center;color:#6b7280;padding:25px}.hidden{display:none!important}
+@media print{.toolbar{display:none}body{background:white}.intro,.section{box-shadow:none;break-inside:auto}.card{break-inside:avoid}header{background:white;color:black;border-bottom:2px solid #222}header p{color:#333}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="tag">수학 학습자료</span><h1>미분 공식 100개</h1>
+<p>기본 정의 → 대수함수 → 지수·로그 → 삼각함수 → 역삼각함수 → 쌍곡선함수 → 합성·매개·음함수 → 고계미분까지</p></div></header>
+<div class="toolbar">
+<select id="jump"><option value="">단원 바로가기</option></select>
+<input id="search" placeholder="공식·함수·설명 검색">
+<button onclick="window.print()">인쇄 / PDF</button>
+</div>
+<main>
+<section class="intro">
+<h2>미분의 핵심</h2>
+<p>함수 \(y=f(x)\)의 미분계수는 순간변화율이며 접선의 기울기이다.</p>
+<div class="formula">\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\]</div>
+<p>아래 100개 공식은 단순 암기보다 <b>어떤 구조에 어떤 규칙을 적용하는가</b>에 초점을 맞췄다. 특히 합성함수에서는 바깥함수를 미분한 뒤 안쪽 함수의 미분을 곱하는 연쇄법칙을 놓치지 않는다.</p>
+</section>
+<div id="content"></div>
+</main>
+<footer>미분 공식 100개 · MathJax 수식 지원 · 검색 및 인쇄 가능</footer>
+<script>
+const sections = [
+["Ⅰ. 기본 미분법",[
+["상수함수","\\(\\frac{d}{dx}c=0\\)","상수는 x가 변해도 값이 변하지 않으므로 순간변화율이 0이다.","\\(\\frac{d}{dx}7=0\\)"],
+["일차함수","\\(\\frac{d}{dx}(ax+b)=a\\)","직선의 기울기는 모든 점에서 일정하며 바로 a이다.","\\((3x+2)'=3\\)"],
+["거듭제곱","\\(\\frac{d}{dx}x^n=nx^{n-1}\\)","지수를 앞으로 곱하고 지수를 1 낮춘다.","\\((x^7)'=7x^6\\)"],
+["상수배","\\((cf)'=cf'\\)","함수에 곱해진 상수는 미분 연산 밖으로 그대로 나온다.","\\((5x^4)'=20x^3\\)"],
+["합","\\((f+g)'=f'+g'\\)","각 항을 따로 미분한 뒤 더한다.","\\((x^3+x^2)'=3x^2+2x\\)"],
+["차","\\((f-g)'=f'-g'\\)","각 항을 따로 미분하며 빼기 부호를 유지한다.","\\((x^4-x)'=4x^3-1\\)"],
+["곱","\\((fg)'=f'g+fg'\\)","두 함수의 곱은 각각 하나씩 번갈아 미분하여 더한다.","\\((x^2\\sin x)'=2x\\sin x+x^2\\cos x\\)"],
+["몫","\\((f/g)'=\\frac{f'g-fg'}{g^2}\\)","분모 제곱 아래에 '분자미분×분모-분자×분모미분'을 둔다.","\\((x/ (x+1))'=1/(x+1)^2\\)"],
+["역수","\\((1/f)'=-\\frac{f'}{f^2}\\)","몫의 미분법 또는 \\(f^{-1}\\)의 연쇄법칙으로 얻는다.","\\((1/x^2)'=-2/x^3\\)"],
+["연쇄법칙","\\((f(g(x)))'=f'(g(x))g'(x)\\)","합성함수의 핵심 규칙이다. 바깥을 먼저 미분하고 안쪽 미분을 곱한다.","\\((x^2+1)^5{}'=10x(x^2+1)^4\\)"]
+]],
+["Ⅱ. 거듭제곱·근호·유리함수",[
+["일반 거듭제곱 합성","\\((u^n)'=nu^{n-1}u'\\)","거듭제곱법칙과 연쇄법칙을 결합한다.","\\(((3x+1)^4)'=12(3x+1)^3\\)"],
+["제곱","\\((u^2)'=2uu'\\)","일반 거듭제곱 공식에서 n=2인 경우이다.","\\(((x^2+1)^2)'=4x(x^2+1)\\)"],
+["세제곱","\\((u^3)'=3u^2u'\\)","안쪽 함수가 있으면 반드시 u'까지 곱한다.","\\(((2x-1)^3)'=6(2x-1)^2\\)"],
+["제곱근","\\((\\sqrt{u})'=\\frac{u'}{2\\sqrt{u}}\\)","\\(\\sqrt u=u^{1/2}\\)로 바꾸어 미분한다.","\\((\\sqrt{x^2+1})'=x/\\sqrt{x^2+1}\\)"],
+["세제곱근","\\((\\sqrt[3]{u})'=\\frac{u'}{3u^{2/3}}\\)","\\(u^{1/3}\\)의 거듭제곱 미분이다.","\\((\\sqrt[3]{x})'=1/(3x^{2/3})\\)"],
+["음의 정수 지수","\\((u^{-n})'=-nu^{-n-1}u'\\)","분수형 함수를 음의 지수로 바꾸면 편리하다.","\\((x^{-3})'=-3x^{-4}\\)"],
+["유리수 지수","\\((u^{p/q})'=\\frac pq u^{p/q-1}u'\\)","정의되는 구간에서 거듭제곱법칙이 유리수 지수에도 적용된다.","\\((x^{3/2})'=\\frac32\\sqrt{x}\\)"],
+["1/x","\\((1/x)'=-1/x^2\\)","\\(x^{-1}\\)을 미분한 대표 공식이다.","\\((1/x)'=-x^{-2}\\)"],
+["1/x^n","\\((1/x^n)'=-n/x^{n+1}\\)","\\(x^{-n}\\)에 거듭제곱법칙을 적용한다.","\\((1/x^5)'=-5/x^6\\)"],
+["분수 선형함수","\\(\\left(\\frac{ax+b}{cx+d}\\right)'=\\frac{ad-bc}{(cx+d)^2}\\)","몫의 미분에서 x항이 소거되어 상수 ad-bc가 남는다.","\\(((2x+1)/(x+3))'=5/(x+3)^2\\)"]
+]],
+["Ⅲ. 지수·로그 함수",[
+["자연지수","\\((e^x)'=e^x\\)","자연상수 e를 밑으로 하는 지수함수는 미분해도 자기 자신이다.","\\((e^x)'=e^x\\)"],
+["합성 자연지수","\\((e^u)'=e^u u'\\)","연쇄법칙 때문에 안쪽 함수의 미분을 곱한다.","\\((e^{x^2})'=2xe^{x^2}\\)"],
+["일반 지수","\\((a^x)'=a^x\\ln a\\)","밑 a가 양수이고 1이 아닐 때 성립한다.","\\((2^x)'=2^x\\ln2\\)"],
+["합성 일반지수","\\((a^u)'=a^u\\ln(a)u'\\)","지수 부분 u를 미분한 값까지 곱한다.","\\((3^{x^2})'=2x3^{x^2}\\ln3\\)"],
+["자연로그","\\((\\ln x)'=1/x\\)","x>0에서 자연로그의 기본 미분 공식이다.","\\((\\ln x)'=1/x\\)"],
+["절댓값 로그","\\((\\ln|x|)'=1/x\\;(x\\ne0)\\)","양수·음수 구간 모두에서 같은 도함수 1/x를 갖는다.","\\((\\ln|2x|)'=1/x\\)"],
+["합성 로그","\\((\\ln|u|)'=u'/u\\)","로그 안쪽의 미분을 원래 안쪽 함수로 나눈다.","\\((\\ln(x^2+1))'=2x/(x^2+1)\\)"],
+["상용로그","\\((\\log_{10}x)'=1/(x\\ln10)\\)","밑변환 \\(\\log_{10}x=\\ln x/\\ln10\\)을 사용한다.","\\((\\log_{10}x)'=1/(x\\ln10)\\)"],
+["밑 a 로그","\\((\\log_a x)'=1/(x\\ln a)\\)","밑변환 공식으로 자연로그의 미분으로 환원한다.","\\((\\log_2 x)'=1/(x\\ln2)\\)"],
+["합성 밑 a 로그","\\((\\log_a u)'=u'/(u\\ln a)\\)","로그 미분과 연쇄법칙의 결합이다.","\\((\\log_2(x^2+1))'=2x/((x^2+1)\\ln2)\\)"]
+]],
+["Ⅳ. 삼각함수",[
+["sin","\\((\\sin x)'=\\cos x\\)","사인함수의 순간변화율은 코사인함수이다.","\\((\\sin x)'=\\cos x\\)"],
+["cos","\\((\\cos x)'=-\\sin x\\)","코사인을 미분하면 음의 사인이 된다.","\\((\\cos x)'=-\\sin x\\)"],
+["tan","\\((\\tan x)'=\\sec^2x\\)","\\(\\tan x=\\sin x/\\cos x\\)에 몫의 미분을 적용하면 얻어진다.","\\((\\tan x)'=\\sec^2x\\)"],
+["cot","\\((\\cot x)'=-\\csc^2x\\)","코탄젠트는 미분하면 음의 코시컨트 제곱이다.","\\((\\cot x)'=-\\csc^2x\\)"],
+["sec","\\((\\sec x)'=\\sec x\\tan x\\)","\\(1/\\cos x\\)을 미분하여 얻을 수 있다.","\\((\\sec x)'=\\sec x\\tan x\\)"],
+["csc","\\((\\csc x)'=-\\csc x\\cot x\\)","\\(1/\\sin x\\)을 미분하면 얻어진다.","\\((\\csc x)'=-\\csc x\\cot x\\)"],
+["sin 합성","\\((\\sin u)'=\\cos u\\,u'\\)","사인을 미분한 뒤 안쪽 u의 미분을 곱한다.","\\((\\sin x^2)'=2x\\cos(x^2)\\)"],
+["cos 합성","\\((\\cos u)'=-\\sin u\\,u'\\)","음수 부호와 u'를 모두 주의한다.","\\((\\cos3x)'=-3\\sin3x\\)"],
+["tan 합성","\\((\\tan u)'=\\sec^2u\\,u'\\)","탄젠트 미분 뒤 연쇄법칙을 적용한다.","\\((\\tan(2x+1))'=2\\sec^2(2x+1)\\)"],
+["cot 합성","\\((\\cot u)'=-\\csc^2u\\,u'\\)","코탄젠트의 음수 부호를 놓치기 쉽다.","\\((\\cot x^2)'=-2x\\csc^2(x^2)\\)"],
+["sec 합성","\\((\\sec u)'=\\sec u\\tan u\\,u'\\)","sec와 tan을 곱하고 u'까지 곱한다.","\\((\\sec2x)'=2\\sec2x\\tan2x\\)"],
+["csc 합성","\\((\\csc u)'=-\\csc u\\cot u\\,u'\\)","음수와 연쇄법칙을 함께 적용한다.","\\((\\csc5x)'=-5\\csc5x\\cot5x\\)"],
+["sin²x","\\((\\sin^2x)'=2\\sin x\\cos x=\\sin2x\\)","제곱의 연쇄법칙을 쓰고 배각공식으로 정리할 수 있다.","\\((\\sin^2x)'=\\sin2x\\)"],
+["cos²x","\\((\\cos^2x)'=-2\\sin x\\cos x=-\\sin2x\\)","제곱과 코사인 미분을 연속 적용한다.","\\((\\cos^2x)'=-\\sin2x\\)"],
+["tan²x","\\((\\tan^2x)'=2\\tan x\\sec^2x\\)","바깥 제곱을 미분한 뒤 tan의 미분을 곱한다.","\\((\\tan^2x)'=2\\tan x\\sec^2x\\)"]
+]],
+["Ⅴ. 역삼각함수",[
+["arcsin","\\((\\arcsin x)'=1/\\sqrt{1-x^2}\\)","\\(|x|<1\\)에서 성립하며 역함수 미분법으로 유도한다.","\\((\\arcsin x)'=1/\\sqrt{1-x^2}\\)"],
+["arccos","\\((\\arccos x)'=-1/\\sqrt{1-x^2}\\)","arcsin과 크기는 같고 부호가 반대이다.","\\((\\arccos x)'=-1/\\sqrt{1-x^2}\\)"],
+["arctan","\\((\\arctan x)'=1/(1+x^2)\\)","모든 실수 x에서 정의되는 중요한 공식이다.","\\((\\arctan x)'=1/(1+x^2)\\)"],
+["arccot","\\((\\operatorname{arccot}x)'=-1/(1+x^2)\\)","통상적인 arccot 가지 선택에서 사용하는 공식이다.","\\((\\operatorname{arccot}x)'=-1/(1+x^2)\\)"],
+["arcsec","\\((\\operatorname{arcsec}x)'=1/(|x|\\sqrt{x^2-1})\\)","\\(|x|>1\\)에서 절댓값이 필요하다.","\\((\\operatorname{arcsec}x)'=1/(|x|\\sqrt{x^2-1})\\)"],
+["arccsc","\\((\\operatorname{arccsc}x)'=-1/(|x|\\sqrt{x^2-1})\\)","arcsec 공식과 부호가 반대이다.","\\((\\operatorname{arccsc}x)'=-1/(|x|\\sqrt{x^2-1})\\)"],
+["arcsin 합성","\\((\\arcsin u)'=u'/\\sqrt{1-u^2}\\)","역사인 공식에 연쇄법칙을 적용한다.","\\((\\arcsin2x)'=2/\\sqrt{1-4x^2}\\)"],
+["arccos 합성","\\((\\arccos u)'=-u'/\\sqrt{1-u^2}\\)","음수 부호와 u'를 함께 쓴다.","\\((\\arccos x^2)'=-2x/\\sqrt{1-x^4}\\)"],
+["arctan 합성","\\((\\arctan u)'=u'/(1+u^2)\\)","분모에 안쪽 함수의 제곱이 들어간다.","\\((\\arctan3x)'=3/(1+9x^2)\\)"],
+["arccot 합성","\\((\\operatorname{arccot}u)'=-u'/(1+u^2)\\)","arctan 합성 공식에 음수 부호가 붙는다.","\\((\\operatorname{arccot}2x)'=-2/(1+4x^2)\\)"]
+]],
+["Ⅵ. 쌍곡선함수",[
+["sinh","\\((\\sinh x)'=\\cosh x\\)","\\(\\sinh x=(e^x-e^{-x})/2\\)에서 직접 유도된다.","\\((\\sinh x)'=\\cosh x\\)"],
+["cosh","\\((\\cosh x)'=\\sinh x\\)","삼각함수 cos와 달리 음수 부호가 없다.","\\((\\cosh x)'=\\sinh x\\)"],
+["tanh","\\((\\tanh x)'=\\operatorname{sech}^2x\\)","sinh/cosh의 몫을 미분하여 얻는다.","\\((\\tanh x)'=\\operatorname{sech}^2x\\)"],
+["coth","\\((\\coth x)'=-\\operatorname{csch}^2x\\)","쌍곡 코탄젠트의 미분 공식이다.","\\((\\coth x)'=-\\operatorname{csch}^2x\\)"],
+["sech","\\((\\operatorname{sech}x)'=-\\operatorname{sech}x\\tanh x\\)","\\(1/\\cosh x\\)을 미분한다.","\\((\\operatorname{sech}x)'=-\\operatorname{sech}x\\tanh x\\)"],
+["csch","\\((\\operatorname{csch}x)'=-\\operatorname{csch}x\\coth x\\)","\\(1/\\sinh x\\)을 미분한다.","\\((\\operatorname{csch}x)'=-\\operatorname{csch}x\\coth x\\)"],
+["sinh 합성","\\((\\sinh u)'=\\cosh u\\,u'\\)","연쇄법칙을 적용한다.","\\((\\sinh x^2)'=2x\\cosh(x^2)\\)"],
+["cosh 합성","\\((\\cosh u)'=\\sinh u\\,u'\\)","안쪽 함수의 미분을 곱한다.","\\((\\cosh3x)'=3\\sinh3x\\)"],
+["tanh 합성","\\((\\tanh u)'=\\operatorname{sech}^2u\\,u'\\)","tanh 미분과 연쇄법칙의 결합이다.","\\((\\tanh2x)'=2\\operatorname{sech}^2(2x)\\)"],
+["sech 합성","\\((\\operatorname{sech}u)'=-\\operatorname{sech}u\\tanh u\\,u'\\)","음수 부호까지 포함해 u'를 곱한다.","\\((\\operatorname{sech}x^2)'=-2x\\operatorname{sech}(x^2)\\tanh(x^2)\\)"]
+]],
+["Ⅶ. 역쌍곡선함수",[
+["arsinh","\\((\\operatorname{arsinh}x)'=1/\\sqrt{x^2+1}\\)","역쌍곡사인 함수의 기본 공식이다.","\\((\\operatorname{arsinh}x)'=1/\\sqrt{x^2+1}\\)"],
+["arcosh","\\((\\operatorname{arcosh}x)'=1/\\sqrt{x^2-1}\\)","실수 범위에서 보통 x>1인 내부 구간에서 사용한다.","\\((\\operatorname{arcosh}x)'=1/\\sqrt{x^2-1}\\)"],
+["artanh","\\((\\operatorname{artanh}x)'=1/(1-x^2)\\)","실수 범위에서는 \\(|x|<1\\)에서 대표적으로 사용한다.","\\((\\operatorname{artanh}x)'=1/(1-x^2)\\)"],
+["arcoth","\\((\\operatorname{arcoth}x)'=1/(1-x^2)\\)","실수 가지에서 \\(|x|>1\\)인 구간에 사용한다.","\\((\\operatorname{arcoth}x)'=1/(1-x^2)\\)"],
+["arsinh 합성","\\((\\operatorname{arsinh}u)'=u'/\\sqrt{u^2+1}\\)","역쌍곡사인 공식에 연쇄법칙을 적용한다.","\\((\\operatorname{arsinh}2x)'=2/\\sqrt{4x^2+1}\\)"],
+["arcosh 합성","\\((\\operatorname{arcosh}u)'=u'/\\sqrt{u^2-1}\\)","정의역을 확인하면서 u'를 곱한다.","\\((\\operatorname{arcosh}(x^2))'=2x/\\sqrt{x^4-1}\\)"],
+["artanh 합성","\\((\\operatorname{artanh}u)'=u'/(1-u^2)\\)","분모가 1-u²임을 arctan과 구별한다.","\\((\\operatorname{artanh}(x/2))'=2/(4-x^2)\\)"],
+["로그형 arsinh","\\(\\operatorname{arsinh}x=\\ln(x+\\sqrt{x^2+1})\\)","오른쪽을 미분하면 \\(1/\\sqrt{x^2+1}\\)이 되어 공식이 확인된다.","\\(d[\\ln(x+\\sqrt{x^2+1})]/dx=1/\\sqrt{x^2+1}\\)"]
+]],
+["Ⅷ. 로그미분·변수 지수",[
+["x^x","\\((x^x)'=x^x(\\ln x+1)\\)","\\(y=x^x\\)에 ln을 취해 \\(\\ln y=x\\ln x\\)로 만든 뒤 미분한다.","\\((x^x)'=x^x(\\ln x+1)\\)"],
+["u^v 일반형","\\((u^v)'=u^v\\left(v'\\ln u+v\\frac{u'}u\\right)\\)","밑과 지수가 모두 함수일 때 로그미분을 사용한다.","\\((x^{x^2})'=x^{x^2}(2x\\ln x+x)\\)"],
+["f(x)^a","\\((u^a)'=au^{a-1}u'\\)","지수가 상수이면 일반 거듭제곱 합성 공식으로 충분하다.","\\(((x+1)^\\pi)'=\\pi(x+1)^{\\pi-1}\\)"],
+["a^{f(x)}","\\((a^u)'=a^u\\ln a\\,u'\\)","밑이 상수이고 지수만 함수인 경우이다.","\\((2^{\\sin x})'=2^{\\sin x}\\ln2\\cos x\\)"],
+["x^{1/x}","\\((x^{1/x})'=x^{1/x}(1-\\ln x)/x^2\\)","로그미분 후 \\((\\ln x)/x\\)를 몫으로 미분한다.","\\((x^{1/x})'=x^{1/x}(1-\\ln x)/x^2\\)"],
+["(ln x)^n","\\(((\\ln x)^n)'=n(\\ln x)^{n-1}/x\\)","바깥 거듭제곱과 안쪽 ln의 미분을 결합한다.","\\(((\\ln x)^3)'=3(\\ln x)^2/x\\)"],
+["ln(sin x)","\\((\\ln(\\sin x))'=\\cot x\\)","\\(u'/u=\\cos x/\\sin x\\)를 사용한다.","\\((\\ln(\\sin x))'=\\cot x\\)"],
+["ln(cos x)","\\((\\ln(\\cos x))'=-\\tan x\\)","\\(-\\sin x/\\cos x=-\\tan x\\)이다.","\\((\\ln(\\cos x))'=-\\tan x\\)"],
+["e^{sin x}","\\((e^{\\sin x})'=e^{\\sin x}\\cos x\\)","지수함수와 삼각함수의 연쇄법칙 예이다.","\\((e^{\\sin x})'=e^{\\sin x}\\cos x\\)"],
+["sin(e^x)","\\((\\sin(e^x))'=\\cos(e^x)e^x\\)","바깥 sin을 미분하고 안쪽 e^x의 미분을 곱한다.","\\((\\sin(e^x))'=e^x\\cos(e^x)\\)"]
+]],
+["Ⅸ. 음함수·역함수·매개변수",[
+["음함수 기본","\\(F(x,y)=0\\Rightarrow y'=-F_x/F_y\\)","F를 x에 대해 미분하면 y가 x의 함수이므로 y항에 y'가 생긴다.","\\(x^2+y^2=1\\Rightarrow y'=-x/y\\)"],
+["원","\\(x^2+y^2=r^2\\Rightarrow y'=-x/y\\)","양변 미분 후 \\(2x+2yy'=0\\)을 y'에 대해 푼다.","\\(y'=-x/y\\)"],
+["역함수","\\((f^{-1})'(x)=1/f'(f^{-1}(x))\\)","역함수의 기울기는 대응점에서 원래 함수 기울기의 역수이다.","\\(f(x)=e^x\\Rightarrow(\\ln x)'=1/x\\)"],
+["매개변수 1차","\\(\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}\\)","x와 y가 모두 t의 함수이면 t에 대한 변화율의 비로 구한다.","\\(x=t^2,y=t^3\\Rightarrow dy/dx=3t/2\\)"],
+["매개변수 2차","\\(\\frac{d^2y}{dx^2}=\\frac{d}{dt}(dy/dx)\\big/\\frac{dx}{dt}\\)","먼저 dy/dx를 t의 함수로 구한 뒤 다시 x에 대해 미분한다.","\\(x=t,y=t^3\\Rightarrow d^2y/dx^2=6t\\)"],
+["극좌표 기울기","\\(\\frac{dy}{dx}=\\frac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta}\\)","\\(x=r\\cos\\theta,y=r\\sin\\theta\\)를 θ에 대해 미분해 비를 취한다.","\\(r=1\\Rightarrow dy/dx=-\\cot\\theta\\)"],
+["역함수 2계","\\((f^{-1})''(x)=-\\frac{f''(f^{-1}x)}{[f'(f^{-1}x)]^3}\\)","역함수 1계 미분식을 다시 미분하여 얻는다.","역함수의 오목·볼록 분석에 활용"],
+["음함수 2계","\\(y''=-\\frac{F_{xx}+2F_{xy}y'+F_{yy}(y')^2}{F_y}\\)","F(x,y)=0을 두 번 미분하여 정리한 일반 공식이다.","곡선의 곡률·오목성 분석에 활용"]
+]],
+["Ⅹ. 고계미분·특수 결합",[
+["2계 미분","\\(f''(x)=\\frac{d}{dx}f'(x)\\)","도함수를 다시 미분한 것으로 변화율의 변화율을 뜻한다.","\\(f=x^3\\Rightarrow f''=6x\\)"],
+["n계 미분","\\(f^{(n)}(x)=\\frac{d^n f}{dx^n}\\)","미분을 n번 반복한 고계도함수 표기이다.","\\(x^5\\Rightarrow f^{(3)}=60x^2\\)"],
+["x^m의 n계","\\(\\frac{d^n}{dx^n}x^m=\\frac{m!}{(m-n)!}x^{m-n}\\;(n\\le m)\\)","거듭제곱 미분을 n번 반복한 결과이다.","\\(d^3(x^5)/dx^3=60x^2\\)"],
+["e^{ax}의 n계","\\(\\frac{d^n}{dx^n}e^{ax}=a^ne^{ax}\\)","미분할 때마다 a가 하나씩 곱해진다.","\\(d^4(e^{2x})/dx^4=16e^{2x}\\)"],
+["sin(ax)의 n계","\\(\\frac{d^n}{dx^n}\\sin(ax)=a^n\\sin(ax+n\\pi/2)\\)","sin→cos→-sin→-cos의 4주기 패턴을 압축한 공식이다.","\\(d^2(\\sin3x)/dx^2=-9\\sin3x\\)"],
+["cos(ax)의 n계","\\(\\frac{d^n}{dx^n}\\cos(ax)=a^n\\cos(ax+n\\pi/2)\\)","코사인도 4번 미분하면 원래 형태로 돌아온다.","\\(d^2(\\cos2x)/dx^2=-4\\cos2x\\)"],
+["Leibniz 공식","\\((fg)^{(n)}=\\sum_{k=0}^n\\binom nk f^{(k)}g^{(n-k)}\\)","곱의 미분법을 n계 도함수까지 확장한 공식이다.","\\((xe^x)^{(n)}=e^x(x+n)\\)"],
+["e^{ax}sin bx","\\((e^{ax}\\sin bx)'=e^{ax}(a\\sin bx+b\\cos bx)\\)","곱의 미분과 연쇄법칙을 동시에 적용한다.","\\((e^x\\sin x)'=e^x(\\sin x+\\cos x)\\)"],
+["e^{ax}cos bx","\\((e^{ax}\\cos bx)'=e^{ax}(a\\cos bx-b\\sin bx)\\)","cos 미분에서 생기는 음수 부호를 주의한다.","\\((e^x\\cos x)'=e^x(\\cos x-\\sin x)\\)"],
+["x ln x","\\((x\\ln x)'=\\ln x+1\\)","곱의 미분법의 대표적인 예이다.","\\((x\\ln x)'=\\ln x+1\\)"],
+["ln(x²+a²)","\\((\\ln(x^2+a^2))'=2x/(x^2+a^2)\\)","ln u의 미분 u'/u를 바로 적용한다.","\\(a=1\\Rightarrow2x/(x^2+1)\\)"],
+["arctan(x/a)","\\((\\arctan(x/a))'=a/(a^2+x^2)\\;(a>0)\\)","arctan u 공식에 u=x/a를 넣어 정리한다.","\\(a=2\\Rightarrow2/(x^2+4)\\)"],
+["1/(x²+a²) 구조","\\(\\frac{d}{dx}\\left[\\frac1a\\arctan(x/a)\\right]=1/(x^2+a^2)\\)","역삼각함수 미분이 유리함수와 연결되는 중요한 형태이다.","\\(a=1\\Rightarrow(\\arctan x)'=1/(1+x^2)\\)"],
+["ln((x-a)/(x+a))","\\(\\frac d{dx}\\ln\\left|\\frac{x-a}{x+a}\\right|=\\frac{2a}{x^2-a^2}\\)","로그의 차로 분리해 미분하면 간단히 정리된다.","\\(a=1\\Rightarrow2/(x^2-1)\\)"],
+["sqrt(a²-x²)","\\((\\sqrt{a^2-x^2})'=-x/\\sqrt{a^2-x^2}\\)","제곱근의 연쇄법칙을 적용한다.","\\((\\sqrt{9-x^2})'=-x/\\sqrt{9-x^2}\\)"],
+["sqrt(x²+a²)","\\((\\sqrt{x^2+a^2})'=x/\\sqrt{x^2+a^2}\\)","안쪽 x²+a²의 미분 2x가 2와 약분된다.","\\((\\sqrt{x^2+4})'=x/\\sqrt{x^2+4}\\)"],
+["|x|","\\(\\frac d{dx}|x|=x/|x|\\;(x\\ne0)\\)","x>0에서는 1, x<0에서는 -1이며 x=0에서는 미분 불가능하다.","\\((|x|)'=1\\;(x>0),-1\\;(x<0)\\)"],
+["1/sqrt(x)","\\((x^{-1/2})'=-1/(2x^{3/2})\\)","근호를 음의 분수 지수로 바꾸어 미분한다.","\\((1/\\sqrt{x})'=-1/(2x^{3/2})\\)"],
+["sin x / x","\\(\\left(\\frac{\\sin x}{x}\\right)'=\\frac{x\\cos x-\\sin x}{x^2}\\)","몫의 미분법을 그대로 적용한다.","x≠0에서 성립"],
+["x e^x","\\((xe^x)'=e^x(x+1)\\)","곱의 미분으로 \\(e^x+xe^x\\)를 묶는다.","\\((xe^x)'=e^x(x+1)\\)"],
+["x sin x","\\((x\\sin x)'=\\sin x+x\\cos x\\)","곱의 미분법의 대표 예이다.","\\((x\\sin x)'=\\sin x+x\\cos x\\)"],
+["x cos x","\\((x\\cos x)'=\\cos x-x\\sin x\\)","cos의 도함수에 음수가 붙음을 주의한다.","\\((x\\cos x)'=\\cos x-x\\sin x\\)"],
+["ln|sec x+tan x|","\\((\\ln|\\sec x+\\tan x|)'=\\sec x\\)","로그 미분 후 삼각항등식으로 정리하면 sec x가 된다.","미분 결과가 \\(\\sec x\\)"],
+["ln|csc x-cot x|","\\((\\ln|\\csc x-\\cot x|)'=\\csc x\\)","csc와 cot의 미분을 넣고 정리하면 csc x가 된다.","미분 결과가 \\(\\csc x\\)"],
+["arcsin(x/a)","\\((\\arcsin(x/a))'=1/\\sqrt{a^2-x^2}\\;(a>0)\\)","arcsin의 합성 미분 후 분모를 정리한다.","\\(a=3\\Rightarrow1/\\sqrt{9-x^2}\\)"],
+["arcosh(x/a)","\\((\\operatorname{arcosh}(x/a))'=1/\\sqrt{x^2-a^2}\\;(x>a>0)\\)","역쌍곡코사인의 합성 미분을 정리한 형태이다.","\\(a=2\\Rightarrow1/\\sqrt{x^2-4}\\)"],
+["x²e^x","\\((x^2e^x)'=e^x(x^2+2x)\\)","곱의 미분 후 e^x를 공통인수로 묶는다.","\\((x^2e^x)'=e^x(x^2+2x)\\)"],
+["e^{x²}","\\((e^{x^2})'=2xe^{x^2}\\)","지수의 안쪽 x²를 미분한 2x를 곱한다.","\\((e^{x^2})'=2xe^{x^2}\\)"]
+]]
+];
+
+let count=0, root=document.getElementById("content"), jump=document.getElementById("jump");
+sections.forEach((s,si)=>{
+ let sec=document.createElement("section"); sec.className="section"; sec.id="s"+si;
+ let h=document.createElement("h2"); h.textContent=s[0]; sec.appendChild(h);
+ let grid=document.createElement("div"); grid.className="grid";
+ s[1].forEach(item=>{count++; let c=document.createElement("article");c.className="card";
+ c.dataset.text=(item.join(" ")+" "+s[0]).toLowerCase();
+ c.innerHTML=`<h3><span class="badge">${count}</span>${item[0]}</h3><div class="formula">${item[1]}</div><p>${item[2]}</p><div class="ex"><b>예:</b> ${item[3]}</div>`;
+ grid.appendChild(c);
+ }); sec.appendChild(grid); root.appendChild(sec);
+ let o=document.createElement("option");o.value=sec.id;o.textContent=s[0];jump.appendChild(o);
+});
+jump.onchange=e=>{if(e.target.value)document.getElementById(e.target.value).scrollIntoView({behavior:"smooth"})};
+document.getElementById("search").addEventListener("input",e=>{
+ let q=e.target.value.trim().toLowerCase();
+ document.querySelectorAll(".card").forEach(c=>c.classList.toggle("hidden",q && !c.dataset.text.includes(q)));
+ document.querySelectorAll(".section").forEach(s=>s.classList.toggle("hidden",[...s.querySelectorAll(".card")].every(c=>c.classList.contains("hidden"))));
+});
+</script>
+</body></html>

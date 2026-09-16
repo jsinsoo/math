@@ -1,0 +1,632 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>분야별 여러 가지 함수의 정적분 예제 100개</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--navy:#16324b;--blue:#2563eb;--line:#d8e1eb;--ink:#17212b;--soft:#eef6ff}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR",sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#102a43,#2563eb);color:white;padding:36px 22px}.wrap,main{max-width:1140px;margin:auto}
+h1{margin:6px 0;font-size:clamp(28px,4vw,44px)}header p{margin:0;color:#eaf2ff}.tag{border:1px solid #ffffff66;border-radius:999px;padding:4px 11px}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;background:white;border-bottom:1px solid var(--line);padding:9px 14px}
+.toolbar select,.toolbar input,.toolbar button{padding:9px 11px;border:1px solid #cbd5e1;border-radius:9px;background:white}.toolbar input{flex:1;min-width:230px}
+main{padding:22px}.intro,.section{background:white;border:1px solid var(--line);border-radius:16px;padding:21px;margin-bottom:19px}
+h2{color:var(--navy);border-bottom:2px solid #e6eef7;padding-bottom:9px}.cards{display:grid;grid-template-columns:1fr;gap:18px}
+.card{border:1px solid var(--line);border-radius:14px;padding:21px;box-shadow:0 2px 10px #0f172a0b}.card h3{margin:0 0 12px;color:#174ea6}
+.num{font-size:12px;background:#e7efff;border-radius:999px;padding:4px 9px;margin-right:8px}.problem{background:var(--soft);border-left:4px solid var(--blue);padding:12px 15px;border-radius:9px;overflow-x:auto}
+.key{margin-top:11px;background:#fff8df;padding:10px 13px;border-radius:9px}.key p{margin:3px 0}.solution{margin-top:11px;background:#fafbfd;border:1px solid #edf1f5;padding:12px 15px;border-radius:9px}
+.solution ol{margin:7px 0;padding-left:28px}.solution li{padding:4px 0;overflow-x:auto}.answer{margin-top:11px;background:#eaf8ef;padding:11px 14px;border-radius:9px;display:flex;gap:18px}
+.formula{background:var(--soft);border-left:4px solid var(--blue);padding:12px;border-radius:8px}.hidden{display:none!important}footer{text-align:center;color:#667085;padding:26px}
+@media(max-width:650px){main{padding:12px}.card{padding:15px}.toolbar input{min-width:100%;order:3}}
+@media print{.toolbar{display:none}body{background:white}header{background:white;color:black;border-bottom:2px solid #222}header p{color:#333}.card{break-inside:avoid}}
+</style></head><body><header><div class="wrap"><span class="tag">정적분 분야별 완성 자료</span><h1>분야별 여러 가지 함수의 정적분 예제 100개</h1>
+<p>10개 분야 × 10문제 · 한 줄에 한 문제 · 풀이 핵심 → 단계별 상세 풀이 → 최종 정답</p></div></header>
+<div class="toolbar"><select id="jump"><option value="">분야 바로가기</option><option value="s0">Ⅰ. 다항함수 · 거듭제곱함수</option><option value="s1">Ⅱ. 유리함수 · 로그형</option><option value="s2">Ⅲ. 지수함수 · 로그함수</option><option value="s3">Ⅳ. 삼각함수</option><option value="s4">Ⅴ. 무리함수 · 역삼각함수형</option><option value="s5">Ⅵ. 치환적분 · 합성함수</option><option value="s6">Ⅶ. 부분적분 · 곱함수</option><option value="s7">Ⅷ. 대칭 · 절댓값 · 구간별 함수</option><option value="s8">Ⅸ. 그래프 · 도형의 넓이</option><option value="s9">Ⅹ. 물리 · 과학 · 누적량 응용</option></select><input id="search" placeholder="분야·풀이 방법 검색"><button onclick="window.print()">인쇄 / PDF</button></div>
+<main><section class="intro"><h2>정적분 문제 해결 순서</h2>
+<p>여러 가지 함수의 정적분은 <b>함수의 형태를 먼저 분류</b>하는 것이 핵심입니다. 다항함수는 항별 적분, 분모의 미분이 분자에 보이면 로그형, 합성함수는 치환적분, 곱함수는 부분적분, 대칭 구간에서는 홀짝성, 넓이 문제에서는 함수의 부호를 먼저 확인합니다.</p>
+<div class="formula">\[\int_a^b f(x)\,dx=F(b)-F(a),\qquad F'(x)=f(x)\]</div>
+<p>각 예제는 계산식만 제시하지 않고 <b>왜 그 적분 방법을 선택하는지</b>를 ‘풀이 핵심’에 먼저 설명하도록 구성했습니다.</p></section>
+<section class="section" id="s0"><h2>Ⅰ. 다항함수 · 거듭제곱함수</h2><div class="cards"><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 거듭제곱 공식">
+<h3><span class="num">1</span>예제 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^2 x^3\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>거듭제곱 공식</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac{x^4}{4}\right]_0^2=\frac{16}{4}=4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(4\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 항별 적분">
+<h3><span class="num">2</span>예제 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^3 (2x+1)\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>항별 적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[x^2+x\right]_1^3=(9+3)-(1+1)=10\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(10\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 짝함수 대칭">
+<h3><span class="num">3</span>예제 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(x^2+2)\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>짝함수 대칭</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^2+2\text{는 짝함수}\]</li><li>\[2\int_0^1(x^2+2)dx=2\left(\frac13+2\right)=\frac{14}{3}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{14}{3}\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 다항식 항별 적분">
+<h3><span class="num">4</span>예제 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1(3x^4-2x+1)\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>다항식 항별 적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac35x^5-x^2+x\right]_0^1=\frac35\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac35\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 분수 지수">
+<h3><span class="num">5</span>예제 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^4\sqrt{x}\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>분수 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\sqrt{x}=x^{1/2}\]</li><li>\[\left[\frac23x^{3/2}\right]_0^4=\frac{16}{3}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{16}{3}\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 음의 분수 지수">
+<h3><span class="num">6</span>예제 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^4\frac1{\sqrt{x}}\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>음의 분수 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^{-1/2}\text{로 바꾼다.}\]</li><li>\[[2\sqrt{x}]_1^4=4-2=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 간단한 치환">
+<h3><span class="num">7</span>예제 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1(1-x)^3dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>간단한 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=1-x,\ du=-dx\]</li><li>\[\int_0^1u^3du=\frac14\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac14\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 홀짝성">
+<h3><span class="num">8</span>예제 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}(x^4-x^3)\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>홀짝성</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^3\text{ 항은 홀함수이므로 적분값 }0\]</li><li>\[2\int_0^2x^4dx=2\cdot\frac{32}{5}=\frac{64}{5}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{64}{5}\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 일차식 치환">
+<h3><span class="num">9</span>예제 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^2(x+1)^2dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>일차식 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x+1,\quad 1\le u\le3\]</li><li>\[\int_1^3u^2du=\frac{27-1}{3}=\frac{26}{3}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{26}{3}\)</span></div>
+</article><article class="card" data-search="Ⅰ. 다항함수 · 거듭제곱함수 유리수 지수">
+<h3><span class="num">10</span>예제 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x^{3/2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>유리수 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac{x^{5/2}}{5/2}\right]_0^1=\frac25\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac25\)</span></div>
+</article></div></section><section class="section" id="s1"><h2>Ⅱ. 유리함수 · 로그형</h2><div class="cards"><article class="card" data-search="Ⅱ. 유리함수 · 로그형 1/x의 로그 적분">
+<h3><span class="num">11</span>예제 11</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\frac1x dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>1/x의 로그 적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\ln x]_1^e=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 분모의 미분이 분자">
+<h3><span class="num">12</span>예제 12</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{2x}{x^2+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>분모의 미분이 분자</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+1,\ du=2x\,dx\]</li><li>\[\int_1^2\frac{du}{u}=\ln2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln2\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 일차식 분모">
+<h3><span class="num">13</span>예제 13</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac1{x+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>일차식 분모</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\ln(x+1)]_0^1=\ln2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln2\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 로그형 치환">
+<h3><span class="num">14</span>예제 14</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{x}{x^2+4}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그형 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+4,\ du=2x\,dx\]</li><li>\[\frac12[\ln u]_4^5=\frac12\ln\frac54\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\ln\frac54\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 역탄젠트 표준형">
+<h3><span class="num">15</span>예제 15</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac1{1+x^2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>역탄젠트 표준형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\arctan x]_0^1=\frac{\pi}{4}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{\pi}{4}\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 a²+x² 표준형">
+<h3><span class="num">16</span>예제 16</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac1{4+x^2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>a²+x² 표준형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac xa\]</li><li>\[=\frac12\arctan\frac12\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\arctan\frac12\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 대수적 분해">
+<h3><span class="num">17</span>예제 17</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{x^2}{x^2+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>대수적 분해</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\frac{x^2}{x^2+1}=1-\frac1{x^2+1}\]</li><li>\[\int_0^1dx-\int_0^1\frac{dx}{1+x^2}=1-\frac{\pi}{4}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1-\frac{\pi}{4}\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 f'/f 구조">
+<h3><span class="num">18</span>예제 18</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^2\frac{2x+1}{x^2+x+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>f'/f 구조</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+x+1,\ du=(2x+1)dx\]</li><li>\[[\ln u]_3^7=\ln\frac73\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln\frac73\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 음의 거듭제곱">
+<h3><span class="num">19</span>예제 19</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac1{(x+1)^2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>음의 거듭제곱</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int(x+1)^{-2}dx=-(x+1)^{-1}\]</li><li>\[\left[-\frac1{x+1}\right]_0^1=\frac12\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\)</span></div>
+</article><article class="card" data-search="Ⅱ. 유리함수 · 로그형 부분분수">
+<h3><span class="num">20</span>예제 20</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{1}{(x+1)(x+2)}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>부분분수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\frac1{(x+1)(x+2)}=\frac1{x+1}-\frac1{x+2}\]</li><li>\[[\ln(x+1)-\ln(x+2)]_0^1=\ln\frac43\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln\frac43\)</span></div>
+</article></div></section><section class="section" id="s2"><h2>Ⅲ. 지수함수 · 로그함수</h2><div class="cards"><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 자연지수">
+<h3><span class="num">21</span>예제 21</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1e^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>자연지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[e^x]_0^1=e-1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(e-1\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 합성 지수">
+<h3><span class="num">22</span>예제 22</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1e^{2x}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>합성 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac12e^{2x}\right]_0^1=\frac{e^2-1}{2}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{e^2-1}{2}\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 일반 지수">
+<h3><span class="num">23</span>예제 23</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>일반 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac{2^x}{\ln2}\right]_0^1=\frac1{\ln2}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac1{\ln2}\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 로그가 상한인 지수 적분">
+<h3><span class="num">24</span>예제 24</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\ln3}e^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그가 상한인 지수 적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[e^x]_0^{\ln3}=3-1=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 로그 부분적분">
+<h3><span class="num">25</span>예제 25</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\ln xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그 부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int\ln xdx=x\ln x-x\]</li><li>\[[x\ln x-x]_1^e=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 지수 치환">
+<h3><span class="num">26</span>예제 26</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^{x^2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>지수 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2,\ du=2x\,dx\]</li><li>\[\frac12[e^u]_0^1=\frac{e-1}{2}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{e-1}{2}\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 음의 지수">
+<h3><span class="num">27</span>예제 27</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1e^{-x}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>음의 지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[-e^{-x}]_0^1=1-\frac1e\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1-\frac1e\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 부분적분">
+<h3><span class="num">28</span>예제 28</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x,\ dv=e^xdx\]</li><li>\[[xe^x]_0^1-\int_0^1e^xdx=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 다항×로그">
+<h3><span class="num">29</span>예제 29</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^2x\ln xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>다항×로그</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\ln x,\ dv=x\,dx\]</li><li>\[\left[\frac{x^2}{2}\ln x-\frac{x^2}{4}\right]_1^2=2\ln2-\frac34\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\ln2-\frac34\)</span></div>
+</article><article class="card" data-search="Ⅲ. 지수함수 · 로그함수 로그 미분형">
+<h3><span class="num">30</span>예제 30</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{e^x}{1+e^x}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그 미분형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=1+e^x,\ du=e^xdx\]</li><li>\[[\ln u]_2^{1+e}=\ln\frac{1+e}{2}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln\frac{1+e}{2}\)</span></div>
+</article></div></section><section class="section" id="s3"><h2>Ⅳ. 삼각함수</h2><div class="cards"><article class="card" data-search="Ⅳ. 삼각함수 사인">
+<h3><span class="num">31</span>예제 31</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^\pi\sin xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[-\cos x]_0^\pi=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 코사인">
+<h3><span class="num">32</span>예제 32</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>코사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\sin x]_0^{\pi/2}=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 sec²">
+<h3><span class="num">33</span>예제 33</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\sec^2xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>sec²</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\tan x]_0^{\pi/4}=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 반각공식">
+<h3><span class="num">34</span>예제 34</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin^2xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>반각공식</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\sin^2x=\frac{1-\cos2x}{2}\]</li><li>\[\left[\frac x2-\frac{\sin2x}{4}\right]_0^{\pi/2}=\frac\pi4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi4\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 반각공식">
+<h3><span class="num">35</span>예제 35</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos^2xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>반각공식</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\cos^2x=\frac{1+\cos2x}{2}\]</li><li>\[=\frac\pi4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi4\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 삼각 치환">
+<h3><span class="num">36</span>예제 36</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin x\cos xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>삼각 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\sin x\]</li><li>\[\left[\frac12\sin^2x\right]_0^{\pi/2}=\frac12\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 탄젠트">
+<h3><span class="num">37</span>예제 37</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\tan xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>탄젠트</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int\tan xdx=-\ln|\cos x|\]</li><li>\[=\frac12\ln2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\ln2\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 합성 삼각함수">
+<h3><span class="num">38</span>예제 38</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/3}\sin2x\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>합성 삼각함수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[-\frac12\cos2x\right]_0^{\pi/3}=\frac34\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac34\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 합성 코사인">
+<h3><span class="num">39</span>예제 39</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\cos2x\,dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>합성 코사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\frac12\sin2x\right]_0^{\pi/4}=\frac12\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac12\)</span></div>
+</article><article class="card" data-search="Ⅳ. 삼각함수 삼각함수 부분적분">
+<h3><span class="num">40</span>예제 40</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^\pi x\sin xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>삼각함수 부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x,\ dv=\sin xdx\]</li><li>\[[-x\cos x]_0^\pi+\int_0^\pi\cos xdx=\pi\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\pi\)</span></div>
+</article></div></section><section class="section" id="s4"><h2>Ⅴ. 무리함수 · 역삼각함수형</h2><div class="cards"><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 arcsin 표준형">
+<h3><span class="num">41</span>예제 41</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{dx}{\sqrt{1-x^2}}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>arcsin 표준형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\arcsin x]_0^1=\frac\pi2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi2\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 a²-x² 표준형">
+<h3><span class="num">42</span>예제 42</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{dx}{\sqrt{4-x^2}}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>a²-x² 표준형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\left[\arcsin\frac x2\right]_0^1=\frac\pi6\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi6\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 arctan 표준형">
+<h3><span class="num">43</span>예제 43</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{dx}{1+x^2}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>arctan 표준형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\arctan x]_0^1=\frac\pi4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi4\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 역탄젠트">
+<h3><span class="num">44</span>예제 44</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\sqrt3}\frac{dx}{1+x^2}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>역탄젠트</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\arctan x]_0^{\sqrt3}=\frac\pi3\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi3\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 무리함수 치환">
+<h3><span class="num">45</span>예제 45</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{x}{\sqrt{x^2+1}}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>무리함수 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+1\]</li><li>\[\frac12\int_1^2u^{-1/2}du=\sqrt2-1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\sqrt2-1\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 근호 안 일차식">
+<h3><span class="num">46</span>예제 46</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^3\sqrt{x+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>근호 안 일차식</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x+1\]</li><li>\[\int_1^4u^{1/2}du=\frac23(8-1)=\frac{14}{3}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{14}{3}\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 근호 치환">
+<h3><span class="num">47</span>예제 47</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x\sqrt{x^2+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>근호 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+1\]</li><li>\[\frac12\int_1^2u^{1/2}du=\frac13(2\sqrt2-1)\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{2\sqrt2-1}{3}\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 f'/√f">
+<h3><span class="num">48</span>예제 48</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{x}{\sqrt{1+x^2}}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>f'/√f</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=1+x^2\]</li><li>\[[\sqrt u]_1^2=\sqrt2-1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\sqrt2-1\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 역사인">
+<h3><span class="num">49</span>예제 49</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1/2}\frac{dx}{\sqrt{1-x^2}}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>역사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[\arcsin x]_0^{1/2}=\frac\pi6\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi6\)</span></div>
+</article><article class="card" data-search="Ⅴ. 무리함수 · 역삼각함수형 기하학적 해석">
+<h3><span class="num">50</span>예제 50</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\sqrt{1-x^2}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>기하학적 해석</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[y=\sqrt{1-x^2}\text{는 단위원의 제1사분면}\]</li><li>\[\text{넓이는 }\frac14\pi(1)^2=\frac\pi4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi4\)</span></div>
+</article></div></section><section class="section" id="s5"><h2>Ⅵ. 치환적분 · 합성함수</h2><div class="cards"><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 f'fⁿ">
+<h3><span class="num">51</span>예제 51</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12x(x^2+1)^4dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>f'fⁿ</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+1,\ du=2xdx\]</li><li>\[\int_1^2u^4du=\frac{31}{5}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{31}{5}\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 일차 치환">
+<h3><span class="num">52</span>예제 52</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^13(3x+1)^2dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>일차 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=3x+1\]</li><li>\[\int_1^4u^2du=21\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(21\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 f'e^f">
+<h3><span class="num">53</span>예제 53</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12xe^{x^2+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>f'e^f</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2+1\]</li><li>\[\int_1^2e^udu=e^2-e\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(e^2-e\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 삼각 치환">
+<h3><span class="num">54</span>예제 54</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos x\sin^3xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>삼각 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\sin x\]</li><li>\[\int_0^1u^3du=\frac14\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac14\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 삼각 치환">
+<h3><span class="num">55</span>예제 55</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin x\cos^4xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>삼각 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\cos x,\ du=-\sin xdx\]</li><li>\[-\int_1^0u^4du=\frac15\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac15\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 로그형">
+<h3><span class="num">56</span>예제 56</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{3}{3x+1}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그형</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=3x+1,\ du=3dx\]</li><li>\[\int_1^4\frac{du}{u}=\ln4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\ln4\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 중첩 치환">
+<h3><span class="num">57</span>예제 57</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{2x}{1+x^4}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>중첩 치환</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2,\ du=2xdx\]</li><li>\[\int_0^1\frac{du}{1+u^2}=\frac\pi4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi4\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 합성 코사인">
+<h3><span class="num">58</span>예제 58</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1 2x\cos(x^2)dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>합성 코사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2\]</li><li>\[\int_0^1\cos udu=\sin1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\sin1\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 합성 사인">
+<h3><span class="num">59</span>예제 59</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1 2x\sin(x^2)dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>합성 사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x^2\]</li><li>\[\int_0^1\sin udu=1-\cos1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1-\cos1\)</span></div>
+</article><article class="card" data-search="Ⅵ. 치환적분 · 합성함수 근호 합성">
+<h3><span class="num">60</span>예제 60</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{2x}{\sqrt{1+x^2}}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>근호 합성</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=1+x^2\]</li><li>\[\int_1^2u^{-1/2}du=2(\sqrt2-1)\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2(\sqrt2-1)\)</span></div>
+</article></div></section><section class="section" id="s6"><h2>Ⅶ. 부분적분 · 곱함수</h2><div class="cards"><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 x×지수">
+<h3><span class="num">61</span>예제 61</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x×지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int u\,dv=uv-\int v\,du\]</li><li>\[[xe^x]_0^1-\int_0^1e^xdx=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 x×삼각">
+<h3><span class="num">62</span>예제 62</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x\sin xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x×삼각</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x,\ dv=\sin xdx\]</li><li>\[[-x\cos x]_0^1+\int_0^1\cos xdx=\sin1-\cos1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\sin1-\cos1\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 x×코사인">
+<h3><span class="num">63</span>예제 63</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}x\cos xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x×코사인</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x,\ dv=\cos xdx\]</li><li>\[[x\sin x]_0^{\pi/2}-\int_0^{\pi/2}\sin xdx=\frac\pi2-1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac\pi2-1\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 로그">
+<h3><span class="num">64</span>예제 64</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\ln xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>로그</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\ln x,\ dv=dx\]</li><li>\[[x\ln x]_1^e-\int_1^e1dx=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 반복 부분적분">
+<h3><span class="num">65</span>예제 65</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x^2e^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>반복 부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int x^2e^xdx=e^x(x^2-2x+2)\]</li><li>\[[e^x(x^2-2x+2)]_0^1=e-2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(e-2\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 x×합성지수">
+<h3><span class="num">66</span>예제 66</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^{2x}dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x×합성지수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=x,\ dv=e^{2x}dx\]</li><li>\[\left[\frac12xe^{2x}\right]_0^1-\frac12\int_0^1e^{2x}dx=\frac{e^2+1}{4}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{e^2+1}{4}\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 x×로그">
+<h3><span class="num">67</span>예제 67</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^2x\ln xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x×로그</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[u=\ln x,\ dv=x\,dx\]</li><li>\[\left[\frac{x^2}{2}\ln x-\frac{x^2}{4}\right]_1^2=2\ln2-\frac34\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\ln2-\frac34\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 경계가 π인 부분적분">
+<h3><span class="num">68</span>예제 68</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^\pi x\sin xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>경계가 π인 부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[[-x\cos x]_0^\pi+\int_0^\pi\cos xdx=\pi\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\pi\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 주기함수와 곱">
+<h3><span class="num">69</span>예제 69</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x\cos(\pi x)dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>주기함수와 곱</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[v=\frac1\pi\sin(\pi x)\]</li><li>\[\left[\frac{x}{\pi}\sin\pi x\right]_0^1-\frac1\pi\int_0^1\sin\pi xdx=-\frac2{\pi^2}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(-\frac2{\pi^2}\)</span></div>
+</article><article class="card" data-search="Ⅶ. 부분적분 · 곱함수 반복 부분적분">
+<h3><span class="num">70</span>예제 70</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x^3e^xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>반복 부분적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int x^3e^xdx=e^x(x^3-3x^2+6x-6)\]</li><li>\[[-2e]-[-6]=6-2e\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(6-2e\)</span></div>
+</article></div></section><section class="section" id="s7"><h2>Ⅷ. 대칭 · 절댓값 · 구간별 함수</h2><div class="cards"><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 홀함수">
+<h3><span class="num">71</span>예제 71</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^5dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>홀함수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^5\text{는 홀함수이므로 }0\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(0\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 짝함수">
+<h3><span class="num">72</span>예제 72</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^4dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>짝함수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^4\text{는 짝함수}\]</li><li>\[2\int_0^2x^4dx=\frac{64}{5}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{64}{5}\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 홀짝 혼합">
+<h3><span class="num">73</span>예제 73</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(x^3+x^2)dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>홀짝 혼합</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x^3\text{ 항은 상쇄}\]</li><li>\[\int_{-1}^1x^2dx=\frac23\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac23\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 절댓값">
+<h3><span class="num">74</span>예제 74</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}|x|dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>절댓값</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[2\int_0^2x dx=4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(4\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 절댓값 구간 분할">
+<h3><span class="num">75</span>예제 75</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^3|x-1|dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>절댓값 구간 분할</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\int_0^1(1-x)dx+\int_1^3(x-1)dx\]</li><li>\[=\frac12+2=\frac52\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac52\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 절댓값 제곱">
+<h3><span class="num">76</span>예제 76</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}|x|^2dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>절댓값 제곱</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[|x|^2=x^2\]</li><li>\[\int_{-1}^1x^2dx=\frac23\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac23\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 삼각함수 대칭">
+<h3><span class="num">77</span>예제 77</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-\pi}^{\pi}\sin xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>삼각함수 대칭</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\sin x\text{는 홀함수}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(0\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 짝함수 대칭">
+<h3><span class="num">78</span>예제 78</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-\pi}^{\pi}\cos xdx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>짝함수 대칭</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[2\int_0^\pi\cos xdx=0\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(0\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 지수함수 대칭">
+<h3><span class="num">79</span>예제 79</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(e^x-e^{-x})dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>지수함수 대칭</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[e^x-e^{-x}\text{는 홀함수}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(0\)</span></div>
+</article><article class="card" data-search="Ⅷ. 대칭 · 절댓값 · 구간별 함수 지수함수 짝대칭">
+<h3><span class="num">80</span>예제 80</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(e^x+e^{-x})dx\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>지수함수 짝대칭</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\text{짝함수이므로 }2\int_0^1(e^x+e^{-x})dx\]</li><li>\[=2(e-e^{-1})\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2(e-e^{-1})\)</span></div>
+</article></div></section><section class="section" id="s8"><h2>Ⅸ. 그래프 · 도형의 넓이</h2><div class="cards"><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 x축과 직선">
+<h3><span class="num">81</span>예제 81</h3>
+<div class="problem"><b>문제</b><div>\[y=x,\ 0\le x\le2\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>x축과 직선</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[A=\int_0^2x dx=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 포물선 아래">
+<h3><span class="num">82</span>예제 82</h3>
+<div class="problem"><b>문제</b><div>\[y=x^2,\ 0\le x\le2\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>포물선 아래</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[A=\int_0^2x^2dx=\frac83\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac83\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 포물선과 x축">
+<h3><span class="num">83</span>예제 83</h3>
+<div class="problem"><b>문제</b><div>\[y=4-x^2\text{와 x축}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>포물선과 x축</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x=\pm2\]</li><li>\[A=\int_{-2}^{2}(4-x^2)dx=\frac{32}{3}\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac{32}{3}\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 두 함수 사이">
+<h3><span class="num">84</span>예제 84</h3>
+<div class="problem"><b>문제</b><div>\[y=x,\ y=x^2,\ 0\le x\le1\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>두 함수 사이</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x\ge x^2\]</li><li>\[A=\int_0^1(x-x^2)dx=\frac16\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac16\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 교점 찾기">
+<h3><span class="num">85</span>예제 85</h3>
+<div class="problem"><b>문제</b><div>\[y=2x,\ y=x^2\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>교점 찾기</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x=0,2\text{에서 만난다.}\]</li><li>\[A=\int_0^2(2x-x^2)dx=\frac43\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac43\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 사인 곡선 넓이">
+<h3><span class="num">86</span>예제 86</h3>
+<div class="problem"><b>문제</b><div>\[y=\sin x,\ 0\le x\le\pi\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>사인 곡선 넓이</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[A=\int_0^\pi\sin xdx=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 부호 변화">
+<h3><span class="num">87</span>예제 87</h3>
+<div class="problem"><b>문제</b><div>\[y=\cos x,\ 0\le x\le\pi\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>부호 변화</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x=\pi/2\text{에서 부호 변화}\]</li><li>\[A=\int_0^{\pi/2}\cos xdx-\int_{\pi/2}^{\pi}\cos xdx=2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 V자 그래프">
+<h3><span class="num">88</span>예제 88</h3>
+<div class="problem"><b>문제</b><div>\[y=|x|,\ -1\le x\le1\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>V자 그래프</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[A=2\int_0^1x dx=1\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(1\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 대칭 넓이">
+<h3><span class="num">89</span>예제 89</h3>
+<div class="problem"><b>문제</b><div>\[y=1-x^2,\ -1\le x\le1\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>대칭 넓이</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[A=2\int_0^1(1-x^2)dx=\frac43\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac43\)</span></div>
+</article><article class="card" data-search="Ⅸ. 그래프 · 도형의 넓이 전체 기하학적 넓이">
+<h3><span class="num">90</span>예제 90</h3>
+<div class="problem"><b>문제</b><div>\[y=x^2-1,\ -2\le x\le2\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>전체 기하학적 넓이</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[x=\pm1\text{에서 부호가 바뀐다.}\]</li><li>\[A=2\left\{\int_0^1(1-x^2)dx+\int_1^2(x^2-1)dx\right\}=4\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(4\)</span></div>
+</article></div></section><section class="section" id="s9"><h2>Ⅹ. 물리 · 과학 · 누적량 응용</h2><div class="cards"><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 속도의 적분은 변위">
+<h3><span class="num">91</span>예제 91</h3>
+<div class="problem"><b>문제</b><div>\[v(t)=2t+1,\ 0\le t\le3\text{의 변위}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>속도의 적분은 변위</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[s=\int_0^3(2t+1)dt\]</li><li>\[=[t^2+t]_0^3=12\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(12\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 가속도의 적분은 속도 변화">
+<h3><span class="num">92</span>예제 92</h3>
+<div class="problem"><b>문제</b><div>\[a(t)=6t,\ v(0)=2,\ v(2)\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>가속도의 적분은 속도 변화</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[v(2)-v(0)=\int_0^26t\,dt=12\]</li><li>\[v(2)=14\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(14\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 이동거리는 |v| 적분">
+<h3><span class="num">93</span>예제 93</h3>
+<div class="problem"><b>문제</b><div>\[v(t)=t-1,\ 0\le t\le3\text{의 이동거리}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>이동거리는 |v| 적분</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[t=1\text{에서 속도 부호 변화}\]</li><li>\[D=-\int_0^1(t-1)dt+\int_1^3(t-1)dt=\frac52\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac52\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 함수 평균값">
+<h3><span class="num">94</span>예제 94</h3>
+<div class="problem"><b>문제</b><div>\[f(x)=x^2,\ 0\le x\le3\text{의 평균값}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>함수 평균값</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[f_{\rm avg}=\frac1{3}\int_0^3x^2dx\]</li><li>\[=\frac13\cdot9=3\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(3\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 주기함수 평균">
+<h3><span class="num">95</span>예제 95</h3>
+<div class="problem"><b>문제</b><div>\[f(x)=\sin x,\ 0\le x\le\pi\text{의 평균값}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>주기함수 평균</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[f_{\rm avg}=\frac1\pi\int_0^\pi\sin xdx=\frac2\pi\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(\frac2\pi\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 누적함수">
+<h3><span class="num">96</span>예제 96</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_0^xt^2dt,\ F'(x)\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>누적함수</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\frac d{dx}\int_0^xf(t)dt=f(x)\]</li><li>\[F'(x)=x^2\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(x^2\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 기본정리+연쇄법칙">
+<h3><span class="num">97</span>예제 97</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_0^{x^2}t^3dt,\ F'(x)\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>기본정리+연쇄법칙</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[F'(x)=(x^2)^3(2x)=2x^7\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(2x^7\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 변하는 하한">
+<h3><span class="num">98</span>예제 98</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_x^2e^tdt,\ F'(x)\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>변하는 하한</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[\text{하한이 }x\text{이면 음수}\]</li><li>\[F'(x)=-e^x\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(-e^x\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 전류율의 누적">
+<h3><span class="num">99</span>예제 99</h3>
+<div class="problem"><b>문제</b><div>\[q(t)=3t^2\ \mathrm{C/s},\ 0\le t\le2\text{의 전하량}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>전류율의 누적</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[Q=\int_0^23t^2dt\]</li><li>\[=[t^3]_0^2=8\ \mathrm C\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(8\ \mathrm C\)</span></div>
+</article><article class="card" data-search="Ⅹ. 물리 · 과학 · 누적량 응용 감쇠율의 누적">
+<h3><span class="num">100</span>예제 100</h3>
+<div class="problem"><b>문제</b><div>\[r(t)=100e^{-t}\ \mathrm{mg/h},\ 0\le t\le2\text{의 누적량}\]</div></div>
+<div class="key"><b>풀이 핵심</b><p>감쇠율의 누적</p></div>
+<div class="solution"><b>단계별 상세 풀이</b><ol><li>\[M=\int_0^2100e^{-t}dt\]</li><li>\[=100[-e^{-t}]_0^2=100(1-e^{-2})\]</li></ol></div>
+<div class="answer"><b>최종 정답</b><span>\(100(1-e^{-2})\ \mathrm{mg}\)</span></div>
+</article></div></section></main><footer>분야별 정적분 100제 · MathJax 수식 · 한 줄에 한 문제 · 검색 · 인쇄/PDF</footer>
+<script>
+document.getElementById('jump').onchange=e=>{if(e.target.value)document.getElementById(e.target.value).scrollIntoView({behavior:'smooth'})};
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hidden',q&&!c.dataset.search.toLowerCase().includes(q)));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hidden',[...s.querySelectorAll('.card')].every(c=>c.classList.contains('hidden'))));});
+</script></body></html>

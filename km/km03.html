@@ -1,0 +1,532 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>정적분 예제 100개 상세 풀이</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--navy:#17324d;--blue:#2563eb;--line:#d8e1eb;--ink:#182230;--soft:#eef6ff}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR",sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#102a43,#2563eb);color:white;padding:36px 22px}.wrap,main{max-width:1120px;margin:auto}
+h1{margin:5px 0;font-size:clamp(29px,4vw,44px)}header p{margin:0;color:#eaf2ff}.tag{border:1px solid #ffffff66;border-radius:999px;padding:4px 11px}
+.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:9px 14px;background:white;border-bottom:1px solid var(--line)}
+.toolbar select,.toolbar input,.toolbar button{padding:9px 11px;border:1px solid #cbd5e1;border-radius:9px;background:white}.toolbar input{flex:1;min-width:230px}
+main{padding:22px}.intro,.section{background:white;border:1px solid var(--line);border-radius:16px;padding:21px;margin-bottom:19px}
+h2{color:var(--navy);border-bottom:2px solid #e6eef7;padding-bottom:9px}.cards{display:grid;grid-template-columns:1fr;gap:18px}
+.card{border:1px solid var(--line);border-radius:14px;padding:21px;box-shadow:0 2px 10px #0f172a0b}h3{margin:0 0 12px;color:#174ea6}
+.num{font-size:12px;background:#e7efff;border-radius:999px;padding:4px 9px;margin-right:8px}.problem{background:var(--soft);border-left:4px solid var(--blue);padding:12px 15px;border-radius:9px;overflow-x:auto}
+.tip{margin-top:11px;background:#fff8df;padding:10px 13px;border-radius:9px}.tip p{margin:3px 0}.solution{margin-top:11px;background:#fafbfd;border:1px solid #edf1f5;padding:12px 15px;border-radius:9px}
+.solution ol{margin:7px 0;padding-left:28px}.step{overflow-x:auto}.answer{margin-top:11px;background:#eaf8ef;padding:11px 14px;border-radius:9px;display:flex;gap:18px}
+.formula{background:var(--soft);border-left:4px solid var(--blue);padding:12px;border-radius:8px}.hidden{display:none!important}footer{text-align:center;color:#667085;padding:26px}
+@media(max-width:650px){main{padding:12px}.card{padding:15px}.toolbar input{min-width:100%;order:3}}
+@media print{.toolbar{display:none}body{background:white}header{background:white;color:black;border-bottom:2px solid #222}header p{color:#333}.card{break-inside:avoid}}
+</style></head><body>
+<header><div class="wrap"><span class="tag">수학 학습자료</span><h1>정적분 예제 100개 · 상세 풀이</h1>
+<p>한 줄에 한 문제씩 · 기초 → 지수·로그 → 삼각함수 → 대칭 → 치환 → 부분적분 → 넓이 → 미적분 기본정리</p></div></header>
+<div class="toolbar"><select id="jump"><option value="">단원 바로가기</option><option value="s0">Ⅰ. 거듭제곱함수 · 기본 정적분</option><option value="s1">Ⅱ. 일차식 · 다항함수</option><option value="s2">Ⅲ. 지수 · 로그함수</option><option value="s3">Ⅳ. 삼각함수</option><option value="s4">Ⅴ. 대칭성 · 절댓값</option><option value="s5">Ⅵ. 치환적분</option><option value="s6">Ⅶ. 부분적분</option><option value="s7">Ⅷ. 그래프와 넓이</option><option value="s8">Ⅸ. 미적분의 기본정리</option></select><input id="search" placeholder="문제·풀이 핵심 검색"><button onclick="window.print()">인쇄 / PDF</button></div>
+<main><section class="intro"><h2>정적분 풀이의 출발점</h2>
+<p>원시함수 \(F(x)\)를 구한 뒤 상한의 값에서 하한의 값을 뺍니다.</p><div class="formula">\[\int_a^b f(x)\,dx=F(b)-F(a),\qquad F'(x)=f(x)\]</div>
+<p><b>학습 순서:</b> 피적분함수 구조 확인 → 원시함수 또는 적분 방법 결정 → 상·하한 대입 → 계산 → 넓이 문제라면 부호 변화 확인 순으로 풀이합니다.</p></section>
+<section class="section" id="s0"><h2>Ⅰ. 거듭제곱함수 · 기본 정적분</h2><div class="cards"><article class="card" data-search="기본 1 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">1</span>기본 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{1}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{1}dx=\frac{x^{2}}{2}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{1}dx=\left[\frac{x^{2}}{2}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{2}-0^{2}}{2}=\frac{1}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{2}\)</span></div></article><article class="card" data-search="기본 2 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">2</span>기본 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{3}x^{1}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{1}dx=\frac{x^{2}}{2}\]</div></li><li><div class='step'>\[\int_{0}^{3}x^{1}dx=\left[\frac{x^{2}}{2}\right]_{0}^{3}\]</div></li><li><div class='step'>\[=\frac{3^{2}-0^{2}}{2}=\frac{9}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{9}{2}\)</span></div></article><article class="card" data-search="기본 3 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">3</span>기본 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{2}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{2}dx=\frac{x^{3}}{3}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{2}dx=\left[\frac{x^{3}}{3}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{3}-0^{3}}{3}=\frac{1}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{3}\)</span></div></article><article class="card" data-search="기본 4 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">4</span>기본 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{2}x^{2}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{2}dx=\frac{x^{3}}{3}\]</div></li><li><div class='step'>\[\int_{0}^{2}x^{2}dx=\left[\frac{x^{3}}{3}\right]_{0}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{3}-0^{3}}{3}=\frac{8}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{8}{3}\)</span></div></article><article class="card" data-search="기본 5 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">5</span>기본 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_{1}^{3}x^{2}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{2}dx=\frac{x^{3}}{3}\]</div></li><li><div class='step'>\[\int_{1}^{3}x^{2}dx=\left[\frac{x^{3}}{3}\right]_{1}^{3}\]</div></li><li><div class='step'>\[=\frac{3^{3}-1^{3}}{3}=\frac{26}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{26}{3}\)</span></div></article><article class="card" data-search="기본 6 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">6</span>기본 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{3}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{3}dx=\frac{x^{4}}{4}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{3}dx=\left[\frac{x^{4}}{4}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{4}-0^{4}}{4}=\frac{1}{4}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{4}\)</span></div></article><article class="card" data-search="기본 7 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">7</span>기본 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{2}x^{3}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{3}dx=\frac{x^{4}}{4}\]</div></li><li><div class='step'>\[\int_{0}^{2}x^{3}dx=\left[\frac{x^{4}}{4}\right]_{0}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{4}-0^{4}}{4}=4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(4\)</span></div></article><article class="card" data-search="기본 8 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">8</span>기본 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_{1}^{2}x^{3}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{3}dx=\frac{x^{4}}{4}\]</div></li><li><div class='step'>\[\int_{1}^{2}x^{3}dx=\left[\frac{x^{4}}{4}\right]_{1}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{4}-1^{4}}{4}=\frac{15}{4}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{15}{4}\)</span></div></article><article class="card" data-search="기본 9 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">9</span>기본 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{4}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{4}dx=\frac{x^{5}}{5}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{4}dx=\left[\frac{x^{5}}{5}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{5}-0^{5}}{5}=\frac{1}{5}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{5}\)</span></div></article><article class="card" data-search="기본 10 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">10</span>기본 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}x^{4}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{4}dx=\frac{x^{5}}{5}\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^{4}dx=\left[\frac{x^{5}}{5}\right]_{-1}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{5}--1^{5}}{5}=\frac{2}{5}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{2}{5}\)</span></div></article><article class="card" data-search="기본 11 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">11</span>기본 11</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{5}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{5}dx=\frac{x^{6}}{6}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{5}dx=\left[\frac{x^{6}}{6}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{6}-0^{6}}{6}=\frac{1}{6}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{6}\)</span></div></article><article class="card" data-search="기본 12 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">12</span>기본 12</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{2}x^{5}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{5}dx=\frac{x^{6}}{6}\]</div></li><li><div class='step'>\[\int_{0}^{2}x^{5}dx=\left[\frac{x^{6}}{6}\right]_{0}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{6}-0^{6}}{6}=\frac{32}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{32}{3}\)</span></div></article><article class="card" data-search="기본 13 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">13</span>기본 13</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{6}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{6}dx=\frac{x^{7}}{7}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{6}dx=\left[\frac{x^{7}}{7}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{7}-0^{7}}{7}=\frac{1}{7}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{7}\)</span></div></article><article class="card" data-search="기본 14 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">14</span>기본 14</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}x^{2}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{2}dx=\frac{x^{3}}{3}\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^{2}dx=\left[\frac{x^{3}}{3}\right]_{-1}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{3}--1^{3}}{3}=\frac{2}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{2}{3}\)</span></div></article><article class="card" data-search="기본 15 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">15</span>기본 15</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}x^{4}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{4}dx=\frac{x^{5}}{5}\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^{4}dx=\left[\frac{x^{5}}{5}\right]_{-1}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{5}--1^{5}}{5}=\frac{2}{5}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{2}{5}\)</span></div></article><article class="card" data-search="기본 16 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">16</span>기본 16</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^{1}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{1}dx=\frac{x^{2}}{2}\]</div></li><li><div class='step'>\[\int_{-2}^{2}x^{1}dx=\left[\frac{x^{2}}{2}\right]_{-2}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{2}--2^{2}}{2}=0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article><article class="card" data-search="기본 17 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">17</span>기본 17</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^{2}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{2}dx=\frac{x^{3}}{3}\]</div></li><li><div class='step'>\[\int_{-2}^{2}x^{2}dx=\left[\frac{x^{3}}{3}\right]_{-2}^{2}\]</div></li><li><div class='step'>\[=\frac{2^{3}--2^{3}}{3}=\frac{16}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{16}{3}\)</span></div></article><article class="card" data-search="기본 18 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">18</span>기본 18</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}x^{3}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{3}dx=\frac{x^{4}}{4}\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^{3}dx=\left[\frac{x^{4}}{4}\right]_{-1}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{4}--1^{4}}{4}=0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article><article class="card" data-search="기본 19 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">19</span>기본 19</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}x^{6}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{6}dx=\frac{x^{7}}{7}\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^{6}dx=\left[\frac{x^{7}}{7}\right]_{-1}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{7}--1^{7}}{7}=\frac{2}{7}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{2}{7}\)</span></div></article><article class="card" data-search="기본 20 거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.">
+<h3><span class="num">20</span>기본 20</h3>
+<div class="problem"><b>문제</b><div>\[\int_{0}^{1}x^{7}\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>거듭제곱은 지수를 1 올리고 새 지수로 나눈 뒤, 상한값에서 하한값을 뺍니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^{7}dx=\frac{x^{8}}{8}\]</div></li><li><div class='step'>\[\int_{0}^{1}x^{7}dx=\left[\frac{x^{8}}{8}\right]_{0}^{1}\]</div></li><li><div class='step'>\[=\frac{1^{8}-0^{8}}{8}=\frac{1}{8}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{8}\)</span></div></article></div></section><section class="section" id="s1"><h2>Ⅱ. 일차식 · 다항함수</h2><div class="cards"><article class="card" data-search="다항식 1 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">21</span>다항식 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{2}(2x-1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(2x-1)dx=\frac{2}2x^2-1x\]</div></li><li><div class='step'>\[\left[\frac{2}2x^2-1x\right]_0^{2}=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="다항식 2 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">22</span>다항식 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{3}(3x+0)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(3x+0)dx=\frac{3}2x^2+0x\]</div></li><li><div class='step'>\[\left[\frac{3}2x^2+0x\right]_0^{3}=\frac{27}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{27}{2}\)</span></div></article><article class="card" data-search="다항식 3 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">23</span>다항식 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1}(4x+1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(4x+1)dx=\frac{4}2x^2+1x\]</div></li><li><div class='step'>\[\left[\frac{4}2x^2+1x\right]_0^{1}=3\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(3\)</span></div></article><article class="card" data-search="다항식 4 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">24</span>다항식 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{2}(1x+2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(1x+2)dx=\frac{1}2x^2+2x\]</div></li><li><div class='step'>\[\left[\frac{1}2x^2+2x\right]_0^{2}=6\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(6\)</span></div></article><article class="card" data-search="다항식 5 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">25</span>다항식 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{3}(2x-2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(2x-2)dx=\frac{2}2x^2-2x\]</div></li><li><div class='step'>\[\left[\frac{2}2x^2-2x\right]_0^{3}=3\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(3\)</span></div></article><article class="card" data-search="다항식 6 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">26</span>다항식 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1}(3x-1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(3x-1)dx=\frac{3}2x^2-1x\]</div></li><li><div class='step'>\[\left[\frac{3}2x^2-1x\right]_0^{1}=\frac{1}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{2}\)</span></div></article><article class="card" data-search="다항식 7 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">27</span>다항식 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{2}(4x+0)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(4x+0)dx=\frac{4}2x^2+0x\]</div></li><li><div class='step'>\[\left[\frac{4}2x^2+0x\right]_0^{2}=8\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(8\)</span></div></article><article class="card" data-search="다항식 8 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">28</span>다항식 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{3}(1x+1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(1x+1)dx=\frac{1}2x^2+1x\]</div></li><li><div class='step'>\[\left[\frac{1}2x^2+1x\right]_0^{3}=\frac{15}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{15}{2}\)</span></div></article><article class="card" data-search="다항식 9 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">29</span>다항식 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1}(2x+2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(2x+2)dx=\frac{2}2x^2+2x\]</div></li><li><div class='step'>\[\left[\frac{2}2x^2+2x\right]_0^{1}=3\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(3\)</span></div></article><article class="card" data-search="다항식 10 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">30</span>다항식 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{2}(3x-2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(3x-2)dx=\frac{3}2x^2-2x\]</div></li><li><div class='step'>\[\left[\frac{3}2x^2-2x\right]_0^{2}=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="다항식 11 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">31</span>다항식 11</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{3}(4x-1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(4x-1)dx=\frac{4}2x^2-1x\]</div></li><li><div class='step'>\[\left[\frac{4}2x^2-1x\right]_0^{3}=15\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(15\)</span></div></article><article class="card" data-search="다항식 12 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">32</span>다항식 12</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1}(1x+0)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(1x+0)dx=\frac{1}2x^2+0x\]</div></li><li><div class='step'>\[\left[\frac{1}2x^2+0x\right]_0^{1}=\frac{1}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{1}{2}\)</span></div></article><article class="card" data-search="다항식 13 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">33</span>다항식 13</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{2}(2x+1)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(2x+1)dx=\frac{2}2x^2+1x\]</div></li><li><div class='step'>\[\left[\frac{2}2x^2+1x\right]_0^{2}=6\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(6\)</span></div></article><article class="card" data-search="다항식 14 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">34</span>다항식 14</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{3}(3x+2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(3x+2)dx=\frac{3}2x^2+2x\]</div></li><li><div class='step'>\[\left[\frac{3}2x^2+2x\right]_0^{3}=\frac{39}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{39}{2}\)</span></div></article><article class="card" data-search="다항식 15 다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.">
+<h3><span class="num">35</span>다항식 15</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1}(4x-2)\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>다항식은 항별로 적분합니다. 상수항 B의 원시함수는 Bx입니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[각 항에 적분의 선형성을 적용합니다.\]</div></li><li><div class='step'>\[\int(4x-2)dx=\frac{4}2x^2-2x\]</div></li><li><div class='step'>\[\left[\frac{4}2x^2-2x\right]_0^{1}=0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article></div></section><section class="section" id="s2"><h2>Ⅲ. 지수 · 로그함수</h2><div class="cards"><article class="card" data-search="지수·로그 1 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">36</span>지수·로그 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1e^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int e^xdx=e^x\]</div></li><li><div class='step'>\[[e^x]_0^1=e-1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(e-1\)</span></div></article><article class="card" data-search="지수·로그 2 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">37</span>지수·로그 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^2e^{2x}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int e^{2x}dx=\frac12e^{2x}\]</div></li><li><div class='step'>\[\left[\frac12e^{2x}\right]_0^2=\frac{e^4-1}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{e^4-1}{2}\)</span></div></article><article class="card" data-search="지수·로그 3 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">38</span>지수·로그 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\ln2}e^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[e^x]_0^{\ln2}=2-1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="지수·로그 4 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">39</span>지수·로그 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int2^xdx=\frac{2^x}{\ln2}\]</div></li><li><div class='step'>\[\left[\frac{2^x}{\ln2}\right]_0^1=\frac1{\ln2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac1{\ln2}\)</span></div></article><article class="card" data-search="지수·로그 5 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">40</span>지수·로그 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^13^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int3^xdx=\frac{3^x}{\ln3}\]</div></li><li><div class='step'>\[=\frac{3-1}{\ln3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac2{\ln3}\)</span></div></article><article class="card" data-search="지수·로그 6 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">41</span>지수·로그 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\frac1x dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\frac1x dx=\ln|x|\]</div></li><li><div class='step'>\[[\ln x]_1^e=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="지수·로그 7 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">42</span>지수·로그 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\ln xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\ln xdx=x\ln x-x\]</div></li><li><div class='step'>\[[x\ln x-x]_1^e=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="지수·로그 8 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">43</span>지수·로그 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^{x^2}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2,\ du=2x\,dx\]</div></li><li><div class='step'>\[\frac12\int_0^1e^udu=\frac{e-1}{2}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{e-1}{2}\)</span></div></article><article class="card" data-search="지수·로그 9 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">44</span>지수·로그 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{2x}{x^2+1}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+1,\ du=2x\,dx\]</div></li><li><div class='step'>\[\int_1^2\frac1u du=\ln2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\ln2\)</span></div></article><article class="card" data-search="지수·로그 10 지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.">
+<h3><span class="num">45</span>지수·로그 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1e^{-x}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>지수함수는 안쪽 미분의 상수배를 보정하고, 1/x 형태는 자연로그를 사용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int e^{-x}dx=-e^{-x}\]</div></li><li><div class='step'>\[[-e^{-x}]_0^1=1-\frac1e\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1-\frac1e\)</span></div></article></div></section><section class="section" id="s3"><h2>Ⅳ. 삼각함수</h2><div class="cards"><article class="card" data-search="삼각함수 1 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">46</span>삼각함수 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^\pi\sin xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[-\cos x]_0^\pi=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="삼각함수 2 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">47</span>삼각함수 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[\sin x]_0^{\pi/2}=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="삼각함수 3 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">48</span>삼각함수 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\sec^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[\tan x]_0^{\pi/4}=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="삼각함수 4 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">49</span>삼각함수 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_{\pi/4}^{\pi/2}\csc^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[-\cot x]_{\pi/4}^{\pi/2}=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="삼각함수 5 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">50</span>삼각함수 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\sin^2x=\frac{1-\cos2x}{2}\]</div></li><li><div class='step'>\[\left[\frac x2-\frac{\sin2x}{4}\right]_0^{\pi/2}=\frac\pi4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi4\)</span></div></article><article class="card" data-search="삼각함수 6 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">51</span>삼각함수 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\cos^2x=\frac{1+\cos2x}{2}\]</div></li><li><div class='step'>\[\left[\frac x2+\frac{\sin2x}{4}\right]_0^{\pi/2}=\frac\pi4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi4\)</span></div></article><article class="card" data-search="삼각함수 7 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">52</span>삼각함수 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin x\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=\sin x,\ du=\cos xdx\]</div></li><li><div class='step'>\[\left[\frac12\sin^2x\right]_0^{\pi/2}=\frac12\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac12\)</span></div></article><article class="card" data-search="삼각함수 8 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">53</span>삼각함수 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\tan xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\tan xdx=-\ln|\cos x|\]</div></li><li><div class='step'>\[=-\ln(\sqrt2/2)=\frac12\ln2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac12\ln2\)</span></div></article><article class="card" data-search="삼각함수 9 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">54</span>삼각함수 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/3}\sin2x\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\sin2xdx=-\frac12\cos2x\]</div></li><li><div class='step'>\[=\frac34\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac34\)</span></div></article><article class="card" data-search="삼각함수 10 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">55</span>삼각함수 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\cos2x\,dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\cos2xdx=\frac12\sin2x\]</div></li><li><div class='step'>\[=\frac12\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac12\)</span></div></article><article class="card" data-search="삼각함수 11 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">56</span>삼각함수 11</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}2\sin xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[-2\cos x]_0^{\pi/2}=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="삼각함수 12 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">57</span>삼각함수 12</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}3\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[3\sin x]_0^{\pi/2}=3\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(3\)</span></div></article><article class="card" data-search="삼각함수 13 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">58</span>삼각함수 13</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/6}\sec^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[[\tan x]_0^{\pi/6}=\frac1{\sqrt3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac1{\sqrt3}\)</span></div></article><article class="card" data-search="삼각함수 14 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">59</span>삼각함수 14</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/4}\sin x\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\left[\frac12\sin^2x\right]_0^{\pi/4}=\frac14\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac14\)</span></div></article><article class="card" data-search="삼각함수 15 기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.">
+<h3><span class="num">60</span>삼각함수 15</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^\pi\sin^2xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>기본 원시함수와 반각공식, 간단한 치환을 구분하여 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\sin^2x=\frac{1-\cos2x}{2}\]</div></li><li><div class='step'>\[\left[\frac x2-\frac{\sin2x}{4}\right]_0^\pi=\frac\pi2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi2\)</span></div></article></div></section><section class="section" id="s4"><h2>Ⅴ. 대칭성 · 절댓값</h2><div class="cards"><article class="card" data-search="대칭·절댓값 1 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">61</span>대칭·절댓값 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^3dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x^3은 홀함수\]</div></li><li><div class='step'>\[\int_{-a}^{a}f(x)dx=0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article><article class="card" data-search="대칭·절댓값 2 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">62</span>대칭·절댓값 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-3}^{3}x^5dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x^5은 홀함수이므로 좌우 적분이 상쇄됩니다.\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article><article class="card" data-search="대칭·절댓값 3 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">63</span>대칭·절댓값 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}x^2dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x^2은 짝함수\]</div></li><li><div class='step'>\[2\int_0^2x^2dx=2\cdot\frac83=\frac{16}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{16}{3}\)</span></div></article><article class="card" data-search="대칭·절댓값 4 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">64</span>대칭·절댓값 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(x^4+1)dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x^4+1은 짝함수\]</div></li><li><div class='step'>\[2\int_0^1(x^4+1)dx=\frac{12}{5}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{12}{5}\)</span></div></article><article class="card" data-search="대칭·절댓값 5 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">65</span>대칭·절댓값 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}(x^3+x^2)dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x^3의 대칭적분은 0\]</div></li><li><div class='step'>\[\int_{-1}^{1}x^2dx=\frac23\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac23\)</span></div></article><article class="card" data-search="대칭·절댓값 6 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">66</span>대칭·절댓값 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-2}^{2}|x|dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[|x|은 짝함수\]</div></li><li><div class='step'>\[2\int_0^2x dx=4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(4\)</span></div></article><article class="card" data-search="대칭·절댓값 7 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">67</span>대칭·절댓값 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-1}^{1}|x|^3dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[2\int_0^1x^3dx=\frac12\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac12\)</span></div></article><article class="card" data-search="대칭·절댓값 8 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">68</span>대칭·절댓값 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^2|x-1|dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x=1에서 구간을 나눕니다.\]</div></li><li><div class='step'>\[\int_0^1(1-x)dx+\int_1^2(x-1)dx=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="대칭·절댓값 9 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">69</span>대칭·절댓값 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-\pi}^{\pi}\sin xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\sin x는 홀함수이므로 값은 0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article><article class="card" data-search="대칭·절댓값 10 계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.">
+<h3><span class="num">70</span>대칭·절댓값 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_{-\pi}^{\pi}\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>계산 전에 홀함수·짝함수 여부와 절댓값의 부호 변화점을 확인합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\cos x는 짝함수\]</div></li><li><div class='step'>\[2\int_0^\pi\cos xdx=0\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(0\)</span></div></article></div></section><section class="section" id="s5"><h2>Ⅵ. 치환적분</h2><div class="cards"><article class="card" data-search="치환 1 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">71</span>치환 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12x(x^2+1)^3dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+1,\ du=2xdx\]</div></li><li><div class='step'>\[x:0\to1\Rightarrow u:1\to2\]</div></li><li><div class='step'>\[\int_1^2u^3du=\frac{15}{4}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{15}{4}\)</span></div></article><article class="card" data-search="치환 2 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">72</span>치환 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{2x}{x^2+4}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+4\]</div></li><li><div class='step'>\[\int_4^5\frac{du}{u}=\ln\frac54\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\ln\frac54\)</span></div></article><article class="card" data-search="치환 3 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">73</span>치환 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^13(3x+1)^2dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=3x+1,\ du=3dx\]</div></li><li><div class='step'>\[\int_1^4u^2du=21\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(21\)</span></div></article><article class="card" data-search="치환 4 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">74</span>치환 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{1/2}\frac2{1+4x^2}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=2x,\ du=2dx\]</div></li><li><div class='step'>\[\int_0^1\frac{du}{1+u^2}=\frac\pi4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi4\)</span></div></article><article class="card" data-search="치환 5 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">75</span>치환 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{dx}{\sqrt{1-x^2}}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int\frac{dx}{\sqrt{1-x^2}}=\arcsin x\]</div></li><li><div class='step'>\[[\arcsin x]_0^1=\frac\pi2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi2\)</span></div></article><article class="card" data-search="치환 6 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">76</span>치환 6</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^12xe^{x^2+1}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+1\]</div></li><li><div class='step'>\[\int_1^2e^udu=e^2-e\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(e^2-e\)</span></div></article><article class="card" data-search="치환 7 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">77</span>치환 7</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\sin x\cos^3xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=\cos x,\ du=-\sin xdx\]</div></li><li><div class='step'>\[-\int_1^0u^3du=\frac14\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac14\)</span></div></article><article class="card" data-search="치환 8 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">78</span>치환 8</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}\cos x\sin^4xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=\sin x\]</div></li><li><div class='step'>\[\int_0^1u^4du=\frac15\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac15\)</span></div></article><article class="card" data-search="치환 9 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">79</span>치환 9</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^2\frac{2x+1}{x^2+x+1}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+x+1\]</div></li><li><div class='step'>\[\int_3^7\frac{du}{u}=\ln\frac73\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\ln\frac73\)</span></div></article><article class="card" data-search="치환 10 정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.">
+<h3><span class="num">80</span>치환 10</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1\frac{x}{\sqrt{x^2+1}}dx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분에서 치환하면 상한과 하한도 새 변수의 값으로 함께 바꿉니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x^2+1,\ du=2xdx\]</div></li><li><div class='step'>\[\frac12\int_1^2u^{-1/2}du=\sqrt2-1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\sqrt2-1\)</span></div></article></div></section><section class="section" id="s6"><h2>Ⅶ. 부분적분</h2><div class="cards"><article class="card" data-search="부분적분 1 곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.">
+<h3><span class="num">81</span>부분적분 1</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1xe^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x,\ dv=e^xdx\]</div></li><li><div class='step'>\[[xe^x]_0^1-\int_0^1e^xdx=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="부분적분 2 곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.">
+<h3><span class="num">82</span>부분적분 2</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x\sin xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x,\ dv=\sin xdx\]</div></li><li><div class='step'>\[[-x\cos x]_0^1+\int_0^1\cos xdx=\sin1-\cos1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\sin1-\cos1\)</span></div></article><article class="card" data-search="부분적분 3 곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.">
+<h3><span class="num">83</span>부분적분 3</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^{\pi/2}x\cos xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=x,\ dv=\cos xdx\]</div></li><li><div class='step'>\[[x\sin x]_0^{\pi/2}-\int_0^{\pi/2}\sin xdx=\frac\pi2-1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac\pi2-1\)</span></div></article><article class="card" data-search="부분적분 4 곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.">
+<h3><span class="num">84</span>부분적분 4</h3>
+<div class="problem"><b>문제</b><div>\[\int_1^e\ln xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[u=\ln x,\ dv=dx\]</div></li><li><div class='step'>\[[x\ln x]_1^e-\int_1^e1dx=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article><article class="card" data-search="부분적분 5 곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.">
+<h3><span class="num">85</span>부분적분 5</h3>
+<div class="problem"><b>문제</b><div>\[\int_0^1x^2e^xdx\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>곱의 형태에서 미분하면 단순해지는 항을 u로 선택하고 ∫u dv=uv-∫v du를 적용합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\int x^2e^xdx=e^x(x^2-2x+2)\]</div></li><li><div class='step'>\[[e^x(x^2-2x+2)]_0^1=e-2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(e-2\)</span></div></article></div></section><section class="section" id="s7"><h2>Ⅷ. 그래프와 넓이</h2><div class="cards"><article class="card" data-search="넓이 1 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">86</span>넓이 1</h3>
+<div class="problem"><b>문제</b><div>\[y=x,\ 0\le x\le2\text{와 x축 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[A=\int_0^2x dx=[x^2/2]_0^2=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="넓이 2 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">87</span>넓이 2</h3>
+<div class="problem"><b>문제</b><div>\[y=x^2,\ 0\le x\le2\text{와 x축 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[A=\int_0^2x^2dx=\frac83\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac83\)</span></div></article><article class="card" data-search="넓이 3 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">88</span>넓이 3</h3>
+<div class="problem"><b>문제</b><div>\[y=4-x^2\text{와 x축 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[4-x^2=0\Rightarrow x=\pm2\]</div></li><li><div class='step'>\[A=\int_{-2}^2(4-x^2)dx=\frac{32}{3}\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac{32}{3}\)</span></div></article><article class="card" data-search="넓이 4 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">89</span>넓이 4</h3>
+<div class="problem"><b>문제</b><div>\[y=x,\ y=x^2,\ 0\le x\le1\text{ 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x\ge x^2\]</div></li><li><div class='step'>\[A=\int_0^1(x-x^2)dx=\frac16\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac16\)</span></div></article><article class="card" data-search="넓이 5 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">90</span>넓이 5</h3>
+<div class="problem"><b>문제</b><div>\[y=2x,\ y=x^2\text{ 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[교점은 x=0,2\]</div></li><li><div class='step'>\[A=\int_0^2(2x-x^2)dx=\frac43\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac43\)</span></div></article><article class="card" data-search="넓이 6 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">91</span>넓이 6</h3>
+<div class="problem"><b>문제</b><div>\[y=1-x,\ 0\le x\le1\text{ 아래 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[A=\int_0^1(1-x)dx=\frac12\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(\frac12\)</span></div></article><article class="card" data-search="넓이 7 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">92</span>넓이 7</h3>
+<div class="problem"><b>문제</b><div>\[y=|x|,\ -2\le x\le2\text{ 아래 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[A=2\int_0^2x dx=4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(4\)</span></div></article><article class="card" data-search="넓이 8 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">93</span>넓이 8</h3>
+<div class="problem"><b>문제</b><div>\[y=\sin x,\ 0\le x\le\pi\text{ 아래 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\sin x\ge0\]</div></li><li><div class='step'>\[A=\int_0^\pi\sin xdx=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="넓이 9 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">94</span>넓이 9</h3>
+<div class="problem"><b>문제</b><div>\[y=\cos x,\ 0\le x\le\pi\text{와 x축 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x=\pi/2에서 부호 변화\]</div></li><li><div class='step'>\[A=\int_0^{\pi/2}\cos xdx-\int_{\pi/2}^{\pi}\cos xdx=2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2\)</span></div></article><article class="card" data-search="넓이 10 정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.">
+<h3><span class="num">95</span>넓이 10</h3>
+<div class="problem"><b>문제</b><div>\[y=x^2-1,\ -2\le x\le2\text{와 x축 사이 넓이}\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>정적분값과 도형의 넓이는 다릅니다. 넓이는 함수의 부호가 바뀌는 점에서 구간을 나누어 양수로 합합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[x=\pm1에서 부호 변화\]</div></li><li><div class='step'>\[A=2\{\int_0^1(1-x^2)dx+\int_1^2(x^2-1)dx\}=4\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(4\)</span></div></article></div></section><section class="section" id="s8"><h2>Ⅸ. 미적분의 기본정리</h2><div class="cards"><article class="card" data-search="기본정리 1 상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.">
+<h3><span class="num">96</span>기본정리 1</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_0^xt^2dt,\quad F'(x)\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\frac d{dx}\int_a^xf(t)dt=f(x)\]</div></li><li><div class='step'>\[F'(x)=x^2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(x^2\)</span></div></article><article class="card" data-search="기본정리 2 상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.">
+<h3><span class="num">97</span>기본정리 2</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_0^{x^2}t^3dt,\quad F'(x)\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[F'(x)=(x^2)^3\cdot2x=2x^7\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2x^7\)</span></div></article><article class="card" data-search="기본정리 3 상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.">
+<h3><span class="num">98</span>기본정리 3</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_x^2t^2dt,\quad F'(x)\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[\text{하한이 }x\text{이므로 음수}\]</div></li><li><div class='step'>\[F'(x)=-x^2\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(-x^2\)</span></div></article><article class="card" data-search="기본정리 4 상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.">
+<h3><span class="num">99</span>기본정리 4</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_x^{x^2}t\,dt,\quad F'(x)\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[F'(x)=x^2(2x)-x\]</div></li><li><div class='step'>\[=2x^3-x\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(2x^3-x\)</span></div></article><article class="card" data-search="기본정리 5 상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.">
+<h3><span class="num">100</span>기본정리 5</h3>
+<div class="problem"><b>문제</b><div>\[F(x)=\int_1^{e^x}\frac1t dt,\quad F'(x)\]</div></div>
+<div class="tip"><b>풀이 핵심</b><p>상한이 함수이면 피적분함수에 그 상한을 대입하고 상한 함수의 미분을 곱합니다.</p></div>
+<div class="solution"><b>상세 풀이</b><ol><li><div class='step'>\[F'(x)=\frac1{e^x}\cdot e^x=1\]</div></li></ol></div>
+<div class="answer"><b>정답</b><span>\(1\)</span></div></article></div></section></main><footer>정적분 예제 100개 · 한 줄에 한 문제 · 상세 풀이 · MathJax · 검색 · 인쇄/PDF</footer>
+<script>
+document.getElementById('jump').onchange=e=>{if(e.target.value)document.getElementById(e.target.value).scrollIntoView({behavior:'smooth'})};
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hidden',q&&!c.dataset.search.toLowerCase().includes(q)));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hidden',[...s.querySelectorAll('.card')].every(c=>c.classList.contains('hidden'))));});
+</script></body></html>

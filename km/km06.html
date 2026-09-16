@@ -1,0 +1,1641 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>고급 미적분 정적분 서술형 수식 모델링 100문제</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--navy:#102f4c;--blue:#245fbe;--line:#d7e0ea;--ink:#17212b;--soft:#eef6ff;--gold:#fff6d9;--green:#eaf8ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f4f7fa;color:var(--ink);font-family:"Malgun Gothic","Noto Sans KR",sans-serif;line-height:1.75}
+header{background:linear-gradient(135deg,#0c2942,#245fbe);color:#fff;padding:38px 22px}.wrap,main{max-width:1160px;margin:auto}
+h1{margin:5px 0;font-size:clamp(29px,4vw,45px)}header p{margin:0;color:#eaf2ff}.tag{border:1px solid #ffffff66;border-radius:999px;padding:4px 11px}
+.toolbar{position:sticky;top:0;z-index:9;display:flex;gap:8px;flex-wrap:wrap;padding:9px 14px;background:#fff;border-bottom:1px solid var(--line)}
+.toolbar select,.toolbar input,.toolbar button{padding:9px 11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff}.toolbar input{flex:1;min-width:240px}.toolbar button{cursor:pointer}
+main{padding:22px}.intro,.section{background:#fff;border:1px solid var(--line);border-radius:17px;padding:22px;margin-bottom:20px}
+h2{color:var(--navy);border-bottom:2px solid #e6eef7;padding-bottom:9px}h2 small{font-size:13px;font-weight:normal;color:#64748b}
+.cards{display:grid;grid-template-columns:1fr;gap:18px}.card{border:1px solid var(--line);border-radius:14px;padding:21px;box-shadow:0 2px 10px #0f172a0b}
+.card h3{margin:0 0 12px;color:#174ea6}.num{font-size:12px;background:#e7efff;border-radius:999px;padding:4px 9px;margin-right:8px}
+.problem{background:var(--soft);border-left:4px solid var(--blue);padding:12px 15px;border-radius:9px;overflow-x:auto}
+.given{margin-top:12px;background:#fff;border:1px dashed #8fb4df;padding:10px 13px;border-radius:9px}.instruction{font-weight:700;color:#174ea6}.concept{margin-top:11px;background:var(--gold);padding:10px 13px;border-radius:9px}.concept p{margin:3px 0}
+.solution{margin-top:11px;background:#fafbfd;border:1px solid #edf1f5;padding:12px 15px;border-radius:9px}.solution ol{margin:7px 0;padding-left:29px}.solution li{padding:4px 0}
+.math{overflow-x:auto}.answer{margin-top:11px;background:var(--green);padding:11px 14px;border-radius:9px;display:flex;gap:18px;align-items:center}
+.formula{background:var(--soft);border-left:4px solid var(--blue);padding:12px 15px;border-radius:9px}.roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}.roadmap div{background:#f8fafc;border:1px solid var(--line);padding:9px;text-align:center;border-radius:9px}
+.hidden{display:none!important}footer{text-align:center;color:#667085;padding:28px}
+@media(max-width:760px){.roadmap{grid-template-columns:1fr 1fr}main{padding:12px}.card{padding:15px}.toolbar input{min-width:100%;order:3}}
+@media print{.toolbar{display:none}body{background:#fff}header{background:#fff;color:#000;border-bottom:2px solid #222}header p{color:#333}.card{break-inside:avoid;box-shadow:none}.section,.intro{border:none}}
+</style></head><body><header><div class="wrap"><span class="tag">고급 미적분 · 융합형 정적분</span>
+<h1>고급 미적분 정적분 서술형 수식 모델링 100문제</h1>
+<p>물리학 · 화학 · 공학 · 생물학 · 천문학 — 문제를 읽고 스스로 함수를 만들고 정적분식을 세우는 100문제</p></div></header>
+<div class="toolbar"><select id="jump"><option value="">분야 바로가기</option><option value="s0">Ⅰ. 물리학</option><option value="s1">Ⅱ. 화학</option><option value="s2">Ⅲ. 공학</option><option value="s3">Ⅳ. 생물학</option><option value="s4">Ⅴ. 천문학</option></select>
+<input id="search" placeholder="예: 질량중심, AUC, 유체, 광도, 가우스, 부분적분">
+<button onclick="window.print()">인쇄 / PDF</button></div>
+<main><section class="intro"><h2>정적분을 스스로 모델링하는 6단계</h2>
+<p>정적분은 단순히 ‘넓이를 구하는 계산’이 아니라 <b>순간적인 양을 연속적으로 합하여 전체량을 구하는 도구</b>입니다. 속도→변위, 힘→일, 전류→전하, 반응속도→반응량, 유량→체적, 농도→노출량, 밀도→질량, 광도→복사에너지처럼 서로 다른 분야가 같은 수학적 구조로 연결됩니다.</p>
+<div class="formula">\[\boxed{\text{전체량}=\int_a^b \text{밀도·속도·율·세기}\,d(\text{변수})}\]</div>
+<div class="roadmap"><div>물리학<br>운동·일·전기·파동</div><div>화학<br>반응·열역학·분광</div><div>공학<br>구조·유체·회로·제어</div><div>생물학<br>개체군·약동학·생리</div><div>천문학<br>질량·광도·스펙트럼</div></div>
+<p><b>학습 방법:</b> 답안의 정적분식을 먼저 보지 말고 문제의 문장과 조건만 읽습니다. ① 구할 양 찾기 → ② 독립변수 선택 → ③ 변화율·밀도·세기 등의 함수 만들기 → ④ 적분구간 정하기 → ⑤ 정적분 계산 → ⑥ 단위와 의미 해석의 순서로 해결합니다.</p></section>
+<section class="section" id="s0"><h2>Ⅰ. 물리학 <small>20문제</small></h2><div class="cards"><article class="card" data-search="물리학 변가속도 운동의 변위 속도를 시간에 대해 정적분하면 변위가 된다.">
+<h3><span class="num">1</span>변가속도 운동의 변위</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>변가속도 운동의 변위와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[v(t)=3t^2-2t+1\ (\mathrm{m/s}).\ 0\le t\le2\text{에서 변위를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>속도를 시간에 대해 정적분하면 변위가 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\Delta x=\int_0^2v(t)\,dt\]</div></li><li><div class='math'>\[=\left[t^3-t^2+t\right]_0^2\]</div></li><li><div class='math'>\[=8-4+2=6\ \mathrm m\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(6\ \mathrm m\)</span></div>
+</article><article class="card" data-search="물리학 속력과 이동거리 이동거리는 속도의 절댓값을 적분한다.">
+<h3><span class="num">2</span>속력과 이동거리</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>속력과 이동거리와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[v(t)=t-2,\ 0\le t\le5.\text{ 총 이동거리를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>이동거리는 속도의 절댓값을 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[v(t)=0\Rightarrow t=2\text{에서 방향이 바뀐다.}\]</div></li><li><div class='math'>\[D=-\int_0^2(t-2)dt+\int_2^5(t-2)dt\]</div></li><li><div class='math'>\[=2+\frac92=\frac{13}{2}\ \mathrm m\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{13}{2}\ \mathrm m\)</span></div>
+</article><article class="card" data-search="물리학 가속도에서 속도 가속도의 적분은 속도 변화량이다.">
+<h3><span class="num">3</span>가속도에서 속도</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>가속도에서 속도와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[a(t)=6t-4,\quad v(0)=3.\quad v(3)\text{을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>가속도의 적분은 속도 변화량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[v(3)-v(0)=\int_0^3(6t-4)dt\]</div></li><li><div class='math'>\[=[3t^2-4t]_0^3=27-12=15\]</div></li><li><div class='math'>\[v(3)=3+15=18\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(18\ \mathrm{m/s}\)</span></div>
+</article><article class="card" data-search="물리학 힘이 한 일 위치에 따라 변하는 힘이 한 일은 F(x)의 위치 적분이다.">
+<h3><span class="num">4</span>힘이 한 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>힘이 한 일와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(x)=4x^3\ (\mathrm N).\ 0\le x\le2\text{에서 한 일을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>위치에 따라 변하는 힘이 한 일은 F(x)의 위치 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_0^2F(x)dx\]</div></li><li><div class='math'>\[=\int_0^24x^3dx=[x^4]_0^2\]</div></li><li><div class='math'>\[=16\ \mathrm J\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(16\ \mathrm J\)</span></div>
+</article><article class="card" data-search="물리학 용수철 일 후크 법칙 F=kx를 변위에 대해 적분한다.">
+<h3><span class="num">5</span>용수철 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>용수철 일와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(x)=kx,\ k=200\ \mathrm{N/m}.\ x=0\text{에서 }0.10\mathrm m\text{까지 늘리는 일을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>후크 법칙 F=kx를 변위에 대해 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_0^{0.1}200x\,dx\]</div></li><li><div class='math'>\[=[100x^2]_0^{0.1}\]</div></li><li><div class='math'>\[=1\ \mathrm J\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(1\ \mathrm J\)</span></div>
+</article><article class="card" data-search="물리학 운동에너지와 일 알짜힘이 한 일은 운동에너지 변화량과 같다.">
+<h3><span class="num">6</span>운동에너지와 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>운동에너지와 일와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(x)=6x^2,\ 0\le x\le1.\text{ 일-에너지 정리에 따른 운동에너지 증가량은?}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>알짜힘이 한 일은 운동에너지 변화량과 같다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\Delta K=W=\int_0^16x^2dx\]</div></li><li><div class='math'>\[=[2x^3]_0^1=2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(2\ \mathrm J\)</span></div>
+</article><article class="card" data-search="물리학 선밀도와 질량 선밀도를 길이에 대해 적분하면 총질량이다.">
+<h3><span class="num">7</span>선밀도와 질량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>선밀도와 질량와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\lambda(x)=2+x\ (\mathrm{kg/m}),\ 0\le x\le3.\text{ 막대의 질량을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>선밀도를 길이에 대해 적분하면 총질량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=\int_0^3\lambda(x)dx\]</div></li><li><div class='math'>\[=\left[2x+\frac{x^2}{2}\right]_0^3\]</div></li><li><div class='math'>\[=6+\frac92=\frac{21}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{21}{2}\ \mathrm{kg}\)</span></div>
+</article><article class="card" data-search="물리학 질량중심 질량중심은 1차 모멘트를 총질량으로 나눈 값이다.">
+<h3><span class="num">8</span>질량중심</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>질량중심와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\lambda(x)=x,\ 0\le x\le2.\text{ 막대의 질량중심 }\bar x\text{를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>질량중심은 1차 모멘트를 총질량으로 나눈 값이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=\int_0^2x\,dx=2\]</div></li><li><div class='math'>\[\bar x=\frac1M\int_0^2x\lambda(x)dx=\frac12\int_0^2x^2dx\]</div></li><li><div class='math'>\[=\frac12\cdot\frac83=\frac43\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac43\ \mathrm m\)</span></div>
+</article><article class="card" data-search="물리학 회전관성 미소질량의 r² 가중합을 적분한다.">
+<h3><span class="num">9</span>회전관성</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>회전관성와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\lambda(x)=1,\ 0\le x\le L.\ x=0\text{축에 대한 관성모멘트를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>미소질량의 r² 가중합을 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[I=\int_0^Lx^2\,dm\]</div></li><li><div class='math'>\[dm=\lambda dx=dx\]</div></li><li><div class='math'>\[I=\int_0^Lx^2dx=\frac{L^3}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{L^3}{3}\)</span></div>
+</article><article class="card" data-search="물리학 충격량 힘을 시간에 대해 적분하면 운동량 변화량인 충격량이다.">
+<h3><span class="num">10</span>충격량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>충격량와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(t)=10e^{-t}\ (\mathrm N),\ 0\le t\le2.\text{ 충격량을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>힘을 시간에 대해 적분하면 운동량 변화량인 충격량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[J=\int_0^2F(t)dt\]</div></li><li><div class='math'>\[=10[-e^{-t}]_0^2\]</div></li><li><div class='math'>\[=10(1-e^{-2})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(10(1-e^{-2})\ \mathrm{N\,s}\)</span></div>
+</article><article class="card" data-search="물리학 전류와 전하 전류는 단위시간당 전하량이므로 시간 적분이 총전하량이다.">
+<h3><span class="num">11</span>전류와 전하</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>전류와 전하와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(t)=3t^2\ (\mathrm A),\ 0\le t\le2.\text{ 흐른 전하량을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전류는 단위시간당 전하량이므로 시간 적분이 총전하량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q=\int_0^2I(t)dt\]</div></li><li><div class='math'>\[=\int_0^23t^2dt=[t^3]_0^2\]</div></li><li><div class='math'>\[=8\ \mathrm C\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(8\ \mathrm C\)</span></div>
+</article><article class="card" data-search="물리학 전력과 에너지 전력의 시간 적분은 에너지이다.">
+<h3><span class="num">12</span>전력과 에너지</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>전력과 에너지와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[P(t)=100(1+t)\ (\mathrm W),\ 0\le t\le3.\text{ 소비 에너지를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전력의 시간 적분은 에너지이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E=\int_0^3P(t)dt\]</div></li><li><div class='math'>\[=100\left[t+\frac{t^2}{2}\right]_0^3\]</div></li><li><div class='math'>\[=750\ \mathrm J\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(750\ \mathrm J\)</span></div>
+</article><article class="card" data-search="물리학 정전기 퍼텐셜 차 전위차는 전기장의 선적분에 음수를 붙인 값이다.">
+<h3><span class="num">13</span>정전기 퍼텐셜 차</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>정전기 퍼텐셜 차와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[E(x)=E_0x,\ 0\le x\le a.\quad V(a)-V(0)\text{를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전위차는 전기장의 선적분에 음수를 붙인 값이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V(a)-V(0)=-\int_0^aE(x)dx\]</div></li><li><div class='math'>\[=-E_0\int_0^axdx\]</div></li><li><div class='math'>\[=-\frac12E_0a^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(-\frac12E_0a^2\)</span></div>
+</article><article class="card" data-search="물리학 유체 압력 힘 깊이에 따라 달라지는 압력을 면적 요소에 곱해 적분한다.">
+<h3><span class="num">14</span>유체 압력 힘</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>유체 압력 힘와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(y)=\rho gy,\ 0\le y\le h.\text{ 폭 }b\text{인 수직판에 작용하는 힘을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>깊이에 따라 달라지는 압력을 면적 요소에 곱해 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[dF=p(y)b\,dy=\rho gyb\,dy\]</div></li><li><div class='math'>\[F=\rho gb\int_0^hy\,dy\]</div></li><li><div class='math'>\[=\frac12\rho gbh^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac12\rho gbh^2\)</span></div>
+</article><article class="card" data-search="물리학 단진동 평균 위치 한 주기 동안 코사인의 양·음 영역이 상쇄된다.">
+<h3><span class="num">15</span>단진동 평균 위치</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>단진동 평균 위치와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[x(t)=A\cos(\omega t).\text{ 한 주기 }T=2\pi/\omega\text{에서 평균 위치를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>한 주기 동안 코사인의 양·음 영역이 상쇄된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar x=\frac1T\int_0^TA\cos(\omega t)dt\]</div></li><li><div class='math'>\[=\frac{A}{T\omega}[\sin(\omega t)]_0^T=0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(0\)</span></div>
+</article><article class="card" data-search="물리학 단진동 평균 제곱 주기 평균에서 진동항은 0이 된다.">
+<h3><span class="num">16</span>단진동 평균 제곱</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>단진동 평균 제곱와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[x(t)=A\cos(\omega t).\text{ 한 주기에서 }\langle x^2\rangle\text{를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기 평균에서 진동항은 0이 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\langle x^2\rangle=\frac{A^2}{T}\int_0^T\cos^2(\omega t)dt\]</div></li><li><div class='math'>\[\cos^2u=\frac{1+\cos2u}{2}\]</div></li><li><div class='math'>\[\langle x^2\rangle=\frac{A^2}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{A^2}{2}\)</span></div>
+</article><article class="card" data-search="물리학 파동의 RMS RMS는 제곱 평균의 제곱근이다.">
+<h3><span class="num">17</span>파동의 RMS</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>파동의 RMS와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[y(t)=A\sin(\omega t).\text{ 한 주기의 RMS 값을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>RMS는 제곱 평균의 제곱근이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[y_{\rm rms}=\sqrt{\frac1T\int_0^Ty^2dt}\]</div></li><li><div class='math'>\[=\sqrt{A^2/2}\]</div></li><li><div class='math'>\[=\frac{A}{\sqrt2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{A}{\sqrt2}\)</span></div>
+</article><article class="card" data-search="물리학 중력 퍼텐셜 변화 역제곱힘의 일은 r^{-2}의 정적분으로 계산한다.">
+<h3><span class="num">18</span>중력 퍼텐셜 변화</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>중력 퍼텐셜 변화와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(r)=-\frac{GMm}{r^2}.\ r_1\to r_2\text{에서 중력이 한 일을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>역제곱힘의 일은 r^{-2}의 정적분으로 계산한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_{r_1}^{r_2}-GMm\,r^{-2}dr\]</div></li><li><div class='math'>\[=GMm\left[\frac1r\right]_{r_1}^{r_2}\]</div></li><li><div class='math'>\[=GMm\left(\frac1{r_2}-\frac1{r_1}\right)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(GMm\left(\frac1{r_2}-\frac1{r_1}\right)\)</span></div>
+</article><article class="card" data-search="물리학 광자 스펙트럼 총세기 모형 스펙트럼 밀도를 파장 구간에서 적분하면 구간 총량이 된다.">
+<h3><span class="num">19</span>광자 스펙트럼 총세기 모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>광자 스펙트럼 총세기 모형와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(\lambda)=I_0e^{-a\lambda},\ 0\le\lambda\le L.\text{ 총세기를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>스펙트럼 밀도를 파장 구간에서 적분하면 구간 총량이 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[I_{\rm tot}=\int_0^LI_0e^{-a\lambda}d\lambda\]</div></li><li><div class='math'>\[=\frac{I_0}{a}(1-e^{-aL})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{I_0}{a}(1-e^{-aL})\)</span></div>
+</article><article class="card" data-search="물리학 상대론적 모형 적분 상대론 계산에서 등장하는 형태로, 원시함수를 미분해 확인할 수 있다.">
+<h3><span class="num">20</span>상대론적 모형 적분</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>상대론적 모형 적분와 관련된 물리 현상을 관찰하였다. 문제에 주어진 변화 법칙과 초기·경계 조건을 해석하여 필요한 물리량을 함수로 표현하고, 적절한 구간에서 정적분하여 요구되는 전체량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\int_0^\beta\frac{du}{(1-u^2)^{3/2}}\text{를 계산하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>상대론 계산에서 등장하는 형태로, 원시함수를 미분해 확인할 수 있다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\frac{d}{du}\left(\frac{u}{\sqrt{1-u^2}}\right)=\frac1{(1-u^2)^{3/2}}\]</div></li><li><div class='math'>\[\int_0^\beta\frac{du}{(1-u^2)^{3/2}}=\left[\frac{u}{\sqrt{1-u^2}}\right]_0^\beta\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{\beta}{\sqrt{1-\beta^2}}\)</span></div>
+</article></div></section><section class="section" id="s1"><h2>Ⅱ. 화학 <small>20문제</small></h2><div class="cards"><article class="card" data-search="화학 1차 반응 누적 생성량 반응속도를 시간 적분하면 누적 반응량이 된다.">
+<h3><span class="num">21</span>1차 반응 누적 생성량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>1차 반응 누적 생성량와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[r(t)=kC_0e^{-kt}.\ 0\le t\le T\text{에서 생성량을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>반응속도를 시간 적분하면 누적 반응량이 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N=\int_0^TkC_0e^{-kt}dt\]</div></li><li><div class='math'>\[=C_0[-e^{-kt}]_0^T\]</div></li><li><div class='math'>\[=C_0(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(C_0(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="화학 0차 반응 누적량 일정한 반응속도의 누적량이다.">
+<h3><span class="num">22</span>0차 반응 누적량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>0차 반응 누적량와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[r(t)=k,\ 0\le t\le T.\text{ 반응한 양은?}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>일정한 반응속도의 누적량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N=\int_0^Tkdt=kT\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(kT\)</span></div>
+</article><article class="card" data-search="화학 온도 의존 반응속도 단순모형 온도에 따른 함수의 누적 효과를 정적분으로 표현한다.">
+<h3><span class="num">23</span>온도 의존 반응속도 단순모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>온도 의존 반응속도 단순모형와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[k(T)=aT^2,\ T_1\le T\le T_2.\text{ 구간 누적 지표를 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>온도에 따른 함수의 누적 효과를 정적분으로 표현한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[K=\int_{T_1}^{T_2}aT^2dT\]</div></li><li><div class='math'>\[=\frac a3(T_2^3-T_1^3)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac a3(T_2^3-T_1^3)\)</span></div>
+</article><article class="card" data-search="화학 흡광도 스펙트럼 면적 스펙트럼 곡선 아래 면적은 파장 구간의 누적 흡광 지표이다.">
+<h3><span class="num">24</span>흡광도 스펙트럼 면적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>흡광도 스펙트럼 면적와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[A(\lambda)=A_0e^{-b\lambda},\ 0\le\lambda\le L.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>스펙트럼 곡선 아래 면적은 파장 구간의 누적 흡광 지표이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[S=\int_0^LA_0e^{-b\lambda}d\lambda\]</div></li><li><div class='math'>\[=\frac{A_0}{b}(1-e^{-bL})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{A_0}{b}(1-e^{-bL})\)</span></div>
+</article><article class="card" data-search="화학 농도 프로파일 평균 공간 평균은 구간 적분을 구간 길이로 나눈다.">
+<h3><span class="num">25</span>농도 프로파일 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>농도 프로파일 평균와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C(x)=C_0(1-x/L),\ 0\le x\le L.\text{ 평균농도는?}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>공간 평균은 구간 적분을 구간 길이로 나눈다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar C=\frac1L\int_0^LC_0(1-x/L)dx\]</div></li><li><div class='math'>\[=\frac{C_0}{L}(L-L/2)=\frac{C_0}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{C_0}{2}\)</span></div>
+</article><article class="card" data-search="화학 확산 플럭스 누적 플럭스의 시간 적분은 단위면적당 누적 전달량이다.">
+<h3><span class="num">26</span>확산 플럭스 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>확산 플럭스 누적와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[J(t)=J_0e^{-kt},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>플럭스의 시간 적분은 단위면적당 누적 전달량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q=\int_0^TJ_0e^{-kt}dt\]</div></li><li><div class='math'>\[=\frac{J_0}{k}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{J_0}{k}(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="화학 적정 곡선 단순모형 면적 곡선 아래 면적을 통해 누적 지표를 계산하는 예이다.">
+<h3><span class="num">27</span>적정 곡선 단순모형 면적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>적정 곡선 단순모형 면적와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[pH(V)=7+\frac12V,\ 0\le V\le4.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>곡선 아래 면적을 통해 누적 지표를 계산하는 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[S=\int_0^4(7+\frac12V)dV\]</div></li><li><div class='math'>\[=[7V+\frac14V^2]_0^4=28+4=32\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(32\)</span></div>
+</article><article class="card" data-search="화학 열용량과 엔탈피 변화 온도 의존 열용량을 적분하면 엔탈피 변화가 된다.">
+<h3><span class="num">28</span>열용량과 엔탈피 변화</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>열용량과 엔탈피 변화와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C_p(T)=a+bT,\ T_1\to T_2.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>온도 의존 열용량을 적분하면 엔탈피 변화가 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\Delta H=\int_{T_1}^{T_2}C_p(T)dT\]</div></li><li><div class='math'>\[=\left[aT+\frac b2T^2\right]_{T_1}^{T_2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(a(T_2-T_1)+\frac b2(T_2^2-T_1^2)\)</span></div>
+</article><article class="card" data-search="화학 압력-부피 일 등온 이상기체의 가역 팽창 일의 기본 적분이다.">
+<h3><span class="num">29</span>압력-부피 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>압력-부피 일와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[P(V)=\frac{nRT}{V},\ V_1\to V_2.\text{ 기체가 한 일을 구하여라.}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>등온 이상기체의 가역 팽창 일의 기본 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_{V_1}^{V_2}P(V)dV\]</div></li><li><div class='math'>\[=nRT\int_{V_1}^{V_2}\frac{dV}{V}\]</div></li><li><div class='math'>\[=nRT\ln\frac{V_2}{V_1}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(nRT\ln\frac{V_2}{V_1}\)</span></div>
+</article><article class="card" data-search="화학 농도 제곱 반응속도 농도가 선형 감소할 때 2차 속도식의 누적량이다.">
+<h3><span class="num">30</span>농도 제곱 반응속도</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>농도 제곱 반응속도와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[r(t)=k(C_0-at)^2,\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>농도가 선형 감소할 때 2차 속도식의 누적량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[u=C_0-at,\ du=-a\,dt\]</div></li><li><div class='math'>\[\int_0^Tk(C_0-at)^2dt=\frac{k}{3a}\{C_0^3-(C_0-aT)^3\}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{k}{3a}\{C_0^3-(C_0-aT)^3\}\)</span></div>
+</article><article class="card" data-search="화학 크로마토그램 피크 단순모형 피크 면적은 성분량과 관련된 대표적인 적분 개념이다.">
+<h3><span class="num">31</span>크로마토그램 피크 단순모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>크로마토그램 피크 단순모형와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[S=\int_{-\sigma}^{\sigma}A\left(1-\frac{x^2}{\sigma^2}\right)dx.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>피크 면적은 성분량과 관련된 대표적인 적분 개념이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\text{피적분함수는 짝함수}\]</div></li><li><div class='math'>\[S=2A\int_0^\sigma(1-x^2/\sigma^2)dx\]</div></li><li><div class='math'>\[=\frac{4A\sigma}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{4A\sigma}{3}\)</span></div>
+</article><article class="card" data-search="화학 방사성 동위원소 누적 붕괴 붕괴율을 적분하면 해당 시간까지 붕괴한 입자 수이다.">
+<h3><span class="num">32</span>방사성 동위원소 누적 붕괴</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>방사성 동위원소 누적 붕괴와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[R(t)=\lambda N_0e^{-\lambda t},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>붕괴율을 적분하면 해당 시간까지 붕괴한 입자 수이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[D=\int_0^TR(t)dt\]</div></li><li><div class='math'>\[=N_0(1-e^{-\lambda T})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(N_0(1-e^{-\lambda T})\)</span></div>
+</article><article class="card" data-search="화학 Beer-Lambert 공간 흡수 모형 지수 감쇠장의 공간 평균이다.">
+<h3><span class="num">33</span>Beer-Lambert 공간 흡수 모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>Beer-Lambert 공간 흡수 모형와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(x)=I_0e^{-\alpha x}.\ 0\le x\le L\text{의 평균 세기}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>지수 감쇠장의 공간 평균이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar I=\frac1L\int_0^LI_0e^{-\alpha x}dx\]</div></li><li><div class='math'>\[=\frac{I_0}{\alpha L}(1-e^{-\alpha L})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{I_0}{\alpha L}(1-e^{-\alpha L})\)</span></div>
+</article><article class="card" data-search="화학 전기화학 전하량 전류-시간 곡선 아래 면적은 전하량이다.">
+<h3><span class="num">34</span>전기화학 전하량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>전기화학 전하량와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(t)=I_0(1-t/T),\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전류-시간 곡선 아래 면적은 전하량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q=\int_0^TI_0(1-t/T)dt\]</div></li><li><div class='math'>\[=I_0(T-T/2)=\frac{I_0T}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{I_0T}{2}\)</span></div>
+</article><article class="card" data-search="화학 열분석 신호 면적 기준선 위 신호의 면적을 계산하는 단순화된 열분석 예이다.">
+<h3><span class="num">35</span>열분석 신호 면적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>열분석 신호 면적와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[q(T)=a(T-T_0),\ T_0\le T\le T_1.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>기준선 위 신호의 면적을 계산하는 단순화된 열분석 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[S=\int_{T_0}^{T_1}a(T-T_0)dT\]</div></li><li><div class='math'>\[=\frac a2(T_1-T_0)^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac a2(T_1-T_0)^2\)</span></div>
+</article><article class="card" data-search="화학 평형 분포 정규화 확률·통계역학 분포는 전체 적분값이 1이 되도록 정규화한다.">
+<h3><span class="num">36</span>평형 분포 정규화</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>평형 분포 정규화와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(x)=Ce^{-kx},\ x\ge0,\quad \int_0^\infty p(x)dx=1.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>확률·통계역학 분포는 전체 적분값이 1이 되도록 정규화한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[1=C\int_0^\infty e^{-kx}dx\]</div></li><li><div class='math'>\[=C\left(\frac1k\right)\]</div></li><li><div class='math'>\[C=k\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(C=k\)</span></div>
+</article><article class="card" data-search="화학 Maxwell형 적분 기초 가우스형 분포의 모멘트 계산에 자주 나타난다.">
+<h3><span class="num">37</span>Maxwell형 적분 기초</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>Maxwell형 적분 기초와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\int_0^\infty xe^{-ax^2}dx,\quad a>0.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>가우스형 분포의 모멘트 계산에 자주 나타난다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[u=ax^2,\ du=2axdx\]</div></li><li><div class='math'>\[\int_0^\infty xe^{-ax^2}dx=\frac1{2a}\int_0^\infty e^{-u}du\]</div></li><li><div class='math'>\[=\frac1{2a}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac1{2a}\)</span></div>
+</article><article class="card" data-search="화학 반응기 체류시간 평균 단순모형 지수 체류시간 분포의 평균을 부분적분으로 구한다.">
+<h3><span class="num">38</span>반응기 체류시간 평균 단순모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>반응기 체류시간 평균 단순모형와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[E(t)=ke^{-kt},\ t\ge0.\quad \bar t=\int_0^\infty tE(t)dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>지수 체류시간 분포의 평균을 부분적분으로 구한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar t=k\int_0^\infty te^{-kt}dt\]</div></li><li><div class='math'>\[\int_0^\infty te^{-kt}dt=\frac1{k^2}\]</div></li><li><div class='math'>\[\bar t=\frac1k\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac1k\)</span></div>
+</article><article class="card" data-search="화학 농도 구배 총변화 미분량을 적분하면 농도의 총변화를 얻는다.">
+<h3><span class="num">39</span>농도 구배 총변화</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>농도 구배 총변화와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\frac{dC}{dx}=-ae^{-bx},\ 0\le x\le L.\quad C(L)-C(0)?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>미분량을 적분하면 농도의 총변화를 얻는다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[C(L)-C(0)=\int_0^L-ae^{-bx}dx\]</div></li><li><div class='math'>\[=\frac ab(e^{-bL}-1)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac ab(e^{-bL}-1)\)</span></div>
+</article><article class="card" data-search="화학 화학 퍼텐셜 작업 모형 로그형 열역학 함수의 정적분 예이다.">
+<h3><span class="num">40</span>화학 퍼텐셜 작업 모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>화학 퍼텐셜 작업 모형와 관련된 화학 실험 또는 반응 과정이 진행된다. 주어진 변화율·농도·온도·스펙트럼 조건을 이용하여 현상을 나타내는 함수를 스스로 세우고, 정적분을 이용해 누적량 또는 평균량을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[w(x)=RT\ln x,\ 1\le x\le e.\text{ 누적값}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>로그형 열역학 함수의 정적분 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=RT\int_1^e\ln xdx\]</div></li><li><div class='math'>\[=RT[x\ln x-x]_1^e\]</div></li><li><div class='math'>\[=RT\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(RT\)</span></div>
+</article></div></section><section class="section" id="s2"><h2>Ⅲ. 공학 <small>20문제</small></h2><div class="cards"><article class="card" data-search="공학 보의 분포하중 합력 분포하중을 길이에 대해 적분하면 등가 집중하중이 된다.">
+<h3><span class="num">41</span>보의 분포하중 합력</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>보의 분포하중 합력 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[w(x)=w_0(1-x/L),\ 0\le x\le L.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>분포하중을 길이에 대해 적분하면 등가 집중하중이 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[R=\int_0^Lw(x)dx\]</div></li><li><div class='math'>\[=w_0[L-L/2]=\frac{w_0L}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{w_0L}{2}\)</span></div>
+</article><article class="card" data-search="공학 분포하중 작용점 합력의 작용점은 하중의 1차 모멘트/합력이다.">
+<h3><span class="num">42</span>분포하중 작용점</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>분포하중 작용점 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[w(x)=w_0x/L,\ 0\le x\le L.\text{ 작용점 }\bar x?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>합력의 작용점은 하중의 1차 모멘트/합력이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[R=\int_0^Lw_0x/L\,dx=\frac{w_0L}{2}\]</div></li><li><div class='math'>\[M=\int_0^Lxw(x)dx=\frac{w_0L^2}{3}\]</div></li><li><div class='math'>\[\bar x=M/R=\frac{2L}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{2L}{3}\)</span></div>
+</article><article class="card" data-search="공학 변단면 막대 체적 단면적을 축 방향으로 적분하면 체적이다.">
+<h3><span class="num">43</span>변단면 막대 체적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>변단면 막대 체적 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[A(x)=A_0(1+x/L),\ 0\le x\le L.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>단면적을 축 방향으로 적분하면 체적이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V=\int_0^LA(x)dx\]</div></li><li><div class='math'>\[=A_0(L+L/2)=\frac32A_0L\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac32A_0L\)</span></div>
+</article><article class="card" data-search="공학 저수조 유량 누적 유량을 시간 적분하면 누적 체적이다.">
+<h3><span class="num">44</span>저수조 유량 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>저수조 유량 누적 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[Q(t)=Q_0(1-e^{-kt}),\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>유량을 시간 적분하면 누적 체적이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V=\int_0^TQ(t)dt\]</div></li><li><div class='math'>\[=Q_0\left[T-\frac{1-e^{-kT}}{k}\right]\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(Q_0\left[T-\frac{1-e^{-kT}}{k}\right]\)</span></div>
+</article><article class="card" data-search="공학 전력 소비량 전력-시간 곡선의 면적이 에너지이다.">
+<h3><span class="num">45</span>전력 소비량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>전력 소비량 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[P(t)=P_0+at,\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전력-시간 곡선의 면적이 에너지이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E=\int_0^T(P_0+at)dt\]</div></li><li><div class='math'>\[=P_0T+\frac12aT^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(P_0T+\frac12aT^2\)</span></div>
+</article><article class="card" data-search="공학 RC 회로 전하 RC 과도전류의 누적 전하량이다.">
+<h3><span class="num">46</span>RC 회로 전하</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>RC 회로 전하 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(t)=\frac{V}{R}e^{-t/(RC)},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>RC 과도전류의 누적 전하량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q=\int_0^TI(t)dt\]</div></li><li><div class='math'>\[=\frac VR[-RCe^{-t/(RC)}]_0^T\]</div></li><li><div class='math'>\[=CV(1-e^{-T/(RC)})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(CV(1-e^{-T/(RC)})\)</span></div>
+</article><article class="card" data-search="공학 교류 RMS 전기공학에서 RMS는 제곱 평균의 제곱근이다.">
+<h3><span class="num">47</span>교류 RMS</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>교류 RMS 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[v(t)=V_0\sin\omega t.\text{ 한 주기의 }V_{\rm rms}.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>전기공학에서 RMS는 제곱 평균의 제곱근이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V_{\rm rms}=\sqrt{\frac1T\int_0^TV_0^2\sin^2\omega tdt}\]</div></li><li><div class='math'>\[=\frac{V_0}{\sqrt2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{V_0}{\sqrt2}\)</span></div>
+</article><article class="card" data-search="공학 신호 평균값 주기 성분의 한 주기 적분은 0이다.">
+<h3><span class="num">48</span>신호 평균값</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>신호 평균값 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[s(t)=A+ B\cos\omega t.\text{ 한 주기 평균}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기 성분의 한 주기 적분은 0이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar s=\frac1T\int_0^T(A+B\cos\omega t)dt\]</div></li><li><div class='math'>\[=A\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(A\)</span></div>
+</article><article class="card" data-search="공학 신호 에너지 신호 에너지는 제곱 크기의 시간 적분이다.">
+<h3><span class="num">49</span>신호 에너지</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>신호 에너지 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[x(t)=e^{-at},\ t\ge0,\ a>0.\quad E=\int_0^\infty|x(t)|^2dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>신호 에너지는 제곱 크기의 시간 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E=\int_0^\infty e^{-2at}dt\]</div></li><li><div class='math'>\[=\left[-\frac1{2a}e^{-2at}\right]_0^\infty\]</div></li><li><div class='math'>\[=\frac1{2a}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac1{2a}\)</span></div>
+</article><article class="card" data-search="공학 열전도 온도 평균 선형 온도장의 공간 평균은 양 끝 온도의 평균과 같다.">
+<h3><span class="num">50</span>열전도 온도 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>열전도 온도 평균 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[T(x)=T_0+\Delta T\,x/L,\ 0\le x\le L.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>선형 온도장의 공간 평균은 양 끝 온도의 평균과 같다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar T=\frac1L\int_0^LT(x)dx\]</div></li><li><div class='math'>\[=T_0+\frac{\Delta T}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(T_0+\frac{\Delta T}{2}\)</span></div>
+</article><article class="card" data-search="공학 열유속 누적 열유속을 시간 적분하면 단위면적당 전달열량이다.">
+<h3><span class="num">51</span>열유속 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>열유속 누적 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[q(t)=q_0e^{-kt},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>열유속을 시간 적분하면 단위면적당 전달열량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q/A=\int_0^Tq(t)dt\]</div></li><li><div class='math'>\[=\frac{q_0}{k}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{q_0}{k}(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="공학 유체 속도분포 유량 속도분포를 단면 전체에 적분하면 체적유량이다.">
+<h3><span class="num">52</span>유체 속도분포 유량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>유체 속도분포 유량 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[u(r)=u_{\max}(1-r^2/R^2).\text{ 원형관 유량 }Q?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>속도분포를 단면 전체에 적분하면 체적유량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[dA=2\pi r\,dr\]</div></li><li><div class='math'>\[Q=\int_0^Ru(r)2\pi r\,dr\]</div></li><li><div class='math'>\[=2\pi u_{\max}\left[\frac{r^2}{2}-\frac{r^4}{4R^2}\right]_0^R=\frac{\pi R^2u_{\max}}2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{\pi R^2u_{\max}}2\)</span></div>
+</article><article class="card" data-search="공학 압력에 의한 댐 힘 정수압은 깊이에 비례하므로 삼각형 분포가 된다.">
+<h3><span class="num">53</span>압력에 의한 댐 힘</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>압력에 의한 댐 힘 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(y)=\rho gy,\ 0\le y\le h,\text{ 폭 }b.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>정수압은 깊이에 비례하므로 삼각형 분포가 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[F=\int_0^h\rho gyb\,dy\]</div></li><li><div class='math'>\[=\frac12\rho gbh^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac12\rho gbh^2\)</span></div>
+</article><article class="card" data-search="공학 재료 응력-변형률 에너지 단위체적당 변형에너지는 응력-변형률 곡선 아래 면적이다.">
+<h3><span class="num">54</span>재료 응력-변형률 에너지</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>재료 응력-변형률 에너지 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\sigma(\varepsilon)=E\varepsilon,\ 0\le\varepsilon\le\varepsilon_0.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>단위체적당 변형에너지는 응력-변형률 곡선 아래 면적이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[u=\int_0^{\varepsilon_0}\sigma d\varepsilon\]</div></li><li><div class='math'>\[=E\int_0^{\varepsilon_0}\varepsilon d\varepsilon\]</div></li><li><div class='math'>\[=\frac12E\varepsilon_0^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac12E\varepsilon_0^2\)</span></div>
+</article><article class="card" data-search="공학 토크와 회전 일 회전계에서 일은 토크를 각변위에 대해 적분한다.">
+<h3><span class="num">55</span>토크와 회전 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>토크와 회전 일 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\tau(\theta)=\tau_0\sin\theta,\ 0\le\theta\le\pi.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>회전계에서 일은 토크를 각변위에 대해 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_0^\pi\tau_0\sin\theta d\theta\]</div></li><li><div class='math'>\[=2\tau_0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(2\tau_0\)</span></div>
+</article><article class="card" data-search="공학 연료 소비량 질량유량의 시간 적분은 총 사용 질량이다.">
+<h3><span class="num">56</span>연료 소비량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>연료 소비량 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\dot m(t)=m_0e^{-kt},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>질량유량의 시간 적분은 총 사용 질량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=\int_0^T\dot m(t)dt\]</div></li><li><div class='math'>\[=\frac{m_0}{k}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{m_0}{k}(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="공학 교량 케이블 하중 대칭 분포하중은 짝함수 성질로 계산을 줄인다.">
+<h3><span class="num">57</span>교량 케이블 하중</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>교량 케이블 하중 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[w(x)=w_0(1+4x^2/L^2),\ -L/2\le x\le L/2.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>대칭 분포하중은 짝함수 성질로 계산을 줄인다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[w(x)\text{는 짝함수}\]</div></li><li><div class='math'>\[R=2w_0\int_0^{L/2}(1+4x^2/L^2)dx\]</div></li><li><div class='math'>\[=\frac43w_0L\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac43w_0L\)</span></div>
+</article><article class="card" data-search="공학 제어 오차 IAE 제어성능 지표 IAE는 오차 절댓값의 시간 적분이다.">
+<h3><span class="num">58</span>제어 오차 IAE</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>제어 오차 IAE 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[e(t)=e_0e^{-kt},\ t\ge0.\quad \mathrm{IAE}=\int_0^\infty|e(t)|dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>제어성능 지표 IAE는 오차 절댓값의 시간 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[e_0>0\text{이면 }|e|=e\]</div></li><li><div class='math'>\[\mathrm{IAE}=e_0\int_0^\infty e^{-kt}dt=\frac{e_0}{k}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{e_0}{k}\)</span></div>
+</article><article class="card" data-search="공학 제어 오차 ISE ISE는 큰 오차를 더 강하게 벌점화하는 제곱오차 적분이다.">
+<h3><span class="num">59</span>제어 오차 ISE</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>제어 오차 ISE 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[e(t)=e_0e^{-kt}.\quad \mathrm{ISE}=\int_0^\infty e^2(t)dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>ISE는 큰 오차를 더 강하게 벌점화하는 제곱오차 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\mathrm{ISE}=e_0^2\int_0^\infty e^{-2kt}dt\]</div></li><li><div class='math'>\[=\frac{e_0^2}{2k}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{e_0^2}{2k}\)</span></div>
+</article><article class="card" data-search="공학 확률 고장밀도 누적 신뢰성 공학에서 확률밀도를 적분하면 누적고장확률이다.">
+<h3><span class="num">60</span>확률 고장밀도 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>확률 고장밀도 누적 상황을 공학적으로 모델링하려고 한다. 하중·유량·전류·신호·에너지 등 주어진 조건을 독립변수의 함수로 나타낸 뒤, 필요한 정적분식을 직접 세워 결과를 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[f(t)=\lambda e^{-\lambda t}.\ 0\le t\le T\text{의 고장확률}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>신뢰성 공학에서 확률밀도를 적분하면 누적고장확률이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[F(T)=\int_0^T\lambda e^{-\lambda t}dt\]</div></li><li><div class='math'>\[=1-e^{-\lambda T}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(1-e^{-\lambda T}\)</span></div>
+</article></div></section><section class="section" id="s3"><h2>Ⅳ. 생물학 <small>20문제</small></h2><div class="cards"><article class="card" data-search="생물학 개체군 순간증가율 누적 증가율의 시간 적분은 개체수의 총변화량이다.">
+<h3><span class="num">61</span>개체군 순간증가율 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>개체군 순간증가율 누적와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[r(t)=r_0e^{-kt},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>증가율의 시간 적분은 개체수의 총변화량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\Delta N=\int_0^Tr_0e^{-kt}dt\]</div></li><li><div class='math'>\[=\frac{r_0}{k}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{r_0}{k}(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="생물학 세균 성장 누적 생체량 지표 시간에 따른 개체수 곡선 아래 면적은 누적 생체량 지표가 된다.">
+<h3><span class="num">62</span>세균 성장 누적 생체량 지표</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>세균 성장 누적 생체량 지표와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[N(t)=N_0e^{rt},\ 0\le t\le T.\quad B=\int_0^TN(t)dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>시간에 따른 개체수 곡선 아래 면적은 누적 생체량 지표가 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[B=N_0\int_0^Te^{rt}dt\]</div></li><li><div class='math'>\[=\frac{N_0}{r}(e^{rT}-1)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{N_0}{r}(e^{rT}-1)\)</span></div>
+</article><article class="card" data-search="생물학 약물 농도 AUC 약동학에서 AUC는 약물 노출량의 대표 지표이다.">
+<h3><span class="num">63</span>약물 농도 AUC</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>약물 농도 AUC와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C(t)=C_0e^{-kt},\ t\ge0.\quad \mathrm{AUC}?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>약동학에서 AUC는 약물 노출량의 대표 지표이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\mathrm{AUC}=\int_0^\infty C_0e^{-kt}dt\]</div></li><li><div class='math'>\[=\frac{C_0}{k}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{C_0}{k}\)</span></div>
+</article><article class="card" data-search="생물학 유한시간 약물 AUC 관찰시간이 유한할 때의 약물 노출량이다.">
+<h3><span class="num">64</span>유한시간 약물 AUC</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>유한시간 약물 AUC와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C(t)=C_0e^{-kt},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>관찰시간이 유한할 때의 약물 노출량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\mathrm{AUC}_{0,T}=\int_0^TC_0e^{-kt}dt\]</div></li><li><div class='math'>\[=\frac{C_0}{k}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{C_0}{k}(1-e^{-kT})\)</span></div>
+</article><article class="card" data-search="생물학 심박출량 누적 혈액량 한 주기에서 사인 진동 성분의 적분은 0이다.">
+<h3><span class="num">65</span>심박출량 누적 혈액량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>심박출량 누적 혈액량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[Q(t)=Q_0+A\sin\omega t.\text{ 한 주기 }T\text{의 혈액량}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>한 주기에서 사인 진동 성분의 적분은 0이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V=\int_0^T(Q_0+A\sin\omega t)dt\]</div></li><li><div class='math'>\[=Q_0T\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(Q_0T\)</span></div>
+</article><article class="card" data-search="생물학 호흡 유량과 일회호흡량 흡기 유량을 시간에 대해 적분하면 흡입 부피가 된다.">
+<h3><span class="num">66</span>호흡 유량과 일회호흡량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>호흡 유량과 일회호흡량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[q(t)=q_0\sin(\pi t/T),\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>흡기 유량을 시간에 대해 적분하면 흡입 부피가 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[V=\int_0^Tq_0\sin(\pi t/T)dt\]</div></li><li><div class='math'>\[=\frac{2q_0T}{\pi}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{2q_0T}{\pi}\)</span></div>
+</article><article class="card" data-search="생물학 효소 반응 단순 시간모형 시간에 따라 감소하는 효소속도의 누적 생성물 모형이다.">
+<h3><span class="num">67</span>효소 반응 단순 시간모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>효소 반응 단순 시간모형와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[v(t)=\frac{V_{\max}}{1+at},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>시간에 따라 감소하는 효소속도의 누적 생성물 모형이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[P=\int_0^T\frac{V_{\max}}{1+at}dt\]</div></li><li><div class='math'>\[=\frac{V_{\max}}a\ln(1+aT)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{V_{\max}}a\ln(1+aT)\)</span></div>
+</article><article class="card" data-search="생물학 광합성 일일 누적량 낮 동안의 광합성률을 적분해 일일 총량을 구한다.">
+<h3><span class="num">68</span>광합성 일일 누적량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>광합성 일일 누적량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[P(t)=P_{\max}\sin(\pi t/D),\ 0\le t\le D.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>낮 동안의 광합성률을 적분해 일일 총량을 구한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[A=\int_0^DP_{\max}\sin(\pi t/D)dt\]</div></li><li><div class='math'>\[=\frac{2P_{\max}D}{\pi}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{2P_{\max}D}{\pi}\)</span></div>
+</article><article class="card" data-search="생물학 잎의 색소 농도 평균 대칭 농도분포의 공간 평균이다.">
+<h3><span class="num">69</span>잎의 색소 농도 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>잎의 색소 농도 평균와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C(x)=C_0(1-x^2/L^2),\ -L\le x\le L.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>대칭 농도분포의 공간 평균이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar C=\frac1{2L}\int_{-L}^LC(x)dx\]</div></li><li><div class='math'>\[=\frac{C_0}{L}\int_0^L(1-x^2/L^2)dx\]</div></li><li><div class='math'>\[=\frac{2C_0}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{2C_0}{3}\)</span></div>
+</article><article class="card" data-search="생물학 신경 전류 총전하 지수 감쇠와 시간의 곱은 부분적분으로 계산한다.">
+<h3><span class="num">70</span>신경 전류 총전하</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>신경 전류 총전하와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(t)=I_0te^{-kt},\ t\ge0.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>지수 감쇠와 시간의 곱은 부분적분으로 계산한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[Q=I_0\int_0^\infty te^{-kt}dt\]</div></li><li><div class='math'>\[\int_0^\infty te^{-kt}dt=\frac1{k^2}\]</div></li><li><div class='math'>\[Q=\frac{I_0}{k^2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{I_0}{k^2}\)</span></div>
+</article><article class="card" data-search="생물학 생존함수 기대수명 비음수 생존시간의 평균은 생존함수 면적으로 표현할 수 있다.">
+<h3><span class="num">71</span>생존함수 기대수명</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>생존함수 기대수명와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[S(t)=e^{-\lambda t},\ t\ge0.\quad E[T]=\int_0^\infty S(t)dt.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>비음수 생존시간의 평균은 생존함수 면적으로 표현할 수 있다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E[T]=\int_0^\infty e^{-\lambda t}dt\]</div></li><li><div class='math'>\[=\frac1\lambda\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac1\lambda\)</span></div>
+</article><article class="card" data-search="생물학 확률밀도 정규화 확률밀도의 전체 면적은 1이다.">
+<h3><span class="num">72</span>확률밀도 정규화</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>확률밀도 정규화와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(x)=Cx,\ 0\le x\le2.\quad \int_0^2p(x)dx=1.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>확률밀도의 전체 면적은 1이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[1=C\int_0^2x dx=2C\]</div></li><li><div class='math'>\[C=\frac12\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(C=\frac12\)</span></div>
+</article><article class="card" data-search="생물학 평균 형질값 연속 형질의 기대값은 x를 확률밀도로 가중해 적분한다.">
+<h3><span class="num">73</span>평균 형질값</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>평균 형질값와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(x)=2x,\ 0\le x\le1.\quad E[X]?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>연속 형질의 기대값은 x를 확률밀도로 가중해 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E[X]=\int_0^1x(2x)dx\]</div></li><li><div class='math'>\[=2\int_0^1x^2dx=\frac23\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac23\)</span></div>
+</article><article class="card" data-search="생물학 생물량 밀도 총량 방사대칭 밀도는 원환 면적요소 2πrdr로 적분한다.">
+<h3><span class="num">74</span>생물량 밀도 총량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>생물량 밀도 총량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\rho(r)=\rho_0(1-r/R),\ 0\le r\le R\text{인 원형 군락의 총량}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>방사대칭 밀도는 원환 면적요소 2πrdr로 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[dA=2\pi r\,dr\]</div></li><li><div class='math'>\[M=2\pi\rho_0\int_0^R(r-r^2/R)dr\]</div></li><li><div class='math'>\[=\frac{\pi\rho_0R^2}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{\pi\rho_0R^2}{3}\)</span></div>
+</article><article class="card" data-search="생물학 산소 소비율 누적 대사율을 시간 적분하면 총 산소 소비량이다.">
+<h3><span class="num">75</span>산소 소비율 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>산소 소비율 누적와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[R(t)=R_0(1+t/T),\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>대사율을 시간 적분하면 총 산소 소비량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[O=\int_0^TR_0(1+t/T)dt\]</div></li><li><div class='math'>\[=\frac32R_0T\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac32R_0T\)</span></div>
+</article><article class="card" data-search="생물학 호르몬 펄스 면적 가우스 적분을 이용한 펄스 총노출량이다.">
+<h3><span class="num">76</span>호르몬 펄스 면적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>호르몬 펄스 면적와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[H(t)=H_0e^{-t^2/\tau^2},\ -\infty<t<\infty.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>가우스 적분을 이용한 펄스 총노출량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[A=H_0\int_{-\infty}^{\infty}e^{-t^2/\tau^2}dt\]</div></li><li><div class='math'>\[u=t/\tau,\ dt=\tau du\]</div></li><li><div class='math'>\[A=H_0\tau\sqrt{\pi}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(H_0\tau\sqrt{\pi}\)</span></div>
+</article><article class="card" data-search="생물학 막전위 평균 주기적 진동 성분은 한 주기 평균에서 사라진다.">
+<h3><span class="num">77</span>막전위 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>막전위 평균와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[V(t)=V_0+A\cos\omega t.\text{ 한 주기 평균}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기적 진동 성분은 한 주기 평균에서 사라진다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar V=\frac1T\int_0^T(V_0+A\cos\omega t)dt\]</div></li><li><div class='math'>\[=V_0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(V_0\)</span></div>
+</article><article class="card" data-search="생물학 유전자 발현 누적량 발현률의 시간 적분으로 누적 발현량을 모델링한다.">
+<h3><span class="num">78</span>유전자 발현 누적량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>유전자 발현 누적량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[g(t)=g_0(1-e^{-kt}),\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>발현률의 시간 적분으로 누적 발현량을 모델링한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[G=\int_0^Tg_0(1-e^{-kt})dt\]</div></li><li><div class='math'>\[=g_0\left[T-\frac{1-e^{-kT}}k\right]\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(g_0\left[T-\frac{1-e^{-kT}}k\right]\)</span></div>
+</article><article class="card" data-search="생물학 로지스틱 증가량 미적분 기본정리는 순간 증가율의 적분이 총변화량임을 보여준다.">
+<h3><span class="num">79</span>로지스틱 증가량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>로지스틱 증가량와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\frac{dN}{dt}=rN(1-N/K).\ t_1\to t_2\text{의 개체수 변화}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>미적분 기본정리는 순간 증가율의 적분이 총변화량임을 보여준다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N(t_2)-N(t_1)=\int_{t_1}^{t_2}\frac{dN}{dt}dt\]</div></li><li><div class='math'>\[=\int_{t_1}^{t_2}rN(t)(1-N(t)/K)dt\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(N(t_2)-N(t_1)\)</span></div>
+</article><article class="card" data-search="생물학 혈중 농도 평균 AUC를 시간 길이로 나누면 평균 농도이다.">
+<h3><span class="num">80</span>혈중 농도 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>혈중 농도 평균와 관련된 생명현상을 정량적으로 분석한다. 시간 또는 공간에 따라 달라지는 생물학적 양을 함수로 모델링하고, 적절한 정적분을 구성하여 누적량·평균량 또는 기대값을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[C(t)=C_0e^{-kt},\ 0\le t\le T.\text{ 평균농도}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>AUC를 시간 길이로 나누면 평균 농도이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar C=\frac1T\int_0^TC_0e^{-kt}dt\]</div></li><li><div class='math'>\[=\frac{C_0}{kT}(1-e^{-kT})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{C_0}{kT}(1-e^{-kT})\)</span></div>
+</article></div></section><section class="section" id="s4"><h2>Ⅴ. 천문학 <small>20문제</small></h2><div class="cards"><article class="card" data-search="천문학 광도 누적 에너지 광도는 단위시간당 방출에너지이므로 시간 적분이 총복사에너지이다.">
+<h3><span class="num">81</span>광도 누적 에너지</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>광도 누적 에너지와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[L(t)=L_0e^{-t/\tau},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>광도는 단위시간당 방출에너지이므로 시간 적분이 총복사에너지이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E=\int_0^TL(t)dt\]</div></li><li><div class='math'>\[=L_0\tau(1-e^{-T/\tau})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(L_0\tau(1-e^{-T/\tau})\)</span></div>
+</article><article class="card" data-search="천문학 별의 선형 밀도 모형 질량 1차원 단순모형에서 밀도 적분이 총질량이다.">
+<h3><span class="num">82</span>별의 선형 밀도 모형 질량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>별의 선형 밀도 모형 질량와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\lambda(r)=\lambda_0(1-r/R),\ 0\le r\le R.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>1차원 단순모형에서 밀도 적분이 총질량이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=\int_0^R\lambda(r)dr\]</div></li><li><div class='math'>\[=\lambda_0(R-R/2)=\frac{\lambda_0R}{2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{\lambda_0R}{2}\)</span></div>
+</article><article class="card" data-search="천문학 구대칭 별의 질량 구대칭 질량분포는 구껍질 체적요소를 사용한다.">
+<h3><span class="num">83</span>구대칭 별의 질량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>구대칭 별의 질량와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\rho(r)=\rho_0,\ 0\le r\le R.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>구대칭 질량분포는 구껍질 체적요소를 사용한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[dV=4\pi r^2dr\]</div></li><li><div class='math'>\[M=4\pi\rho_0\int_0^Rr^2dr\]</div></li><li><div class='math'>\[=\frac43\pi\rho_0R^3\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac43\pi\rho_0R^3\)</span></div>
+</article><article class="card" data-search="천문학 선형 감소 밀도 별 반지름에 따른 밀도 변화를 구껍질별로 누적한다.">
+<h3><span class="num">84</span>선형 감소 밀도 별</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>선형 감소 밀도 별와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\rho(r)=\rho_0(1-r/R),\ 0\le r\le R.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>반지름에 따른 밀도 변화를 구껍질별로 누적한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=4\pi\rho_0\int_0^R(r^2-r^3/R)dr\]</div></li><li><div class='math'>\[=4\pi\rho_0(R^3/3-R^3/4)\]</div></li><li><div class='math'>\[=\frac{\pi\rho_0R^3}{3}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{\pi\rho_0R^3}{3}\)</span></div>
+</article><article class="card" data-search="천문학 중력 퍼텐셜 일 역제곱 중력의 선적분이다.">
+<h3><span class="num">85</span>중력 퍼텐셜 일</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>중력 퍼텐셜 일와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[F(r)=-GMm/r^2,\ r_1\to r_2.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>역제곱 중력의 선적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[W=\int_{r_1}^{r_2}-GMm\,r^{-2}dr\]</div></li><li><div class='math'>\[=GMm\left(\frac1{r_2}-\frac1{r_1}\right)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(GMm\left(\frac1{r_2}-\frac1{r_1}\right)\)</span></div>
+</article><article class="card" data-search="천문학 원반 표면밀도 질량 지수 원반 모형의 총질량을 계산하는 기본 적분이다.">
+<h3><span class="num">86</span>원반 표면밀도 질량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>원반 표면밀도 질량와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\Sigma(r)=\Sigma_0e^{-r/R_d},\ 0\le r<\infty.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>지수 원반 모형의 총질량을 계산하는 기본 적분이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=2\pi\int_0^\infty r\Sigma(r)dr\]</div></li><li><div class='math'>\[=2\pi\Sigma_0R_d^2\int_0^\infty ue^{-u}du\]</div></li><li><div class='math'>\[=2\pi\Sigma_0R_d^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(2\pi\Sigma_0R_d^2\)</span></div>
+</article><article class="card" data-search="천문학 원반 내부 질량 원환 면적요소를 적분한다.">
+<h3><span class="num">87</span>원반 내부 질량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>원반 내부 질량와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\Sigma(r)=\Sigma_0,\ 0\le r\le R.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>원환 면적요소를 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[M=\int_0^R\Sigma_0\,2\pi r\,dr\]</div></li><li><div class='math'>\[=\pi\Sigma_0R^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\pi\Sigma_0R^2\)</span></div>
+</article><article class="card" data-search="천문학 망원경 원형 조리개 면적 원형 조리개의 면적도 방사좌표 적분으로 얻을 수 있다.">
+<h3><span class="num">88</span>망원경 원형 조리개 면적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>망원경 원형 조리개 면적와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[A=\int_0^R2\pi r\,dr.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>원형 조리개의 면적도 방사좌표 적분으로 얻을 수 있다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[A=2\pi[r^2/2]_0^R\]</div></li><li><div class='math'>\[=\pi R^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\pi R^2\)</span></div>
+</article><article class="card" data-search="천문학 스펙트럼 파워 누적 스펙트럼 밀도를 주파수 구간에 적분해 총 파워를 얻는다.">
+<h3><span class="num">89</span>스펙트럼 파워 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>스펙트럼 파워 누적와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[S(\nu)=S_0e^{-a\nu},\ 0\le\nu\le\nu_0.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>스펙트럼 밀도를 주파수 구간에 적분해 총 파워를 얻는다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[P=\int_0^{\nu_0}S_0e^{-a\nu}d\nu\]</div></li><li><div class='math'>\[=\frac{S_0}{a}(1-e^{-a\nu_0})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac{S_0}{a}(1-e^{-a\nu_0})\)</span></div>
+</article><article class="card" data-search="천문학 광도곡선 평균 주기 변광 성분의 평균은 0이다.">
+<h3><span class="num">90</span>광도곡선 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>광도곡선 평균와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[L(t)=L_0+A\sin(2\pi t/P).\text{ 한 주기 평균}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기 변광 성분의 평균은 0이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar L=\frac1P\int_0^P L(t)dt\]</div></li><li><div class='math'>\[=L_0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(L_0\)</span></div>
+</article><article class="card" data-search="천문학 광도곡선 RMS 변동 주기 신호의 변동 크기를 RMS로 나타낸다.">
+<h3><span class="num">91</span>광도곡선 RMS 변동</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>광도곡선 RMS 변동와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\delta L=A\sin(2\pi t/P).\text{ RMS}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기 신호의 변동 크기를 RMS로 나타낸다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\delta L_{\rm rms}=\sqrt{\frac1P\int_0^P A^2\sin^2(2\pi t/P)dt}\]</div></li><li><div class='math'>\[=\frac A{\sqrt2}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac A{\sqrt2}\)</span></div>
+</article><article class="card" data-search="천문학 운석 유입률 누적 유입률을 시간 적분하면 총 유입 개수의 기대값이 된다.">
+<h3><span class="num">92</span>운석 유입률 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>운석 유입률 누적와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[R(t)=R_0e^{-t/\tau},\ 0\le t\le T.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>유입률을 시간 적분하면 총 유입 개수의 기대값이 된다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N=\int_0^TR_0e^{-t/\tau}dt\]</div></li><li><div class='math'>\[=R_0\tau(1-e^{-T/\tau})\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(R_0\tau(1-e^{-T/\tau})\)</span></div>
+</article><article class="card" data-search="천문학 우주선 플럭스 누적 에너지 스펙트럼을 구간 적분해 해당 에너지대의 플럭스를 얻는다.">
+<h3><span class="num">93</span>우주선 플럭스 누적</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>우주선 플럭스 누적와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\Phi(E)=\Phi_0E^{-2},\ E_1\le E\le E_2.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>에너지 스펙트럼을 구간 적분해 해당 에너지대의 플럭스를 얻는다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N=\int_{E_1}^{E_2}\Phi_0E^{-2}dE\]</div></li><li><div class='math'>\[=\Phi_0\left[-E^{-1}\right]_{E_1}^{E_2}\]</div></li><li><div class='math'>\[=\Phi_0\left(\frac1{E_1}-\frac1{E_2}\right)\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\Phi_0\left(\frac1{E_1}-\frac1{E_2}\right)\)</span></div>
+</article><article class="card" data-search="천문학 거리별 별 개수 균일한 공간수밀도를 구체적에 적분한다.">
+<h3><span class="num">94</span>거리별 별 개수</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>거리별 별 개수와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[n(r)=n_0,\ 0\le r\le R.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>균일한 공간수밀도를 구체적에 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[dV=4\pi r^2dr\]</div></li><li><div class='math'>\[N=4\pi n_0\int_0^Rr^2dr\]</div></li><li><div class='math'>\[=\frac43\pi n_0R^3\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(\frac43\pi n_0R^3\)</span></div>
+</article><article class="card" data-search="천문학 거리별 감소 수밀도 감마적분 Γ(3)=2!을 이용하는 고급 예이다.">
+<h3><span class="num">95</span>거리별 감소 수밀도</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>거리별 감소 수밀도와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[n(r)=n_0e^{-r/a},\ 0\le r<\infty.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>감마적분 Γ(3)=2!을 이용하는 고급 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[N=4\pi n_0\int_0^\infty r^2e^{-r/a}dr\]</div></li><li><div class='math'>\[u=r/a\Rightarrow r^2dr=a^3u^2du\]</div></li><li><div class='math'>\[\int_0^\infty u^2e^{-u}du=2\]</div></li><li><div class='math'>\[N=8\pi n_0a^3\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(8\pi n_0a^3\)</span></div>
+</article><article class="card" data-search="천문학 궤도 한 주기 평균 코사인 항 주기 함수의 직류 성분만 평균에 남는다.">
+<h3><span class="num">96</span>궤도 한 주기 평균 코사인 항</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>궤도 한 주기 평균 코사인 항와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[f(t)=f_0+A\cos(2\pi t/P).\text{ 평균}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>주기 함수의 직류 성분만 평균에 남는다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\bar f=\frac1P\int_0^Pf(t)dt\]</div></li><li><div class='math'>\[=f_0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(f_0\)</span></div>
+</article><article class="card" data-search="천문학 적색편이 분포 정규화 단순모형 천문 통계의 단순 분포를 정규화하는 예이다.">
+<h3><span class="num">97</span>적색편이 분포 정규화 단순모형</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>적색편이 분포 정규화 단순모형와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(z)=Ce^{-z/z_0},\ z\ge0.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>천문 통계의 단순 분포를 정규화하는 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[1=C\int_0^\infty e^{-z/z_0}dz\]</div></li><li><div class='math'>\[=Cz_0\]</div></li><li><div class='math'>\[C=\frac1{z_0}\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(C=\frac1{z_0}\)</span></div>
+</article><article class="card" data-search="천문학 적색편이 평균 지수분포의 1차 모멘트이다.">
+<h3><span class="num">98</span>적색편이 평균</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>적색편이 평균와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[p(z)=z_0^{-1}e^{-z/z_0},\ z\ge0.\quad E[z]?\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>지수분포의 1차 모멘트이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[E[z]=\frac1{z_0}\int_0^\infty ze^{-z/z_0}dz\]</div></li><li><div class='math'>\[u=z/z_0\]</div></li><li><div class='math'>\[E[z]=z_0\int_0^\infty ue^{-u}du=z_0\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(z_0\)</span></div>
+</article><article class="card" data-search="천문학 플랑크형 핵심 적분 예비 복사 스펙트럼의 무차원 적분을 이해하기 위한 감마함수 예이다.">
+<h3><span class="num">99</span>플랑크형 핵심 적분 예비</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>플랑크형 핵심 적분 예비와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[\int_0^\infty x^3e^{-x}dx.\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>복사 스펙트럼의 무차원 적분을 이해하기 위한 감마함수 예이다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[\int_0^\infty x^ne^{-x}dx=\Gamma(n+1)=n!\]</div></li><li><div class='math'>\[n=3\Rightarrow\Gamma(4)=3!\]</div></li><li><div class='math'>\[=6\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(6\)</span></div>
+</article><article class="card" data-search="천문학 가우스 PSF 총량 천문 영상의 원형 가우스 PSF를 면적 전체에 적분한다.">
+<h3><span class="num">100</span>가우스 PSF 총량</h3>
+<div class="problem"><b>서술형 문제</b>
+<p>가우스 PSF 총량와 관련된 천체 또는 관측 현상을 수학적으로 분석한다. 거리·시간·반지름·파장 등에 따라 변하는 양을 함수로 설정하고, 정적분을 직접 구성하여 요구되는 천문학적 양을 구하여라.</p>
+<div class="given"><b>주어진 조건·자료</b><div class="math">\[I(r)=I_0e^{-r^2/(2\sigma^2)},\ 0\le r<\infty.\text{ 2차원 총량}\]</div></div>
+<p class="instruction">※ 정적분 공식은 문제에 주어지지 않는다. <b>변수 설정 → 함수 모델링 → 적분구간 결정 → 정적분식 수립 → 계산 → 단위·의미 해석</b>의 순서로 해결하시오.</p>
+</div>
+<div class="concept"><b>모델링 핵심</b><p>천문 영상의 원형 가우스 PSF를 면적 전체에 적분한다.</p></div>
+<div class="solution"><b>단계별 상세 풀이</b>
+<ol>
+<li><b>상황 분석:</b> 무엇이 순간적으로 변하고 있으며, 무엇을 전체적으로 누적하거나 평균해야 하는지 판단한다.</li>
+<li><b>변수와 함수 설정:</b> 주어진 조건을 이용해 독립변수와 종속변수의 관계식을 만든다.</li>
+<li><b>정적분식 수립 및 계산:</b> 다음과 같이 모델을 완성한다.<li><div class='math'>\[F=2\pi\int_0^\infty rI(r)dr\]</div></li><li><div class='math'>\[u=r^2/(2\sigma^2),\quad r\,dr=\sigma^2du\]</div></li><li><div class='math'>\[F=2\pi I_0\sigma^2\int_0^\infty e^{-u}du\]</div></li><li><div class='math'>\[=2\pi I_0\sigma^2\]</div></li></li>
+<li><b>검산:</b> 적분구간, 부호, 함수의 차원과 결과 단위가 문제 상황에 맞는지 확인한다.</li>
+</ol></div>
+<div class="answer"><b>최종 답</b><span>\(2\pi I_0\sigma^2\)</span></div>
+</article></div></section></main>
+<footer>고급 미적분 정적분 100제 · 5개 융합 분야 × 20문제 · MathJax · 검색 · 인쇄/PDF</footer>
+<script>
+document.getElementById('jump').onchange=e=>{if(e.target.value)document.getElementById(e.target.value).scrollIntoView({behavior:'smooth'})};
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hidden',q&&!c.dataset.search.toLowerCase().includes(q)));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hidden',[...s.querySelectorAll('.card')].every(c=>c.classList.contains('hidden'))));});
+</script></body></html>
