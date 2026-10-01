@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수능 미적분 징검다리 10단계 완벽 해설</title>
+  <!-- KaTeX for high quality math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #10b981;
+      --accent-light: #ecfdf5;
+      --text-main: #1e293b;
+      --text-sub: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --highlight: #fef3c7;
+      --highlight-border: #fde047;
+      --step-badge: #3b82f6;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Nanum Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      background: white;
+      padding: 2.5rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border-top: 6px solid var(--primary);
+    }
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+    }
+    .problem-box {
+      background: #ffffff;
+      border: 2px solid var(--primary-border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+    .problem-box h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .formula-banner {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .step-card:hover {
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .step-number {
+      background: var(--step-badge);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.25rem 0.7rem;
+      border-radius: 8px;
+    }
+    .step-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .step-body {
+      color: #334155;
+      font-size: 0.98rem;
+    }
+    .step-body p {
+      margin-bottom: 0.75rem;
+    }
+    .step-body ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .step-body li {
+      margin-bottom: 0.35rem;
+    }
+    .highlight-card {
+      background: #fffbeb;
+      border: 2px solid var(--highlight-border);
+    }
+    .highlight-card .step-number {
+      background: #f59e0b;
+    }
+    .result-box {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+    }
+    .result-box h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+    }
+    .final-answer {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: 0.05em;
+    }
+    .final-desc {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .key-point {
+      display: inline-block;
+      background: #fee2e2;
+      color: #dc2626;
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .problem-box, .step-card {
+        padding: 1.25rem 1rem;
+      }
+      .final-answer {
+        font-size: 2.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">수능·평가원 고난도 미적분 킬러 정복</span>
+      <h1>역함수 적분 & 대칭성 10단계 징검다리 해설</h1>
+      <p class="subtitle">기초 개념부터 복잡한 적분의 상쇄 원리까지 한눈에 파악하기</p>
+    </header>
+
+    <!-- 문제 요약 -->
+    <div class="problem-box">
+      <h2>📌 [문제 조건 및 구하는 값]</h2>
+      <p>실수 전체의 집합에서 미분가능한 함수 $f(x)$가 다음과 같이 정의됩니다:</p>
+      <div class="formula-banner">
+        $$f(x) = 2^{2x + \frac{1}{2}\cos(\pi x)}$$
+      </div>
+      <p>$f(x)$의 역함수를 $g(x)$라 할 때, 다음 식의 값을 만족하는 서로소인 두 자연수 $p, q$에 대하여 $p+q$를 구하시오.</p>
+      <div class="formula-banner">
+        $$I = \frac{1}{4} \int_{f(1)}^{f(3)} g(x)\,dx + \int_{f(0)}^{f(2)} \frac{2^{4g(x)} g'(x)}{x}\,dx = \frac{q}{p}\sqrt{2}$$
+      </div>
+    </div>
+
+    <!-- 10단계 징검다리 -->
+    <div class="steps-container">
+
+      <!-- Step 1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">1단계</span>
+          <span class="step-title">역함수 적분의 핵심 도구 (치환적분)</span>
+        </div>
+        <div class="step-body">
+          <p>역함수 $g(x)$의 양함수 식을 직접 구하는 것은 불가능합니다. 역함수 적분 문제는 항상 <strong>원래 함수 $f(t)$의 적분으로 되돌리는 치환적분</strong>이 열쇠입니다.</p>
+          <ul>
+            <li>$x = f(t) \iff g(x) = t$</li>
+            <li>양변을 $t$에 대해 미분: $dx = f'(t)\,dt$</li>
+            <li>적분 구간: $x = f(a) \implies t = a$, $x = f(b) \implies t = b$</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">2단계</span>
+          <span class="step-title">첫 번째 적분식($I_1$) 치환</span>
+        </div>
+        <div class="step-body">
+          <p>첫 번째 적분을 $I_1$이라 두고, 1단계의 치환 $x = f(t)$를 적용합니다:</p>
+          $$I_1 = \int_{f(1)}^{f(3)} g(x)\,dx = \int_{1}^{3} t f'(t)\,dt$$
+          <p>복잡한 역함수 $g(x)$ 적분이 다항식과 $f'(t)$의 곱 형태로 전환되었습니다.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">3단계</span>
+          <span class="step-title">$I_1$에 부분적분법 적용</span>
+        </div>
+        <div class="step-body">
+          <p>$\int t f'(t)\,dt$ 형태는 미적분의 기본인 <strong>부분적분법</strong>을 적용합니다:</p>
+          $$\int_{1}^{3} t f'(t)\,dt = \Big[ t f(t) \Big]_{1}^{3} - \int_{1}^{3} f(t)\,dt = 3f(3) - f(1) - \int_{1}^{3} f(t)\,dt$$
+          <p>문제에 주어진 계수 $\frac{1}{4}$을 곱해주면 다음과 같이 정리됩니다:</p>
+          $$\frac{1}{4}I_1 = \frac{3f(3) - f(1)}{4} - \frac{1}{4}\int_{1}^{3} f(t)\,dt$$
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">4단계</span>
+          <span class="step-title">주요 경계값 ($f(0), f(1), f(2), f(3)$) 계산</span>
+        </div>
+        <div class="step-body">
+          <p>$f(x) = 2^{2x + \frac{1}{2}\cos(\pi x)}$에 각 정수값을 대입합니다:</p>
+          <ul>
+            <li>$f(0) = 2^{0 + \frac{1}{2}\cos(0)} = 2^{1/2} = \sqrt{2}$</li>
+            <li>$f(1) = 2^{2 - \frac{1}{2}} = 2^{3/2} = 2\sqrt{2}$</li>
+            <li>$f(2) = 2^{4 + \frac{1}{2}} = 2^{9/2} = 16\sqrt{2}$</li>
+            <li>$f(3) = 2^{6 - \frac{1}{2}} = 2^{11/2} = 32\sqrt{2}$</li>
+          </ul>
+          <p>이를 3단계의 경계항에 대입하면:</p>
+          $$\frac{3f(3) - f(1)}{4} = \frac{3(32\sqrt{2}) - 2\sqrt{2}}{4} = \frac{94\sqrt{2}}{4} = \frac{47}{2}\sqrt{2}$$
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">5단계</span>
+          <span class="step-title">두 번째 적분식($I_2$) 치환</span>
+        </div>
+        <div class="step-body">
+          <p>두 번째 적분식 $I_2 = \int_{f(0)}^{f(2)} \frac{2^{4g(x)} g'(x)}{x}\,dx$에도 동일하게 $x = f(t)$를 적용합니다.</p>
+          <ul>
+            <li>$g(x) = t$</li>
+            <li>$g'(x)\,dx = dt$ (역함수 미분법 성질)</li>
+            <li>$x = f(t)$</li>
+            <li>적분 구간: $x = f(0) \implies t = 0$, $x = f(2) \implies t = 2$</li>
+          </ul>
+          $$I_2 = \int_{0}^{2} \frac{2^{4t}}{f(t)}\,dt$$
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step-card highlight-card">
+        <div class="step-header">
+          <span class="step-number">6단계</span>
+          <span class="step-title">피적분함수 $\frac{2^{4t}}{f(t)}$의 핵심 대칭성 발견</span>
+        </div>
+        <div class="step-body">
+          <p>분모에 $f(t) = 2^{2t + \frac{1}{2}\cos(\pi t)}$를 대입해 지수법칙으로 정리합니다:</p>
+          $$\frac{2^{4t}}{f(t)} = 2^{4t - (2t + \frac{1}{2}\cos(\pi t))} = 2^{2t - \frac{1}{2}\cos(\pi t)}$$
+          <p>삼각함수 각변환 공식 $\cos(\pi(t+1)) = -\cos(\pi t)$에 착안하여 $f(t+1)$을 계산해보면:</p>
+          $$f(t+1) = 2^{2(t+1) + \frac{1}{2}\cos(\pi(t+1))} = 2^{2t + 2 - \frac{1}{2}\cos(\pi t)} = 4 \cdot 2^{2t - \frac{1}{2}\cos(\pi t)}$$
+          <p>놀랍게도 다음 항등식이 성립합니다:</p>
+          $$\frac{2^{4t}}{f(t)} = \frac{1}{4} f(t+1)$$
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">7단계</span>
+          <span class="step-title">$I_2$를 $f(t)$ 적분으로 평행이동</span>
+        </div>
+        <div class="step-body">
+          <p>6단계 결과를 $I_2$에 대입하고, $u = t+1$로 평행이동 치환을 수행합니다 ($dt = du$):</p>
+          $$I_2 = \int_{0}^{2} \frac{1}{4} f(t+1)\,dt = \frac{1}{4} \int_{1}^{3} f(u)\,du$$
+          <p>적분 변수를 $t$로 바꿔 쓰면:</p>
+          $$I_2 = \frac{1}{4} \int_{1}^{3} f(t)\,dt$$
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="step-card highlight-card">
+        <div class="step-header">
+          <span class="step-number">8단계</span>
+          <span class="step-title">두 적분의 완벽한 상쇄 (마법의 순간)</span>
+        </div>
+        <div class="step-body">
+          <p>전체 적분식 $I = \frac{1}{4}I_1 + I_2$를 합쳐줍니다:</p>
+          $$I = \left( \frac{47}{2}\sqrt{2} - \frac{1}{4}\int_{1}^{3} f(t)\,dt \right) + \left( \frac{1}{4}\int_{1}^{3} f(t)\,dt \right)$$
+          <p><span class="key-point">Point</span> 우리가 직접 부정적분을 구할 수 없었던 $\int_{1}^{3} f(t)\,dt$ 항이 부호가 반대이므로 완전히 상쇄됩니다!</p>
+          $$I = \frac{47}{2}\sqrt{2}$$
+        </div>
+      </div>
+
+      <!-- Step 9 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">9단계</span>
+          <span class="step-title">$p, q$ 계수 매칭 및 서로소 확인</span>
+        </div>
+        <div class="step-body">
+          <p>문제에서 요구한 형태 $\frac{q}{p}\sqrt{2}$와 비교합니다:</p>
+          $$\frac{q}{p}\sqrt{2} = \frac{47}{2}\sqrt{2}$$
+          <ul>
+            <li>$p = 2$</li>
+            <li>$q = 47$</li>
+            <li>$2$와 $47$은 공약수가 $1$뿐인 서로소인 자연수 조건을 정확히 만족합니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Step 10 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-number">10단계</span>
+          <span class="step-title">최종 정답 도출</span>
+        </div>
+        <div class="step-body">
+          <p>문제에서 구하고자 하는 값 $p + q$를 계산합니다:</p>
+          $$p + q = 2 + 47 = 49$$
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 최종 결론 박스 -->
+    <div class="result-box">
+      <h3>FINAL ANSWER</h3>
+      <div class="final-answer">49</div>
+      <p class="final-desc">$p = 2$, $q = 47 \implies p + q = 49$</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
